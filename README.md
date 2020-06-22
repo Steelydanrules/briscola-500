@@ -24,6 +24,8 @@ Calling a BRISCOLA means that the suit shown is now the "trump" suit.  For insta
 |0|2|
 
 
+![wire](images/wire.png)
+
 # MVP 1
 Game logic 1-2 days
 
@@ -35,3 +37,9 @@ Draw cards 1 day
 
 # MVP 4
 Add animations 1 day
+
+# BONUS
+Add different card styles (starting off with Mondiano)
+Computer Difficulty
+Leaderboard (biggest deficit, most points in 1 hand)
+Name insertion
