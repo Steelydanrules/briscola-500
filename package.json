@@ -43,5 +43,10 @@
     "> 1%",
     "maintained node versions",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "cli-interact": "^0.1.9",
+    "vorpal": "^1.12.0",
+    "vorpal-repl": "^1.1.8"
+  }
 }

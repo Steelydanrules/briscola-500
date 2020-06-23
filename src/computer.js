@@ -1,3 +1,4 @@
+let Deck = require("./deck.js");
 class ComputerPlayer {
   constructor(team) {
     this.team = team;
@@ -6,6 +7,8 @@ class ComputerPlayer {
 
   addCard = (card) => {
     if (this.currentHand.length < 5) {
+      card.owner = this;
+      card.team = this.team;
       this.currentHand.push(card);
     } else {
       throw "STOP CHEATING AT BRISC, KETIH."
@@ -13,12 +16,14 @@ class ComputerPlayer {
   }
 
   promptMove = () => {
-    let toThrowIdx = Math.floor(Math.random() * this.currentHand.length);
+    let toThrowIdx = 0;
     let cardToThrow = this.currentHand[toThrowIdx];
-    //deletes card from hand
-    this.currentHand = this.currentHand.slice(0, toThrowIdx).concat(toThrowIdx + 1, this.currentHand.length);
+    this.currentHand = this.currentHand.slice(0, toThrowIdx).concat(this.currentHand.slice(toThrowIdx + 1, this.currentHand.length));
+    
+    // console.log(cardToThrow)
 
-    cardToThrow.showCard();
+
+    cardToThrow.faceUp = true;
 
     return cardToThrow;
   }

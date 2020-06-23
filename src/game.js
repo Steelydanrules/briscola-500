@@ -1,8 +1,7 @@
-let Computer = require("./computer.js");
-let Human = require("./human.js");
+let ComputerPlayer = require("./computer.js");
+let HumanPlayer = require("./human.js");
 let Deck = require("./deck.js");
 let Team = require("./team.js");
-
 
 class Game {
   constructor() {
@@ -12,26 +11,35 @@ class Game {
     this.startingPlayerIndex = 0;
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
-    
-    PLAYERS = [
-      new Human(this.humanTeam),
-      new Computer(this.robotTeam),
-      new Computer(this.humanTeam),
-      new Computer(this.robotTeam)
-    ];
 
-    this.humanTeam = new Team(PLAYERS[0], PLAYERS[2]);
-    this.robotTeam = new Team(PLAYERS[1], PLAYERS[3]);
-    // this.hasAnybodyWon = this.hasAnybodyWon.bind(this)
+    this.humanTeam = new Team();
+    this.robotTeam = new Team();
+    
+    // let human = new HumanPlayer(this.humanTeam);
+    // let computer1 = new ComputerPlayer(this.robotTeam);
+    // let computer2 = new ComputerPlayer(this.humanTeam);
+    // let computer3 = new ComputerPlayer(this.robotTeam);
+
+    this.PLAYERS = [
+      new HumanPlayer(this.humanTeam),
+      new ComputerPlayer(this.robotTeam),
+      new ComputerPlayer(this.humanTeam),
+      new ComputerPlayer(this.robotTeam),
+    ];
   };
 
   _dealCards = () => {
 
     for (let i = 0; i < 5; i++) {
 
-    PLAYERS.forEach(player => {
-      let cardToDraw = currentDeck.pop();
-      player.currentHand.push(cardToDraw);
+    this.PLAYERS.forEach(player => {
+        let cardToDraw = this.currentDeck.cardsInDeck.pop();
+        player.currentHand.push(cardToDraw);
+        cardToDraw.owner = player;
+
+        if (player instanceof HumanPlayer) {
+          cardToDraw.faceUp = true;
+        }
       }
     )};
   };
@@ -47,20 +55,36 @@ class Game {
   };
   
   drawCard = (player, card) => {
-    card.owner = player;
     player.addCard(card)
   }
   
   thisRoundIsNotOver = () => {
-    if (this.currentDeck.cardsInDeck.length > 0) return true;
+    if (this.PLAYERS[(this.startingPlayerIndex + 3) % 4].currentHand.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+    //   this.PLAYERS.forEach((player) => {
+    //     if (player.currentHand.length == 0) {
+    //       console.log(player.currentHand.length);
+    //       return false;
+    //     }
+    //   });
 
-    PLAYERS.forEach(player => {
-      if (player.currentHand.length !== 0) {
-        return true;
-      }
-    });
-    return false;
+    // return true;
+
   };
+
+
+  thisRoundOver = () => {
+    if (this.PLAYERS[0].currentHand.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+
+
+  }
 
   addCardsValue = (team) => {
     let currentRoundTally = 0;
@@ -71,11 +95,11 @@ class Game {
     team.currentRoundScore = currentRoundTally;
   }
 
+
+
   finalTally = () => {
     this.humanTeam.addTotalScore();
     this.robotTeam.addTotalScore();
-    this.humanTeam.clearCardsWon();
-    this.robotTeam.clearCardsWon();
   }
 
   playRound = () => {
@@ -85,16 +109,17 @@ class Game {
     this._dealCards();
 
 
-    while (this.thisRoundIsNotOver()) {    
+    while (!this.thisRoundOver()) {    
     this.playHand();
-
+    console.log(this.currentDeck.cardsInDeck.length, "playround");
     }
+
+    console.log("thisroundended")
   }
 
   winningCardThrown = () => {
     let suitToBeat;
     let highestCard;
-
     if (this.currentBrisc) {
 
       if (this.thrownCards[0].suit === this.currentBrisc) {
@@ -127,35 +152,50 @@ class Game {
     });
 
     highestCard.owner.team.addHandToWinningPile(this.thrownCards);
-    this.startOfRoundMove = PLAYERS.indexOf(highestCard.owner);
+    this.startOfRoundMove = this.PLAYERS.indexOf(highestCard.owner);
     this.thrownCards = [];
   }
 
 
 
   playHand = () => {
-    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 0].promptMove()), 5000);
-    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 1].promptMove()), 5000);
-    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 2].promptMove()), 5000);
-    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 3].promptMove()), 5000);
+    this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)].promptMove());
+    this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)].promptMove());
+    this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)].promptMove());
+    this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)].promptMove());
     this.winningCardThrown();
-    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 0].addCard(this.currentDeck.cardsInDeck.pop), 1000);
-    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 1].addCard(this.currentDeck.cardsInDeck.pop), 1000);
-    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 2].addCard(this.currentDeck.cardsInDeck.pop), 1000);
-    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 3].addCard(this.currentDeck.cardsInDeck.pop), 1000);
+    console.log(this.currentDeck.cardsInDeck.length);
+    if (this.currentDeck.cardsInDeck.length !== 0) {
+    this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)].addCard(this.currentDeck.cardsInDeck.pop());
+    this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)].addCard(this.currentDeck.cardsInDeck.pop());
+    this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)].addCard(this.currentDeck.cardsInDeck.pop());
+    this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)].addCard(this.currentDeck.cardsInDeck.pop());
+    }
   }
 
   hasAnybodyWon = () => {
-    if (this.humanTeam.totalGameScore >= 500 && this.robotTeam.totalGameScore >= 500) {
-      if (this.humanTeam.totalGameScore > this.robotTeam.totalGameScore) {
-        return this.humanTeam
-      } else {
-        return this.robotTeam
-      }
+    console.log(this.humanTeam.totalGameScore);
+    console.log(this.robotTeam.totalGameScore);
+    if (
+      this.humanTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore > this.humanTeam.totalGameScore
+    ) {
+      // return this.robotTeam;
+      return true;
+    } else if (
+      this.humanTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore <= this.humanTeam.totalGameScore
+      ) {
+      // return this.humanTeam;
+      return true;
     } else if (this.humanTeam.totalGameScore >= 500) {
-      return this.humanTeam
+      // return this.humanTeam;
+      return true;
     } else if (this.robotTeam.totalGameScore >= 500) {
-      return this.robotTeam
+      // return this.robotTeam;
+      return true;
     } else {
       return false;
     }
@@ -165,12 +205,17 @@ class Game {
     while (!this.hasAnybodyWon()) {
       this.playRound();
       this.finalTally();
-      this.startOfRoundMove = (this.startingPlayerIndex + 1) % PLAYERS.length;
+      this.startOfRoundMove = (this.startingPlayerIndex + 1) % this.PLAYERS.length;
     } 
 
     return this.hasAnybodyWon();
   }
 
 }
+
+let currentGame = new Game();
+setTimeout(() => currentGame.playGame(), 1000);
+
+
 
 module.exports = Game;

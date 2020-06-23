@@ -1,7 +1,7 @@
-export const DENARI = "DENARI" //Gold
-export const SPADE = "SPADE" //Sword
-export const COPPE = "COPPE" //Cups
-export const BASTONI = "BASTONI" //Bats
+DENARI = "DENARI" //Gold
+SPADE = "SPADE" //Sword
+COPPE = "COPPE" //Cups
+BASTONI = "BASTONI" //Bats
 
 class Deck {
   constructor() {
@@ -93,8 +93,8 @@ class Deck {
     ];
   };
 
-  showCard = () => {
-    this.faceUp = true;
+  showCard = (card) => {
+    card.faceUp = true;
   }
 
   shuffleDeck = () => {
