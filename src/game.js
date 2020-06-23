@@ -11,6 +11,7 @@ class Game {
     this.currentDeck.shuffleDeck();
     this.startingPlayerIndex = 0;
     this.startOfRoundMove = this.startingPlayerIndex;
+    this.thrownCards = [];
     
     PLAYERS = [
       new Human(this.humanTeam),
@@ -72,6 +73,8 @@ class Game {
   finalTally = () => {
     this.humanTeam.addTotalScore();
     this.robotTeam.addTotalScore();
+    this.humanTeam.clearCardsWon();
+    this.robotTeam.clearCardsWon();
   }
 
   playRound = () => {
@@ -80,26 +83,31 @@ class Game {
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
     this._dealCards();
-    let startOfRoundMove = this.startingPlayerIndex;
+
+
     while (this.thisRoundIsNotOver()) {
     
-    this.playMove(startingMove)
+    this.playHand(startingMove);
     
 
 
     }
-    startOfRoundMove = (this.startingPlayerIndex + 1) % PLAYERS.length;
-    this.finalTally();
+    this.startOfRoundMove = (this.startingPlayerIndex + 1) % PLAYERS.length;
   }
 
 
 
-  playMove(startingMove) {
-    
+  playHand = () => {
+    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 0].promptMove());
+    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 1].promptMove());
+    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 2].promptMove());
+    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 3].promptMove());
+
+
+
+
 
   }
-
-
 
   hasAnybodyWon = () => {
     if (this.humanTeam.totalGameScore >= 500 && this.robotTeam.totalGameScore >= 500) {
@@ -117,16 +125,11 @@ class Game {
     }
   };
 
-
-
-  playGame() {
+  playGame = () => {
     while (!this.hasAnybodyWon()) {
       this.playRound();
       this.finalTally();
-    }
-
-
-    
+    } 
 
   }
 

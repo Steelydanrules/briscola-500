@@ -7,9 +7,13 @@ class Team {
     this.cardsWon = [];
   }
 
-  addTotalScore() {
+  addTotalScore = () => {
     this.totalGameScore += this.currentRoundScore;
     this.currentRoundScore = 0;
+  }
+
+  clearCardsWon = () => {
+    this.cardsWon = [];
   }
 }
 
