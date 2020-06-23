@@ -1,9 +1,9 @@
 class Team {
   constructor(p1, p2) {
-    const player1 = p1;
-    const player2 = p2;
-    const currentRoundScore = 0;
-    const totalGameScore = 0;
+    this.player1 = p1;
+    this.player2 = p2;
+    this.currentRoundScore = 0;
+    this.totalGameScore = 0;
   }
 
   _addTotalScore() {
