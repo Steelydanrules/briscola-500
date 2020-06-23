@@ -85,14 +85,10 @@ class Game {
     this._dealCards();
 
 
-    while (this.thisRoundIsNotOver()) {
-    
-    this.playHand(startingMove);
-    
-
+    while (this.thisRoundIsNotOver()) {    
+    this.playHand();
 
     }
-    this.startOfRoundMove = (this.startingPlayerIndex + 1) % PLAYERS.length;
   }
 
   winningCardThrown = () => {
@@ -119,7 +115,8 @@ class Game {
       }
     } else {
       suitToBeat = this.thrownCards[0].suit;
-    }
+    };
+
 
     this.thrownCards.forEach(card => {
       if (card.suit !== suitToBeat) {
@@ -127,31 +124,25 @@ class Game {
       } else if (highestCard === undefined || highestCard.value < card.value) {
         highestCard = card;
       }
-    })
+    });
 
-    highestCard.owner.team.concat(this.thrownCards);
+    highestCard.owner.team.addHandToWinningPile(this.thrownCards);
+    this.startOfRoundMove = PLAYERS.indexOf(highestCard.owner);
     this.thrownCards = [];
-
-    
-
-
   }
 
 
 
   playHand = () => {
-    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 0].promptMove());
-    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 1].promptMove());
-    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 2].promptMove());
-    this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 3].promptMove());
-
-    
-
-
-
-
-
-
+    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 0].promptMove()), 5000);
+    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 1].promptMove()), 5000);
+    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 2].promptMove()), 5000);
+    setInterval(this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 3].promptMove()), 5000);
+    this.winningCardThrown();
+    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 0].addCard(this.currentDeck.cardsInDeck.pop), 1000);
+    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 1].addCard(this.currentDeck.cardsInDeck.pop), 1000);
+    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 2].addCard(this.currentDeck.cardsInDeck.pop), 1000);
+    setInterval(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 3].addCard(this.currentDeck.cardsInDeck.pop), 1000);
   }
 
   hasAnybodyWon = () => {
@@ -174,8 +165,10 @@ class Game {
     while (!this.hasAnybodyWon()) {
       this.playRound();
       this.finalTally();
+      this.startOfRoundMove = (this.startingPlayerIndex + 1) % PLAYERS.length;
     } 
 
+    return this.hasAnybodyWon();
   }
 
 }

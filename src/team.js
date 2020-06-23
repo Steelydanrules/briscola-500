@@ -12,6 +12,10 @@ class Team {
     this.currentRoundScore = 0;
   }
 
+  addHandToWinningPile = (handArr) => {
+    this.cardsWon.concat(handArr)
+  }
+
   clearCardsWon = () => {
     this.cardsWon = [];
   }
