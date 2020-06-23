@@ -4,9 +4,10 @@ class Team {
     this.player2 = p2;
     this.currentRoundScore = 0;
     this.totalGameScore = 0;
+    this.cardsWon = [];
   }
 
-  _addTotalScore() {
+  addTotalScore() {
     this.totalGameScore += this.currentRoundScore;
     this.currentRoundScore = 0;
   }

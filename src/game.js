@@ -9,6 +9,8 @@ class Game {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
+    this.startingPlayerIndex = 0;
+    this.startOfRoundMove = this.startingPlayerIndex;
     
     PLAYERS = [
       new Human(this.humanTeam),
@@ -17,9 +19,9 @@ class Game {
       new Computer(this.robotTeam)
     ];
 
-    this.humanTeam = new Team(PLAYERS[1], PLAYERS[3]);
-    this.robotTeam = new Team(PLAYERS[0], PLAYERS[2]);
-    this.hasAnybodyWon = this.hasAnybodyWon.bind(this)
+    this.humanTeam = new Team(PLAYERS[0], PLAYERS[2]);
+    this.robotTeam = new Team(PLAYERS[1], PLAYERS[3]);
+    // this.hasAnybodyWon = this.hasAnybodyWon.bind(this)
   };
 
   _dealCards = () => {
@@ -33,10 +35,6 @@ class Game {
     )};
   };
   
-  drawCard = (player, card) => {
-    player.addCard(card)
-  }
-
   callBrisc = (suit, player) => {
     if (this.currentBrisc === null) {
       this.currentBrisc = [suit];
@@ -45,7 +43,63 @@ class Game {
       this.currentBrisc.push(suit);
       player.team.roundScore += 20;
     }
+  };
+  
+  drawCard = (player, card) => {
+    player.addCard(card)
   }
+  
+  thisRoundIsNotOver = () => {
+    if (this.currentDeck.cardsInDeck.length > 0) return true;
+
+    PLAYERS.forEach(player => {
+      if (player.currentHand.length !== 0) {
+        return true;
+      }
+    });
+    return false;
+  };
+
+  addCardsValue = (team) => {
+    let currentRoundTally = 0;
+    team.cardsWon.forEach(card => {
+      currentRoundTally += card.points
+    });
+
+    team.currentRoundScore = currentRoundTally;
+  }
+
+  finalTally = () => {
+    this.humanTeam.addTotalScore();
+    this.robotTeam.addTotalScore();
+  }
+
+  playRound = () => {
+
+    this.currentBrisc = null;
+    this.currentDeck = new Deck();
+    this.currentDeck.shuffleDeck();
+    this._dealCards();
+    let startOfRoundMove = this.startingPlayerIndex;
+    while (this.thisRoundIsNotOver()) {
+    
+    this.playMove(startingMove)
+    
+
+
+    }
+    startOfRoundMove = (this.startingPlayerIndex + 1) % PLAYERS.length;
+    this.finalTally();
+  }
+
+
+
+  playMove(startingMove) {
+    
+
+  }
+
+
 
   hasAnybodyWon = () => {
     if (this.humanTeam.totalGameScore >= 500 && this.robotTeam.totalGameScore >= 500) {
@@ -63,11 +117,16 @@ class Game {
     }
   };
 
+
+
   playGame() {
-    while (!this.hasAnybodyWon) {
-
-
+    while (!this.hasAnybodyWon()) {
+      this.playRound();
+      this.finalTally();
     }
+
+
+    
 
   }
 

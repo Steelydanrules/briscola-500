@@ -5,4 +5,4 @@ class ComputerPlayer {
   };
 };
 
-module.exports = HumanPlayer;
+module.exports = ComputerPlayer;
