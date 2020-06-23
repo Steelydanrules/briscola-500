@@ -47,6 +47,7 @@ class Game {
   };
   
   drawCard = (player, card) => {
+    card.owner = player;
     player.addCard(card)
   }
   
@@ -78,7 +79,6 @@ class Game {
   }
 
   playRound = () => {
-
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
@@ -95,6 +95,48 @@ class Game {
     this.startOfRoundMove = (this.startingPlayerIndex + 1) % PLAYERS.length;
   }
 
+  winningCardThrown = () => {
+    let suitToBeat;
+    let highestCard;
+
+    if (this.currentBrisc) {
+
+      if (this.thrownCards[0].suit === this.currentBrisc) {
+        suitToBeat = this.currentBrisc;
+        return
+      } else if (this.thrownCards[1].suit === this.currentBrisc) {
+        suitToBeat = this.currentBrisc;
+        return
+      } else if (this.thrownCards[2].suit === this.currentBrisc) {
+        suitToBeat = this.currentBrisc;
+        return
+      } else if (this.thrownCards[3].suit === this.currentBrisc) {
+        suitToBeat = this.currentBrisc;
+        return
+      } else {
+        suitToBeat = this.thrownCards[0].suit;
+        return
+      }
+    } else {
+      suitToBeat = this.thrownCards[0].suit;
+    }
+
+    this.thrownCards.forEach(card => {
+      if (card.suit !== suitToBeat) {
+        return
+      } else if (highestCard === undefined || highestCard.value < card.value) {
+        highestCard = card;
+      }
+    })
+
+    highestCard.owner.team.concat(this.thrownCards);
+    this.thrownCards = [];
+
+    
+
+
+  }
+
 
 
   playHand = () => {
@@ -102,6 +144,9 @@ class Game {
     this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 1].promptMove());
     this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 2].promptMove());
     this.thrownCards.push(PLAYERS[(this.startOfRoundMove % PLAYERS.length) + 3].promptMove());
+
+    
+
 
 
 
