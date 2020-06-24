@@ -93,6 +93,11 @@ class Deck {
     ];
   };
 
+  imageUrl = (card, imageUrl) => {
+    
+
+  }
+
   showCard = (card) => {
     card.faceUp = true;
   }
@@ -113,6 +118,27 @@ class Deck {
       this.cardsInDeck[card2] = tmp;
     }
   }
+  
+//   renderDeck = () => {
+//   document.getElementById('deck').innerHTML = '';
+
+//   for(var i = 0; i < deck.length; i++) {
+//       var card = document.createElement("div");
+//       var imageUrl = '';
+//       if (deck[i].Suit == 'hearts')
+//       icon='?';
+//       else if (deck[i].Suit == 'spades')
+//       icon = '?';
+//       else if (deck[i].Suit == 'diamonds')
+//       icon = '?';
+//       else
+//       icon = '?';
+
+//       card.innerHTML = deck[i].Value + '' + icon;
+//       card.className = 'card';
+//       document.getElementById("deck").appendChild(card);
+//     }
+//   }
 
 }
 

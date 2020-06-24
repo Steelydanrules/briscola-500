@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Sarabun";
+  src: url("./src/styles/fonts/Sarabun-Medium.ttf") format("tff");
+}
+
+html {
+  min-height: 100vh;
+}
+
+canvas {
+  border: 1px solid black;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: green;
+  margin-top: -1%;
+}
+
+.game-container{
+  margin: 0;
+  background: radial-gradient(#003B75, #007DC9 ) ;
+  min-height: 98vh;
+  width: 99vw;
+}  
+
+.gioca-briscola {
+  font-family: Sabrun, sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: red;
+}
