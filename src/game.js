@@ -12,8 +12,8 @@ class Game {
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
 
-    this.humanTeam = new Team();
-    this.robotTeam = new Team();
+    this.humanTeam = new Team("humanTeam");
+    this.robotTeam = new Team("robotTeam");
     
     // let human = new HumanPlayer(this.humanTeam);
     // let computer1 = new ComputerPlayer(this.robotTeam);
@@ -58,22 +58,22 @@ class Game {
     player.addCard(card)
   }
   
-  thisRoundIsNotOver = () => {
-    if (this.PLAYERS[(this.startingPlayerIndex + 3) % 4].currentHand.length === 0) {
-      return true;
-    } else {
-      return false;
-    }
-    //   this.PLAYERS.forEach((player) => {
-    //     if (player.currentHand.length == 0) {
-    //       console.log(player.currentHand.length);
-    //       return false;
-    //     }
-    //   });
+  // thisRoundIsNotOver = () => {
+  //   if (this.PLAYERS[(this.startingPlayerIndex + 3) % 4].currentHand.length === 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  //   //   this.PLAYERS.forEach((player) => {
+  //   //     if (player.currentHand.length == 0) {
+  //   //       console.log(player.currentHand.length);
+  //   //       return false;
+  //   //     }
+  //   //   });
 
-    // return true;
+  //   // return true;
 
-  };
+  // };
 
 
   thisRoundOver = () => {
@@ -82,8 +82,6 @@ class Game {
     } else {
       return false;
     }
-
-
   }
 
   addCardsValue = (team) => {
@@ -120,28 +118,17 @@ class Game {
   winningCardThrown = () => {
     let suitToBeat;
     let highestCard;
-    if (this.currentBrisc) {
-
-      if (this.thrownCards[0].suit === this.currentBrisc) {
-        suitToBeat = this.currentBrisc;
-        return
-      } else if (this.thrownCards[1].suit === this.currentBrisc) {
-        suitToBeat = this.currentBrisc;
-        return
-      } else if (this.thrownCards[2].suit === this.currentBrisc) {
-        suitToBeat = this.currentBrisc;
-        return
-      } else if (this.thrownCards[3].suit === this.currentBrisc) {
-        suitToBeat = this.currentBrisc;
-        return
-      } else {
-        suitToBeat = this.thrownCards[0].suit;
-        return
-      }
+    if (this.currentBrisc && this.thrownCards[0].suit === this.currentBrisc) {
+      suitToBeat = this.currentBrisc;
+    } else if (this.currentBrisc && this.thrownCards[1].suit === this.currentBrisc) {
+      suitToBeat = this.currentBrisc;
+    } else if (this.currentBrisc && this.thrownCards[2].suit === this.currentBrisc) {
+      suitToBeat = this.currentBrisc;
+    } else if (this.currentBrisc && this.thrownCards[3].suit === this.currentBrisc) {
+      suitToBeat = this.currentBrisc;
     } else {
       suitToBeat = this.thrownCards[0].suit;
-    };
-
+    }
 
     this.thrownCards.forEach(card => {
       if (card.suit !== suitToBeat) {
@@ -151,20 +138,45 @@ class Game {
       }
     });
 
-    highestCard.owner.team.addHandToWinningPile(this.thrownCards);
-    this.startOfRoundMove = this.PLAYERS.indexOf(highestCard.owner);
-    this.thrownCards = [];
+      this.startOfRoundMove = this.PLAYERS.indexOf(highestCard.owner);
+      this.thrownCards = [];
+
+    if (highestCard.owner.team.name === 'robotTeam'){
+      this.robotTeam.cardsWon = this.robotTeam.cardsWon.concat(this.thrownCards);
+    } else {
+      this.humanTeam.cardsWon = this.humanTeam.cardsWon.concat(this.thrownCards);
+    }
+    
+    
+    // cardsWon.concat(this.thrownCards);
+
+    // this.startOfRoundMove = this.PLAYERS.indexOf(highestCard.owner);
+    // this.thrownCards = [];
+    // return;
   }
 
 
 
   playHand = () => {
+    console.log(this.humanTeam.currentRoundScore, "round human score");
+    console.log(this.robotTeam.currentRoundScore, "round robot score");
+
+    console.log(this.humanTeam.totalGameScore, "round human score");
+    console.log(this.robotTeam.totalGameScore, "round robot score");
+
+    console.log(this.robotTeam.cardsWon.length, "round robot card count");
+    console.log(this.humanTeam.cardsWon.length, "round human card count");
+
+    console.log(this.humanTeam);
+    console.log(this.robotTeam);
+
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)].promptMove());
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)].promptMove());
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)].promptMove());
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)].promptMove());
     this.winningCardThrown();
     console.log(this.currentDeck.cardsInDeck.length);
+
     if (this.currentDeck.cardsInDeck.length !== 0) {
     this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)].addCard(this.currentDeck.cardsInDeck.pop());
     this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)].addCard(this.currentDeck.cardsInDeck.pop());
@@ -174,8 +186,8 @@ class Game {
   }
 
   hasAnybodyWon = () => {
-    console.log(this.humanTeam.totalGameScore);
-    console.log(this.robotTeam.totalGameScore);
+    // console.log(this.humanTeam.totalGameScore, "total human score");
+    // console.log(this.robotTeam.totalGameScore, "total robot score");
     if (
       this.humanTeam.totalGameScore >= 500 &&
       this.robotTeam.totalGameScore >= 500 &&
@@ -202,11 +214,16 @@ class Game {
   };
 
   playGame = () => {
+    // while (!this.hasAnybodyWon()) {
     while (!this.hasAnybodyWon()) {
       this.playRound();
       this.finalTally();
+      this.startingPlayerIndex += 1;
       this.startOfRoundMove = (this.startingPlayerIndex + 1) % this.PLAYERS.length;
     } 
+
+    console.log("game Over")
+
 
     return this.hasAnybodyWon();
   }

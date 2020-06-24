@@ -1,8 +1,9 @@
 class Team {
-  constructor() {
+  constructor(name) {
     this.currentRoundScore = 0;
     this.totalGameScore = 0;
     this.cardsWon = [];
+    this.name = name;
   }
 
   addTotalScore = () => {
@@ -11,9 +12,9 @@ class Team {
     this.cardsWon = [];
   }
 
-  addHandToWinningPile = (handArr) => {
-    this.cardsWon.concat(handArr)
-  }
+  // addHandToWinningPile = (handArr) => {
+  //   this.cardsWon.concat(handArr)
+  // }
 
 }
 
