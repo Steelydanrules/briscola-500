@@ -13,6 +13,7 @@ img {
 }
 
 canvas {
+  z-index: 0;
   border: 1px solid black;
   display: flex;
   margin-left: auto;
@@ -33,13 +34,36 @@ canvas img {
   width: 99vw;
 }  
 
+.top-container{
+  display: flex;
+  justify-content: center;
+
+}
 .gioca-briscola {
   font-family: Sabrun, sans-serif;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  width: 1200px;
   color: red;
+    background-color: green;
+  /* margin-right: 255px; */
 }
-.rotate-this{
-  transform: rotate(90deg);
+
+.rules-button{
+  height: 35px;
+  border-radius: 25px;
+  outline: none;
+  border: 1px solid black;
+  background-color: gray;
+}
+
+.rules-button:hover{
+  height: 35px;
+  border-radius: 25px;
+  outline: none;
+  border: 1px solid black;
+  background-color: red;
+  cursor: pointer;
 }

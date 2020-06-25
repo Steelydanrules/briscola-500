@@ -1,3 +1,10 @@
+let Game = require("./game.js");
+let currentGame = new Game();
+setTimeout(() => currentGame.playGame(), 1000);
+
+
+
+
 const canvas = document.querySelector("canvas");
 
 canvas.width = 1200;
@@ -49,7 +56,7 @@ make_base();
 
 function make_base() {
   base_image = new Image();
-  base_image.src = "../images/card-back-top.jpg";
+  base_image.src = "../images/card-back-rename.jpg";
   base_image.onload = function () {
 
     c.save();
@@ -61,10 +68,13 @@ function make_base() {
     c.drawImage(base_image, -495, 1040, 90, 160);
     c.drawImage(base_image, -595, 1040, 90, 160);
 
+    if (currentGame.thrownCards.length === 1) {
     c.drawImage(base_image, -395, 820, 90, 160);
-
+    }
     //deck
+    if (currentGame.currentDeck.cardsInDeck.length) {
     c.drawImage(base_image, -395, 520, 90, 160);
+    }
     c.restore();
 
     c.save();

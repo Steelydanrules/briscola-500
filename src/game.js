@@ -57,24 +57,6 @@ class Game {
   drawCard = (player, card) => {
     player.addCard(card)
   }
-  
-  // thisRoundIsNotOver = () => {
-  //   if (this.PLAYERS[(this.startingPlayerIndex + 3) % 4].currentHand.length === 0) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  //   //   this.PLAYERS.forEach((player) => {
-  //   //     if (player.currentHand.length == 0) {
-  //   //       console.log(player.currentHand.length);
-  //   //       return false;
-  //   //     }
-  //   //   });
-
-  //   // return true;
-
-  // };
-
 
   thisRoundOver = () => {
     if (this.PLAYERS[0].currentHand.length === 0) {
@@ -132,8 +114,6 @@ class Game {
         highestCard = this.thrownCards[i];
       }
     }
-
-
 
     if (new String(highestCard.owner.team.name) == "humanTeam") {
       this.addCardsValue(this.humanTeam, this.thrownCards)
@@ -209,9 +189,6 @@ class Game {
   }
 
 }
-
-let currentGame = new Game();
-setTimeout(() => currentGame.playGame(), 1000);
 
 
 
