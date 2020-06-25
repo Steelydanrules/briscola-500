@@ -5,6 +5,7 @@ class HumanPlayer {
   constructor(team){
     this.team = team;
     this.currentHand = [];
+    this.id = 0;
   };
   
   briscAvailable = () => {

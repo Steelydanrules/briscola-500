@@ -1,8 +1,9 @@
 let Deck = require("./deck.js");
 class ComputerPlayer {
-  constructor(team) {
+  constructor(team, id) {
     this.team = team;
     this.currentHand = [];
+    this.id = id
   };
 
   addCard = (card) => {

@@ -22,9 +22,9 @@ class Game {
 
     this.PLAYERS = [
       new HumanPlayer(this.humanTeam),
-      new ComputerPlayer(this.robotTeam),
-      new ComputerPlayer(this.humanTeam),
-      new ComputerPlayer(this.robotTeam),
+      new ComputerPlayer(this.robotTeam, 1),
+      new ComputerPlayer(this.humanTeam, 2),
+      new ComputerPlayer(this.robotTeam, 3),
     ];
   };
 
