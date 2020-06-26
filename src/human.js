@@ -7,7 +7,7 @@ export default class HumanPlayer {
     this.id = 0;
   }
 
-  briscAvailable = () => {
+  briscAvailable() {
     if (this.currentHand.length < 3) return;
     let possibleBriscs = { "DENARI": 0, "SPADE": 0, "COPPE": 0, "BASTONI": 0 };
     let actualBriscs = [];
@@ -27,7 +27,7 @@ export default class HumanPlayer {
     return actualBriscs;
   };
 
-  addCard = (card) => {
+  addCard(card) {
     if (this.currentHand.length < 5) {
       card.owner = this;
       card.faceUp = true;
@@ -38,28 +38,22 @@ export default class HumanPlayer {
     }
   };
 
-  // askforMove = () => {
+  promptMove() {
+    let toThrowIdx
 
-  // }
-
-  promptMove = () => {
-    // const reader = readline.createInterface({
-    //   input: process.stdin,
-    //   output: process.stdout,
-    // });
-
-    // console.log(this.currentHand)
-
-    // reader.question("which index will be throwing???????", (toThrowIdx) => {
-
-    console.log(this.briscAvailable());
-
-    this.currentHand.forEach((card) => {
-      console.log(card.suit);
+    toThrowIdx = document.addEventListener("mousedown", (e) => {
+      if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
+        return 1;
+      } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
+        return 2;
+      } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
+        return 3;
+      } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
+        return 4;
+      } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
+        return 5;
+      }
     });
-
-    // let toThrowIdx = this.askforMove();
-    let toThrowIdx = 0;
 
     let cardToThrow = this.currentHand[toThrowIdx];
     this.currentHand = this.currentHand

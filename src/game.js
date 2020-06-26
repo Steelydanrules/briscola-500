@@ -12,7 +12,6 @@ export default class Game {
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
     this.c = canvas.getContext("2d");
-
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
     
@@ -29,7 +28,70 @@ export default class Game {
     ];
   };
 
-  _dealCards = () => {
+
+
+  drawBoard() {
+  let faceDown = new Image();
+  faceDown.src = "../images/card-back-rename.jpg";
+  faceDown.onload = function () {
+
+    c.save();
+    c.rotate(-90 * (Math.PI / 180));
+    //right cpu and deck
+    debugger
+    if ((this.PLAYERS[1]).currentHand.length > 0) c.drawImage(faceDown, -195, 1040, 90, 160);
+    if ((this.PLAYERS[1]).currentHand.length > 1) c.drawImage(faceDown, -295, 1040, 90, 160);
+    if ((this.PLAYERS[1]).currentHand.length > 2) c.drawImage(faceDown, -395, 1040, 90, 160);
+    if ((this.PLAYERS[1]).currentHand.length > 3) c.drawImage(faceDown, -495, 1040, 90, 160);
+    if ((this.PLAYERS[1]).currentHand.length > 4) c.drawImage(faceDown, -595, 1040, 90, 160);
+
+    c.drawImage(faceDown, -395, 820, 90, 160);
+  
+    //deck
+    if (this.currentDeck.cardsInDeck.length > 0) c.drawImage(faceDown, -395, 520, 90, 160);
+
+    c.restore();
+
+    c.save();
+
+    c.rotate(90 * (Math.PI / 180));
+    //left cpu
+      c.drawImage(faceDown, 105, -160, 90, 160);
+      c.drawImage(faceDown, 205, -160, 90, 160);
+      c.drawImage(faceDown, 305, -160, 90, 160);
+      c.drawImage(faceDown, 405, -160, 90, 160);
+      c.drawImage(faceDown, 505, -160, 90, 160);
+
+      c.drawImage(faceDown, 305, -380, 90, 160);
+    c.restore();
+
+    c.save();
+
+    c.rotate(180 * (Math.PI / 180));
+    //partner
+      c.drawImage(faceDown, -445, -80, 90, 160);
+      c.drawImage(faceDown, -545, -80, 90, 160);
+      c.drawImage(faceDown, -645, -80, 90, 160);
+      c.drawImage(faceDown, -745, -80, 90, 160);
+      c.drawImage(faceDown, -845, -80, 90, 160);
+
+      c.drawImage(faceDown, -645, -260, 90, 160);
+    c.restore();
+
+    c.drawImage(faceDown, 355, 620, 90, 160);
+    c.drawImage(faceDown, 455, 620, 90, 160);
+    c.drawImage(faceDown, 555, 620, 90, 160);
+    c.drawImage(faceDown, 655, 620, 90, 160);
+    c.drawImage(faceDown, 755, 620, 90, 160);
+
+    c.drawImage(faceDown, 555, 440, 90, 160);
+
+  };
+}
+
+
+  _dealCards() {
+    this.drawBoard();
 
     for (let i = 0; i < 5; i++) {
 
@@ -45,7 +107,7 @@ export default class Game {
     )};
   };
   
-  callBrisc = (suit, player) => {
+  callBrisc(suit, player) {
     if (this.currentBrisc === null) {
       this.currentBrisc = [suit];
       player.team.roundScore += 40;
@@ -55,11 +117,11 @@ export default class Game {
     }
   };
   
-  drawCard = (player, card) => {
+  drawCard(player, card) {
     player.addCard(card)
   }
 
-  thisRoundOver = () => {
+  thisRoundOver() {
     if (this.PLAYERS[0].currentHand.length === 0) {
       return true;
     } else {
@@ -67,7 +129,7 @@ export default class Game {
     }
   }
 
-  addCardsValue = (team, cards) => {
+  addCardsValue(team, cards) {
     let currentRoundTally = 0;
     cards.forEach(card => {
       currentRoundTally += card.points
@@ -78,27 +140,28 @@ export default class Game {
 
 
 
-  finalTally = () => {
+  finalTally() {
     this.humanTeam.addTotalScore();
     this.robotTeam.addTotalScore();
   }
 
-  playRound = () => {
+  playRound() {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
     this._dealCards();
+    this.drawBoard();
 
 
     while (!this.thisRoundOver()) {    
     this.playHand();
-    console.log(this.currentDeck.cardsInDeck.length, "playround");
+    // console.log(this.currentDeck.cardsInDeck.length, "playround");
     }
 
-    console.log("thisroundended")
+    // console.log("thisroundended")
   }
 
-  winningCardThrown = () => {
+  winningCardThrown() {
     let suitToBeat;
     let highestCard;
 
@@ -126,12 +189,15 @@ export default class Game {
     this.thrownCards = [];
   }
 
-  playHand = () => {
-    console.log(this.PLAYERS[3].currentHand);
+  playHand() {
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)].promptMove());
+    this.drawBoard();
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)].promptMove());
+    this.drawBoard();
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)].promptMove());
+    this.drawBoard();
     this.thrownCards.push(this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)].promptMove());
+    this.drawBoard();
     this.winningCardThrown();
 
     console.log(this.thrownCards)
@@ -143,9 +209,9 @@ export default class Game {
     }
   }
 
-  hasAnybodyWon = () => {
-    console.log(this.humanTeam.totalGameScore, "total human score");
-    console.log(this.robotTeam.totalGameScore, "total robot score");
+  hasAnybodyWon() {
+    // console.log(this.humanTeam.totalGameScore, "total human score");
+    // console.log(this.robotTeam.totalGameScore, "total robot score");
 
     if (
       this.humanTeam.totalGameScore >= 500 &&
@@ -172,15 +238,12 @@ export default class Game {
     }
   };
 
-  playGame = () => {
+  playGame() {
     while (!this.hasAnybodyWon()) {
-    // let i = 202;
-    // while (i > 0) {
       this.playRound();
       this.finalTally();
       this.startingPlayerIndex += 1;
       this.startOfRoundMove = (this.startingPlayerIndex + 1) % this.PLAYERS.length;
-      // i--;
     } 
 
     console.log("game Over")

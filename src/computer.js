@@ -7,7 +7,7 @@ export default class ComputerPlayer {
     this.id = id;
   }
 
-  addCard = (card) => {
+  addCard(card) {
     if (this.currentHand.length < 5) {
       card.owner = this;
       card.team = this.team;
@@ -17,7 +17,7 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove = () => {
+  promptMove() {
     let toThrowIdx = 0;
     let cardToThrow = this.currentHand[toThrowIdx];
     this.currentHand = this.currentHand

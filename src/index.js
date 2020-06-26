@@ -1,5 +1,9 @@
 import Game from './game.js';
 
-const canvas = document.querySelector("canvas");
 
-new Game (canvas)
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("canvas-game");
+  
+  let currentGame = new Game(canvas)
+  setTimeout(currentGame.playGame(), 1);
+})

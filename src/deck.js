@@ -374,13 +374,15 @@ export default class Deck {
     ];
   }
 
-  imageUrl = (card, imageUrl) => {};
+  imageUrl(card, imageUrl){
 
-  showCard = (card) => {
+  };
+
+  showCard(card){
     card.faceUp = true;
   };
 
-  shuffleDeck = () => {
+  shuffleDeck(){
     this.cardsInDeck.forEach((card) => {
       card.faceUp = false;
       card.owner = null;
