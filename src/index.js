@@ -5,5 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas-game");
   
   let currentGame = new Game(canvas)
-  setTimeout(currentGame.playGame(), 1);
+  currentGame.playGame();
+  currentGame._dealCards();
+  currentGame.drawBoard();
+  // currentGame.playGame();
 })

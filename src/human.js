@@ -65,8 +65,11 @@ export default class HumanPlayer {
       .slice(0, toThrowIdx)
       .concat(this.currentHand.slice(toThrowIdx + 1, this.currentHand.length));
 
-    cardToThrow.faceUp = true;
-
+    if (cardToThrow === undefined) {
+      return
+    } else {
+      cardToThrow.faceUp = true;
+    }
     return cardToThrow;
     // });
   };
