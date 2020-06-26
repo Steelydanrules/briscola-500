@@ -1,16 +1,17 @@
-let ComputerPlayer = require("./computer.js");
-let HumanPlayer = require("./human.js");
-let Deck = require("./deck.js");
-let Team = require("./team.js");
+import ComputerPlayer from "./computer.js";
+import HumanPlayer from "./human.js";
+import Deck from "./deck.js";
+import Team from "./team.js";
 
-class Game {
-  constructor() {
+export default class Game {
+  constructor(canvas) {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
     this.startingPlayerIndex = 0;
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
+    this.c = canvas.getContext("2d");
 
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
@@ -189,7 +190,3 @@ class Game {
   }
 
 }
-
-
-
-module.exports = Game;

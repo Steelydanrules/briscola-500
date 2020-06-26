@@ -1,24 +1,23 @@
-let Deck = require("./deck.js");
-const readline = require("readline");
+import Deck from "./deck.js";
 
-class HumanPlayer {
-  constructor(team){
+export default class HumanPlayer {
+  constructor(team) {
     this.team = team;
     this.currentHand = [];
     this.id = 0;
-  };
-  
+  }
+
   briscAvailable = () => {
     if (this.currentHand.length < 3) return;
-    let possibleBriscs = {DENARI: 0, SPADE: 0, COPPE: 0, BASTONI: 0};
+    let possibleBriscs = { "DENARI": 0, "SPADE": 0, "COPPE": 0, "BASTONI": 0 };
     let actualBriscs = [];
 
-    this.currentHand.forEach(card => {
+    this.currentHand.forEach((card) => {
       if (card.points === 3 || card.points === 4) {
         possibleBriscs[card.suit] += 1;
       }
     });
-    
+
     for (let suit in possibleBriscs) {
       if (possibleBriscs[suit] > 1) {
         actualBriscs.push(suit);
@@ -26,7 +25,7 @@ class HumanPlayer {
     }
 
     return actualBriscs;
-  }
+  };
 
   addCard = (card) => {
     if (this.currentHand.length < 5) {
@@ -35,18 +34,15 @@ class HumanPlayer {
       card.team = this.team;
       this.currentHand.push(card);
     } else {
-      throw "STOP CHEATING AT BRISC, KETIH."
+      throw "STOP CHEATING AT BRISC, KETIH.";
     }
-  }
-
+  };
 
   // askforMove = () => {
-
 
   // }
 
   promptMove = () => {
-
     // const reader = readline.createInterface({
     //   input: process.stdin,
     //   output: process.stdout,
@@ -58,26 +54,21 @@ class HumanPlayer {
 
     console.log(this.briscAvailable());
 
-    this.currentHand.forEach(card => {
-      console.log(card.suit)
+    this.currentHand.forEach((card) => {
+      console.log(card.suit);
     });
 
-      // let toThrowIdx = this.askforMove();
+    // let toThrowIdx = this.askforMove();
     let toThrowIdx = 0;
 
     let cardToThrow = this.currentHand[toThrowIdx];
-    this.currentHand = this.currentHand.slice(0, toThrowIdx).concat(this.currentHand.slice(toThrowIdx + 1, this.currentHand.length));
+    this.currentHand = this.currentHand
+      .slice(0, toThrowIdx)
+      .concat(this.currentHand.slice(toThrowIdx + 1, this.currentHand.length));
 
     cardToThrow.faceUp = true;
 
     return cardToThrow;
     // });
-
-  }
-
-
-
-
+  };
 };
-
-module.exports = HumanPlayer;

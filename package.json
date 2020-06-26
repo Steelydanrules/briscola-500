@@ -44,9 +44,13 @@
     "maintained node versions",
     "not dead"
   ],
+  "plugins": "@babel/plugin-proposal-class-properties",
   "dependencies": {
+    "@babel/preset-react": "^7.10.1",
+    "babel": "^6.23.0",
     "cli-interact": "^0.1.9",
     "html-webpack-plugin": "^4.3.0",
+    "milsymbol": "^2.0.0",
     "vorpal": "^1.12.0",
     "vorpal-repl": "^1.1.8"
   }

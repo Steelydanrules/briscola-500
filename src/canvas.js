@@ -1,14 +1,9 @@
-let Game = require("./game.js");
-let currentGame = new Game();
-setTimeout(() => currentGame.playGame(), 1000);
-
-
-
+// import Game from "./game.js";
+// let currentGame = new Game(canvas);
+// setTimeout(() => currentGame.playGame(), 1000);
 
 const canvas = document.querySelector("canvas");
 
-canvas.width = 1200;
-canvas.height = 780;
 
 const c = canvas.getContext('2d');
 
@@ -68,13 +63,11 @@ function make_base() {
     c.drawImage(base_image, -495, 1040, 90, 160);
     c.drawImage(base_image, -595, 1040, 90, 160);
 
-    if (currentGame.thrownCards.length === 1) {
     c.drawImage(base_image, -395, 820, 90, 160);
-    }
+  
     //deck
-    if (currentGame.currentDeck.cardsInDeck.length) {
     c.drawImage(base_image, -395, 520, 90, 160);
-    }
+
     c.restore();
 
     c.save();
