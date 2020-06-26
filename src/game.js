@@ -8,7 +8,7 @@ export default class Game {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
-    this.startingPlayerIndex = 0;
+    this.startingPlayerIndex = 1;
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
     this.c = canvas.getContext("2d");
@@ -19,7 +19,7 @@ export default class Game {
     // let computer1 = new ComputerPlayer(this.robotTeam);
     // let computer2 = new ComputerPlayer(this.humanTeam);
     // let computer3 = new ComputerPlayer(this.robotTeam);
-
+    console.log("players")
     this.PLAYERS = [
       new HumanPlayer(this.humanTeam),
       new ComputerPlayer(this.robotTeam, 1),
@@ -31,67 +31,87 @@ export default class Game {
 
 
   drawBoard() {
+  if(this.PLAYERS[0] === undefined || 
+    this.PLAYERS[1] === undefined ||
+    this.PLAYERS[2] === undefined ||
+    this.PLAYERS[3] === undefined || 
+    this.currentDeck.cardsInDeck === undefined ||
+    this.c === undefined) {
+    return;
+    } +
+    
+  console.log("drawing")
+  console.log(this.PLAYERS[1])
   let faceDown = new Image();
   faceDown.src = "../images/card-back-rename.jpg";
   faceDown.onload = function () {
 
-    c.save();
-    c.rotate(-90 * (Math.PI / 180));
+    this.c.save();
+    this.c.rotate(-90 * (Math.PI / 180));
     //right cpu and deck
     debugger
-    if ((this.PLAYERS[1]).currentHand.length > 0) c.drawImage(faceDown, -195, 1040, 90, 160);
-    if ((this.PLAYERS[1]).currentHand.length > 1) c.drawImage(faceDown, -295, 1040, 90, 160);
-    if ((this.PLAYERS[1]).currentHand.length > 2) c.drawImage(faceDown, -395, 1040, 90, 160);
-    if ((this.PLAYERS[1]).currentHand.length > 3) c.drawImage(faceDown, -495, 1040, 90, 160);
-    if ((this.PLAYERS[1]).currentHand.length > 4) c.drawImage(faceDown, -595, 1040, 90, 160);
+    if (this.PLAYERS[1].currentHand.length > 0) {
+    this.c.drawImage(faceDown, -195, 1040, 90, 160);
+    }
+    if (this.PLAYERS[1].currentHand.length > 1) {
+    this.c.drawImage(faceDown, -295, 1040, 90, 160);
+    }
+    if (this.PLAYERS[1].currentHand.length > 2) {
+    this.c.drawImage(faceDown, -395, 1040, 90, 160);
+    }
+    if (this.PLAYERS[1].currentHand.length > 3) {
+    this.c.drawImage(faceDown, -495, 1040, 90, 160);
+    }
+    if (this.PLAYERS[1].currentHand.length > 4) {
+    this.c.drawImage(faceDown, -595, 1040, 90, 160);
+    }
 
-    c.drawImage(faceDown, -395, 820, 90, 160);
+    this.c.drawImage(faceDown, -395, 820, 90, 160);
   
     //deck
-    if (this.currentDeck.cardsInDeck.length > 0) c.drawImage(faceDown, -395, 520, 90, 160);
+    if (this.currentDeck.cardsInDeck.length > 0) this.c.drawImage(faceDown, -395, 520, 90, 160);
 
-    c.restore();
+    this.c.restore();
 
-    c.save();
+    this.c.save();
 
-    c.rotate(90 * (Math.PI / 180));
+    this.c.rotate(90 * (Math.PI / 180));
     //left cpu
-      c.drawImage(faceDown, 105, -160, 90, 160);
-      c.drawImage(faceDown, 205, -160, 90, 160);
-      c.drawImage(faceDown, 305, -160, 90, 160);
-      c.drawImage(faceDown, 405, -160, 90, 160);
-      c.drawImage(faceDown, 505, -160, 90, 160);
+      this.c.drawImage(faceDown, 105, -160, 90, 160);
+      this.c.drawImage(faceDown, 205, -160, 90, 160);
+      this.c.drawImage(faceDown, 305, -160, 90, 160);
+      this.c.drawImage(faceDown, 405, -160, 90, 160);
+      this.c.drawImage(faceDown, 505, -160, 90, 160);
 
-      c.drawImage(faceDown, 305, -380, 90, 160);
-    c.restore();
+      this.c.drawImage(faceDown, 305, -380, 90, 160);
+    this.c.restore();
 
-    c.save();
+    this.c.save();
 
-    c.rotate(180 * (Math.PI / 180));
+    this.c.rotate(180 * (Math.PI / 180));
     //partner
-      c.drawImage(faceDown, -445, -80, 90, 160);
-      c.drawImage(faceDown, -545, -80, 90, 160);
-      c.drawImage(faceDown, -645, -80, 90, 160);
-      c.drawImage(faceDown, -745, -80, 90, 160);
-      c.drawImage(faceDown, -845, -80, 90, 160);
+      this.c.drawImage(faceDown, -445, -80, 90, 160);
+      this.c.drawImage(faceDown, -545, -80, 90, 160);
+      this.c.drawImage(faceDown, -645, -80, 90, 160);
+      this.c.drawImage(faceDown, -745, -80, 90, 160);
+      this.c.drawImage(faceDown, -845, -80, 90, 160);
 
-      c.drawImage(faceDown, -645, -260, 90, 160);
-    c.restore();
+      this.c.drawImage(faceDown, -645, -260, 90, 160);
+    this.c.restore();
 
-    c.drawImage(faceDown, 355, 620, 90, 160);
-    c.drawImage(faceDown, 455, 620, 90, 160);
-    c.drawImage(faceDown, 555, 620, 90, 160);
-    c.drawImage(faceDown, 655, 620, 90, 160);
-    c.drawImage(faceDown, 755, 620, 90, 160);
+    this.c.drawImage(faceDown, 355, 620, 90, 160);
+    this.c.drawImage(faceDown, 455, 620, 90, 160);
+    this.c.drawImage(faceDown, 555, 620, 90, 160);
+    this.c.drawImage(faceDown, 655, 620, 90, 160);
+    this.c.drawImage(faceDown, 755, 620, 90, 160);
 
-    c.drawImage(faceDown, 555, 440, 90, 160);
+    this.c.drawImage(faceDown, 555, 440, 90, 160);
 
   };
 }
 
 
   _dealCards() {
-    this.drawBoard();
 
     for (let i = 0; i < 5; i++) {
 
@@ -239,6 +259,9 @@ export default class Game {
   };
 
   playGame() {
+    this._dealCards();
+    this.drawBoard();
+    console.log("playgame")
     while (!this.hasAnybodyWon()) {
       this.playRound();
       this.finalTally();

@@ -13,7 +13,7 @@ export default class ComputerPlayer {
       card.team = this.team;
       this.currentHand.push(card);
     } else {
-      throw "STOP CHEATING AT BRISC, KETIH.";
+      throw "STOP CHEATING AT BRISC.";
     }
   };
 

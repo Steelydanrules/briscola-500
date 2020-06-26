@@ -34,26 +34,31 @@ export default class HumanPlayer {
       card.team = this.team;
       this.currentHand.push(card);
     } else {
-      throw "STOP CHEATING AT BRISC, KETIH.";
+      throw "STOP CHEATING AT BRISC.";
     }
   };
 
   promptMove() {
-    let toThrowIdx
+    let toThrowIdx;
 
-    toThrowIdx = document.addEventListener("mousedown", (e) => {
-      if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
-        return 1;
-      } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
-        return 2;
-      } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
-        return 3;
-      } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
-        return 4;
-      } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
-        return 5;
-      }
-    });
+    this.chooseCard = () => {
+      document.addEventListener("mousedown", (e) => {
+        if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
+          return 1;
+        } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
+          return 2;
+        } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
+          return 3;
+        } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
+          return 4;
+        } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
+          return 5;
+        }
+      });
+    }
+
+    toThrowIdx = this.chooseCard();
+
 
     let cardToThrow = this.currentHand[toThrowIdx];
     this.currentHand = this.currentHand
