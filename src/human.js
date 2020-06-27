@@ -39,6 +39,7 @@ export default class HumanPlayer {
   };
 
   promptMove() {
+    debugger
     let toThrowIdx;
 
     this.chooseCard = () => {
@@ -57,8 +58,9 @@ export default class HumanPlayer {
       });
     }
 
-    toThrowIdx = this.chooseCard();
-
+    // toThrowIdx = this.chooseCard();
+    toThrowIdx = Math.floor(Math.random() * this.currentHand.length)
+    
 
     let cardToThrow = this.currentHand[toThrowIdx];
     this.currentHand = this.currentHand
