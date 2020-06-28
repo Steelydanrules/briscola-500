@@ -34,13 +34,15 @@ export default class HumanPlayer {
       card.team = this.team;
       this.currentHand.push(card);
     } else {
-      throw "STOP CHEATING AT BRISC.";
+      console.log("human trying to draw again.  IDK WHY")
+      return
     }
   };
 
   promptMove() {
     debugger
     let toThrowIdx;
+
 
     this.chooseCard = () => {
       document.addEventListener("mousedown", (e) => {

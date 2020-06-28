@@ -8,7 +8,7 @@ export default class Game {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
-    this.startingPlayerIndex = 0;
+    this.startingPlayerIndex = 1;
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
     this.ctx = canvas.getContext("2d");
@@ -170,6 +170,8 @@ export default class Game {
 
   _dealCards() {
     debugger
+    if (this.PLAYERS[0].currentHand.length !== 0) return
+
     for (let i = 0; i < 5; i++) {
 
     this.PLAYERS.forEach(player => {
