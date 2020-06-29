@@ -1,5 +1,3 @@
-import Deck from "./deck.js"
-
 export default class ComputerPlayer {
   constructor(team, id) {
     this.team = team;

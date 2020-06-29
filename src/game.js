@@ -8,12 +8,14 @@ export default class Game {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
-    this.startingPlayerIndex = 1;
+    this.startingPlayerIndex = 0;
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
+    this.canWePlayTheNextTurn = false;
+    // setInterval(this.drawBoard.bind(this), 1000)
 
     this.PLAYERS = [
       new HumanPlayer(this.humanTeam),
@@ -39,13 +41,15 @@ export default class Game {
 
   drawBoard() {
     debugger
-  if(this.PLAYERS[0] === undefined || 
-    this.PLAYERS[1] === undefined ||
-    this.PLAYERS[2] === undefined ||
-    this.PLAYERS[3] === undefined || 
-    this.currentDeck.cardsInDeck === undefined ||
-    this.ctx === undefined) {
-      console.log("sorry")
+    if(
+      this.PLAYERS === undefined || 
+      this.PLAYERS[0] === undefined || 
+      this.PLAYERS[1] === undefined ||
+      this.PLAYERS[2] === undefined ||
+      this.PLAYERS[3] === undefined || 
+      this.currentDeck.cardsInDeck === undefined ||
+      this.ctx === undefined) {
+        console.log("sorry")
     return;
     } 
     
@@ -178,6 +182,7 @@ export default class Game {
         let cardToDraw = this.currentDeck.cardsInDeck.pop();
         player.currentHand.push(cardToDraw);
         cardToDraw.owner = player;
+        
 
         if (player instanceof HumanPlayer) {
           cardToDraw.faceUp = true;
@@ -202,9 +207,9 @@ export default class Game {
     player.addCard(card)
   }
 
-  thisRoundOver() {
+  thisRoundIsntOver() {
     debugger
-    if (this.PLAYERS[0].currentHand.length === 0) {
+    if (this.PLAYERS[0].currentHand.length !== 0) {
       return true;
     } else {
       return false;
@@ -221,8 +226,6 @@ export default class Game {
     team.currentRoundScore += currentRoundTally;
   }
 
-
-
   finalTally() {
     debugger
     this.humanTeam.addTotalScore();
@@ -235,10 +238,10 @@ export default class Game {
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
     this._dealCards();
-    this.drawBoard();
+    // this.drawBoard();
 
 
-    while (!this.thisRoundOver()) {    
+    while (this.thisRoundIsntOver()) {    
     this.playHand();
     }
 
@@ -246,6 +249,7 @@ export default class Game {
 
   winningCardThrown() {
     debugger
+    console.log(this.thrownCards)
     if (this.thrownCards.length !== 4) return;
 
     let suitToBeat;
@@ -275,39 +279,102 @@ export default class Game {
     this.thrownCards = [];
   }
 
+  checkIfMoveShouldBePlayed(user, numberOfCards) {
+    if (this.canWePlayTheNextTurn === true && this.thrownCards.length === numberOfCards) {
+      this.canWePlayTheNextTurn = false;
+      this.playMove(user);
+    } else {
+      window.setTimeout(this.checkIfMoveShouldBePlayed, 500)
+    }
+  }
+
+  // checkVariable2() {›
+  //   let secondToThrow = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
+  //   console.log(this.thrownCards)
+  //   console.log(this.canWePlayTheNextTurn)
+  //   if (this.canWePlayTheNextTurn === true && this.thrownCards.length === 1) {
+  //     this.canWePlayTheNextTurn = false;
+  //     this.playMove(secondToThrow);
+  //   } else {
+  //     window.setTimeout(checkVariable2, 500)
+  //   }
+  // }
+
+  // checkVariable3() {
+  //   let thirdToThrow = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
+  //   if (this.canWePlayTheNextTurn === true && this.thrownCards.length === 2) {
+  //     this.canWePlayTheNextTurn = false;
+  //     this.playMove(thirdToThrow);
+  //   } else {
+  //     window.setTimeout(checkVariable3, 500)
+  //   }
+  // }
+
+  // checkVariable4() {
+  //   let lastToThrow = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
+  //   if (this.canWePlayTheNextTurn === true && this.thrownCards.length === 3) {
+  //     this.canWePlayTheNextTurn = false;
+  //     this.playMove(lastToThrow);
+  //   } else {
+  //     window.setTimeout(checkVariable4, 500)
+  //   }
+  // }
+
   playMove(user) {
     debugger
-    let cardToThrow = user.promptMove();
-    this.thrownCards.push(cardToThrow)
+    if (this.canWePlayTheNextTurn) {
+      let cardToThrow = user.promptMove();
+      this.thrownCards.push(cardToThrow);
+      this.drawBoard();
+      this.canWePlayTheNextTurn === true;
+      return;
+    } else {
+      return;
+    }
   }
 
   playHand() {
-    debugger
+    debugger    
     let firstToThrow = this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)];
     let secondToThrow = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
     let thirdToThrow = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
     let lastToThrow = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
 
-    setTimeout( () => {
-      this.playMove(firstToThrow)}, 2000
-    )
-    this.drawBoard();
-    setTimeout( () => {
-    this.playMove(secondToThrow)}, 2000
-    )
-    this.drawBoard();
-    setTimeout( () => {
-    this.playMove(thirdToThrow)}, 2000
-    )
-    this.drawBoard();
-    setTimeout( () => {
-    this.playMove(lastToThrow)}, 2000
-    )
-    this.drawBoard();
-    setTimeout(() => 
-    this.winningCardThrown(), 1);
 
-    console.log(this.thrownCards)
+    this.canWePlayTheNextTurn = true;
+    
+    this.checkVariable(firstToThrow, 0);
+    // this.drawBoard();
+        
+    this.checkVariable(secondToThrow, 1);
+    // this.drawBoard();
+        
+    this.checkVariable(thirdToThrow, 2);
+    // this.drawBoard();
+    
+    this.checkVariable(lastToThrow, 3);
+
+    
+    // this.playMove(firstToThrow);
+    
+    // this.drawBoard();
+
+    // this.playMove(secondToThrow);
+    
+    // this.drawBoard();
+
+    // this.playMove(thirdToThrow);
+    
+    // this.drawBoard();
+
+    // this.playMove(lastToThrow);
+    
+    // this.drawBoard();
+
+    this.canWePlayTheNextTurn === false;
+
+    this.winningCardThrown();
+
     if (this.currentDeck.cardsInDeck.length !== 0) {
     let firstToDraw = this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)];
     let secondToDraw = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
@@ -350,31 +417,31 @@ export default class Game {
 
   playGame() {
     debugger
-    // if (this.PLAYERS[0] === undefined ||
-    //   this.PLAYERS[1] === undefined ||
-    //   this.PLAYERS[2] === undefined ||
-    //   this.PLAYERS[3] === undefined ||
-    //   this.currentDeck.cardsInDeck === undefined ||
-    //   this.ctx === undefined) {
-    //   return;
-    // } 
+    if (this.PLAYERS[0] === undefined ||
+      this.PLAYERS[1] === undefined ||
+      this.PLAYERS[2] === undefined ||
+      this.PLAYERS[3] === undefined ||
+      this.currentDeck.cardsInDeck === undefined ||
+      this.ctx === undefined) {
+      return;
+    } 
     // this._dealCards();
     // this.drawBoard();
     console.log("playgame")
-    this.drawBoard();
-    setTimeout( ()=> {
+    // this.drawBoard();
       while (this.hasAnybodyWon() === false) {
         this.playRound();
         this.finalTally();
         this.startingPlayerIndex += 1;
         this.startOfRoundMove = (this.startingPlayerIndex + 1) % this.PLAYERS.length;
       } 
+
   
       console.log("game Over")
       console.log(this.humanTeam.totalGameScore)
       console.log(this.robotTeam.totalGameScore)
 
-    }, 500)
+      return
   }
 
 }
