@@ -279,7 +279,7 @@ export default class Game {
     this.thrownCards = [];
   }
 
-  checkIfMoveShouldBePlayed(user, numberOfCards) {
+  checkVariable(user, numberOfCards) {
     if (this.canWePlayTheNextTurn === true && this.thrownCards.length === numberOfCards) {
       this.canWePlayTheNextTurn = false;
       this.playMove(user);
@@ -323,7 +323,7 @@ export default class Game {
   playMove(user) {
     debugger
     if (this.canWePlayTheNextTurn) {
-      let cardToThrow = user.promptMove();
+      let cardToThrow = user.promptMove(e);
       this.thrownCards.push(cardToThrow);
       this.drawBoard();
       this.canWePlayTheNextTurn === true;

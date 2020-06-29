@@ -16,7 +16,7 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove() {
+  promptMove(e) {
     debugger
     let toThrowIdx = 0;
     let cardToThrow = this.currentHand[toThrowIdx];
