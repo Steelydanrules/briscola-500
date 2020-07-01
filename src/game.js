@@ -37,21 +37,8 @@ export default class Game {
     return "../images/no-card.png"
   }
 
-
-
   drawBoard() {
     debugger
-    if(
-      this.PLAYERS === undefined || 
-      this.PLAYERS[0] === undefined || 
-      this.PLAYERS[1] === undefined ||
-      this.PLAYERS[2] === undefined ||
-      this.PLAYERS[3] === undefined || 
-      this.currentDeck.cardsInDeck === undefined ||
-      this.ctx === undefined) {
-        console.log("sorry")
-    return;
-    } 
     
   console.log(this.thrownCards);
 
