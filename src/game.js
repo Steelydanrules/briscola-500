@@ -323,7 +323,7 @@ export default class Game {
   playMove(user) {
     debugger
     if (this.canWePlayTheNextTurn) {
-      let cardToThrow = user.promptMove(e);
+      let cardToThrow = user.promptMove();
       this.thrownCards.push(cardToThrow);
       this.drawBoard();
       this.canWePlayTheNextTurn === true;
