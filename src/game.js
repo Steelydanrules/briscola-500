@@ -7,14 +7,12 @@ export default class Game {
   constructor(canvas) {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
-    this.currentDeck.shuffleDeck();
-    this.startingPlayerIndex = 0;
+    this.startingPlayerIndex = 1;
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
-    this.isBoardLoaded = false;
 
     this.PLAYERS = [
       new HumanPlayer(this.humanTeam, 555, 440, 0),
@@ -32,19 +30,9 @@ export default class Game {
       //   this.ctx.drawImage(secondPlayersThrown, -645, -260, 90, 160) 180 ; cpu partner this.ctx.rotate(180
       //   this.ctx.drawImage(firstPlayersThrown, 555, 440, 90, 160) 0 ; me this.ctx.rotate(0
 
-  renderThisUsersThrow(card, user){
-    let cardFace = new Image();
-    cardFace.src = card.imageUrl;
-    cardFace.onload = () => {
-      this.ctx.save();
-      this.ctx.rotate(user.rotAmt * (Math.PI / 180));
-      this.ctx.drawImage(cardFace, user.xPos, user.yPos, 90, 160);
-      this.ctx.restore();
-    }
-  }
+
 
   drawInitialBoard() {
-
   let faceDown = new Image();
   let noCard = new Image();
   faceDown.src = "../images/card-back-rename.jpg";
@@ -98,8 +86,6 @@ export default class Game {
       this.ctx.drawImage(faceDown, 655, 620, 90, 160);
       this.ctx.drawImage(faceDown, 755, 620, 90, 160);
       this.ctx.drawImage(noCard, 555, 440, 90, 160);
-
-      this.isBoardLoaded = true;
     }
   };
 
@@ -181,6 +167,7 @@ export default class Game {
     debugger
     console.log(this.thrownCards)
     if (this.thrownCards.length !== 4) return;
+    // if (this.thrownCards.indexOf(undefined) !== -1) return;
 
     let suitToBeat;
     let highestCard;
@@ -215,11 +202,22 @@ export default class Game {
     } 
   }
 
+  renderThisUsersThrow(card, user) {
+    let cardFace = new Image();
+    cardFace.src = card.imageUrl;
+    cardFace.onload = () => {
+      this.ctx.save();
+      this.ctx.rotate(user.rotAmt * (Math.PI / 180));
+      this.ctx.drawImage(cardFace, user.xPos, user.yPos, 90, 160);
+      this.ctx.restore();
+    }
+  }
+
   playMove(user) {
     debugger
     let cardToThrow = user.promptMove();
     this.thrownCards.push(cardToThrow);
-    renderThisUsersThrow(user);
+    this.renderThisUsersThrow(user);
   }
 
   playHand() {
@@ -274,13 +272,10 @@ export default class Game {
 
   playGame() {
     debugger
-    if (this.isBoardLoaded === false) {
-      return;
-    } 
 
     console.log("playgame")
     debugger
-      while (this.hasAnybodyWon() === false) {
+      while (!this.hasAnybodyWon()) {
         this.playRound();
         this.finalTally();
         this.startingPlayerIndex += 1;

@@ -1,5 +1,3 @@
-import Deck from "./deck.js";
-
 export default class HumanPlayer {
   constructor(team, xPos, yPos, rotAmt) {
     this.team = team;
@@ -76,60 +74,31 @@ export default class HumanPlayer {
   }
 
   promptMove() {
+    let turnNotOver = true;
 
-    // return this.throwCard(0)
+    while (turnNotOver) {
+      setTimeout(this.promptMove, 1000);
+    }
 
-    return document.addEventListener("mousedown", (e) => {
-      if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
-        return this.throwCard(0);
-      } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
-        return this.throwCard(1);
-      } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
-        return this.throwCard(2);
-      } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
-        return this.throwCard(3);
-      } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
-        return this.throwCard(4);
-      }
-    });
-    
-
-    // let cardToThrow = this.currentHand[this.toThrowIdx];
-    // this.currentHand = this.currentHand
-    //   .slice(0, this.toThrowIdx)
-    //   .concat(this.currentHand.slice(this.toThrowIdx + 1, this.currentHand.length));
-
-    // this.toThrowIdx = null;
-
-    // if (cardToThrow === undefined) {
-    //   return
-    // } else {
-    //   cardToThrow.faceUp = true;
-    // }
-    // return cardToThrow;
-  };
-
+      document.addEventListener("mousedown", (e) => {
+        if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
+          turnNotOver = false;
+          return this.throwCard(0);
+        } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
+          turnNotOver = false;
+          return this.throwCard(1);
+        } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
+          turnNotOver = false;
+          return this.throwCard(2);
+        } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
+          turnNotOver = false;
+          return this.throwCard(3);
+        } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
+          turnNotOver = false;
+          return this.throwCard(4);
+        }
+      });
+    };
 
 
 };
-
-
-
-// document.addEventListener("mousedown", (e) => {
-//   if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
-//     this.toThrowIdx = 0;
-//     return 0;
-//   } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
-//     this.toThrowIdx = 1;
-//     return 1;
-//   } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
-//     this.toThrowIdx = 2;
-//     return 2;
-//   } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
-//     this.toThrowIdx = 3;
-//     return 3;
-//   } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
-//     this.toThrowIdx = 4;
-//     return 4;
-//   }
-// });
