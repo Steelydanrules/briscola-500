@@ -1,11 +1,15 @@
 import Deck from "./deck.js";
 
 export default class HumanPlayer {
-  constructor(team) {
+  constructor(team, xPos, yPos, rotAmt) {
     this.team = team;
     this.currentHand = [];
     this.id = 0;
     this.toThrowIdx = null;
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.rotAmt = rotAmt;
+
   }
 
   briscAvailable() {

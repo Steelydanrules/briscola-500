@@ -326,9 +326,6 @@ export default class Deck {
     ];
   }
 
-  imageUrl(card, imageUrl){
-
-  };
 
   showCard(card){
     card.faceUp = true;

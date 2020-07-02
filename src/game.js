@@ -14,150 +14,94 @@ export default class Game {
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
-    this.canWePlayTheNextTurn = false;
-    // setInterval(this.drawBoard.bind(this), 1000)
+    this.isBoardLoaded = false;
 
     this.PLAYERS = [
-      new HumanPlayer(this.humanTeam),
-      new ComputerPlayer(this.robotTeam, 1),
-      new ComputerPlayer(this.humanTeam, 2),
-      new ComputerPlayer(this.robotTeam, 3),
+      new HumanPlayer(this.humanTeam, 555, 440, 0),
+      new ComputerPlayer(this.robotTeam, 1, 305, -380, 90),
+      new ComputerPlayer(this.humanTeam, 2, -645, -260, 180),
+      new ComputerPlayer(this.robotTeam, 3, 555, 440, 0),
     ];
 
     debugger
     console.log("game init")
   };
+  
+      //   this.ctx.drawImage(secondPlayersThrown, -395, 820, 90, 160) -90 ; right cpu this.ctx.rotate(-90
+      //   this.ctx.drawImage(fourthPlayersThrown, 305, -380, 90, 160) 90 ; left CPU this.ctx.rotate( 90
+      //   this.ctx.drawImage(secondPlayersThrown, -645, -260, 90, 160) 180 ; cpu partner this.ctx.rotate(180
+      //   this.ctx.drawImage(firstPlayersThrown, 555, 440, 90, 160) 0 ; me this.ctx.rotate(0
 
-  _findCardImage(id) {
-    this.thrownCards.forEach(card => {
-      if (card.owner.id === id) {
-        return card.imageUrl;
-      }
-    });
-    return "../images/no-card.png"
+  renderThisUsersThrow(card, user){
+    let cardFace = new Image();
+    cardFace.src = card.imageUrl;
+    cardFace.onload = () => {
+      this.ctx.save();
+      this.ctx.rotate(user.rotAmt * (Math.PI / 180));
+      this.ctx.drawImage(cardFace, user.xPos, user.yPos, 90, 160);
+      this.ctx.restore();
+    }
   }
 
-  drawBoard() {
-    debugger
-    
-  console.log(this.thrownCards);
-
-  let firstPlayersThrown = new Image();
-  firstPlayersThrown.src = this._findCardImage(0)
-  let secondPlayersThrown = new Image();
-  secondPlayersThrown.src = this._findCardImage(1)
-  let thirdPlayersThrown = new Image();
-  thirdPlayersThrown.src = this._findCardImage(2)
-  let fourthPlayersThrown = new Image();
-  fourthPlayersThrown.src = this._findCardImage(3)
+  drawInitialBoard() {
 
   let faceDown = new Image();
+  let noCard = new Image();
   faceDown.src = "../images/card-back-rename.jpg";
+  noCard.src = "../images/no-card.png";
 
-    this.ctx.save();
-    // this.ctx.fillRect(0, 405, 160, 90);
-    // this.ctx.drawImage(faceDown, 0, 405, 160, 90);
-  
-    this.ctx.save();
-    this.ctx.rotate(-90 * (Math.PI / 180));
-    //right cpu and deck
+    faceDown.onload = () => {
+      console.log("drawint")
+      this.ctx.save();
+      this.ctx.rotate(-90 * (Math.PI / 180));
 
-
-    if (this.PLAYERS[1].currentHand.length > 0) {
-      this.ctx.drawImage(faceDown, -195, 1040, 90, 160);
-    }
-    if (this.PLAYERS[1].currentHand.length > 1) {
+      // right comp
+      this.ctx.drawImage(faceDown, -195, 1040, 90, 160);    
       this.ctx.drawImage(faceDown, -295, 1040, 90, 160);
-    }
-    if (this.PLAYERS[1].currentHand.length > 2) {
       this.ctx.drawImage(faceDown, -395, 1040, 90, 160);
-    }
-    if (this.PLAYERS[1].currentHand.length > 3) {
       this.ctx.drawImage(faceDown, -495, 1040, 90, 160);
-    }
-    if (this.PLAYERS[1].currentHand.length > 4) {
       this.ctx.drawImage(faceDown, -595, 1040, 90, 160);
-    }
+      this.ctx.drawImage(noCard, -395, 820, 90, 160);
 
+      // deck
+      this.ctx.drawImage(faceDown, -395, 520, 90, 160);
 
-    this.ctx.drawImage(secondPlayersThrown, -395, 820, 90, 160);
-  
-    //deck
-    if (this.currentDeck.cardsInDeck.length > 0) {
-    this.ctx.drawImage(faceDown, -395, 520, 90, 160);
-    }
+      this.ctx.restore();
+      this.ctx.save();
+      this.ctx.rotate(90 * (Math.PI / 180));
 
-    this.ctx.restore();
-
-    this.ctx.save();
-
-    this.ctx.rotate(90 * (Math.PI / 180));
-    //left cpu
-    if (this.PLAYERS[3].currentHand.length > 0) {
+      //left cpu
       this.ctx.drawImage(faceDown, 105, -160, 90, 160);
-    }
-    if (this.PLAYERS[3].currentHand.length > 1) {
       this.ctx.drawImage(faceDown, 205, -160, 90, 160);
-    }
-    if (this.PLAYERS[3].currentHand.length > 2) {
       this.ctx.drawImage(faceDown, 305, -160, 90, 160);
-    }
-    if (this.PLAYERS[3].currentHand.length > 3) {
       this.ctx.drawImage(faceDown, 405, -160, 90, 160);
-    }
-    if (this.PLAYERS[3].currentHand.length > 4) {
       this.ctx.drawImage(faceDown, 505, -160, 90, 160);
-    }
-
-    this.ctx.drawImage(fourthPlayersThrown, 305, -380, 90, 160);
-
-
-    this.ctx.restore();
-
-    this.ctx.save();
-
-    this.ctx.rotate(180 * (Math.PI / 180));
-    //partner
-    if (this.PLAYERS[2].currentHand.length > 0) {
-      this.ctx.drawImage(faceDown, -445, -80, 90, 160);
-    }
-    if (this.PLAYERS[2].currentHand.length > 1) {
-      this.ctx.drawImage(faceDown, -545, -80, 90, 160);
-    }
-    if (this.PLAYERS[2].currentHand.length > 2) {
-      this.ctx.drawImage(faceDown, -645, -80, 90, 160);
-    }
-    if (this.PLAYERS[2].currentHand.length > 3) {
-      this.ctx.drawImage(faceDown, -745, -80, 90, 160);
-    }
-    if (this.PLAYERS[2].currentHand.length > 4) {
-      this.ctx.drawImage(faceDown, -845, -80, 90, 160);
-    }
+      this.ctx.drawImage(noCard, 305, -380, 90, 160);
     
-    this.ctx.drawImage(secondPlayersThrown, -645, -260, 90, 160);
+      this.ctx.restore();
+      this.ctx.save();
+      this.ctx.rotate(180 * (Math.PI / 180));
 
-    this.ctx.restore();
+      //partner
+      this.ctx.drawImage(faceDown, -445, -80, 90, 160);
+      this.ctx.drawImage(faceDown, -545, -80, 90, 160);
+      this.ctx.drawImage(faceDown, -645, -80, 90, 160);
+      this.ctx.drawImage(faceDown, -745, -80, 90, 160);
+      this.ctx.drawImage(faceDown, -845, -80, 90, 160);
+      this.ctx.drawImage(noCard, -645, -260, 90, 160);
+  
+      this.ctx.restore();
 
-    if (this.PLAYERS[0].currentHand.length > 0) {
       this.ctx.drawImage(faceDown, 355, 620, 90, 160);
-    }
-    if (this.PLAYERS[0].currentHand.length > 0) {
       this.ctx.drawImage(faceDown, 455, 620, 90, 160);
-    }
-    if (this.PLAYERS[0].currentHand.length > 0) {
       this.ctx.drawImage(faceDown, 555, 620, 90, 160);
-    }
-    if (this.PLAYERS[0].currentHand.length > 0) {
       this.ctx.drawImage(faceDown, 655, 620, 90, 160);
-    }
-    if (this.PLAYERS[0].currentHand.length > 0) {
       this.ctx.drawImage(faceDown, 755, 620, 90, 160);
+      this.ctx.drawImage(noCard, 555, 440, 90, 160);
+
+      this.isBoardLoaded = true;
     }
-
-    this.ctx.drawImage(firstPlayersThrown, 555, 440, 90, 160);
   };
-
-
 
   _dealCards() {
     debugger
@@ -231,7 +175,6 @@ export default class Game {
     while (this.thisRoundIsntOver()) {    
     this.playHand();
     }
-
   }
 
   winningCardThrown() {
@@ -267,57 +210,16 @@ export default class Game {
   }
 
   checkVariable(user, numberOfCards) {
-    if (this.canWePlayTheNextTurn === true && this.thrownCards.length === numberOfCards) {
-      this.canWePlayTheNextTurn = false;
+    if (this.thrownCards.length === numberOfCards) {
       this.playMove(user);
-    } else {
-      window.setTimeout(this.checkIfMoveShouldBePlayed, 500)
-    }
+    } 
   }
-
-  // checkVariable2() {›
-  //   let secondToThrow = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
-  //   console.log(this.thrownCards)
-  //   console.log(this.canWePlayTheNextTurn)
-  //   if (this.canWePlayTheNextTurn === true && this.thrownCards.length === 1) {
-  //     this.canWePlayTheNextTurn = false;
-  //     this.playMove(secondToThrow);
-  //   } else {
-  //     window.setTimeout(checkVariable2, 500)
-  //   }
-  // }
-
-  // checkVariable3() {
-  //   let thirdToThrow = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
-  //   if (this.canWePlayTheNextTurn === true && this.thrownCards.length === 2) {
-  //     this.canWePlayTheNextTurn = false;
-  //     this.playMove(thirdToThrow);
-  //   } else {
-  //     window.setTimeout(checkVariable3, 500)
-  //   }
-  // }
-
-  // checkVariable4() {
-  //   let lastToThrow = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
-  //   if (this.canWePlayTheNextTurn === true && this.thrownCards.length === 3) {
-  //     this.canWePlayTheNextTurn = false;
-  //     this.playMove(lastToThrow);
-  //   } else {
-  //     window.setTimeout(checkVariable4, 500)
-  //   }
-  // }
 
   playMove(user) {
     debugger
-    if (this.canWePlayTheNextTurn) {
-      let cardToThrow = user.promptMove();
-      this.thrownCards.push(cardToThrow);
-      this.drawBoard();
-      this.canWePlayTheNextTurn === true;
-      return;
-    } else {
-      return;
-    }
+    let cardToThrow = user.promptMove();
+    this.thrownCards.push(cardToThrow);
+    renderThisUsersThrow(user);
   }
 
   playHand() {
@@ -326,39 +228,11 @@ export default class Game {
     let secondToThrow = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
     let thirdToThrow = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
     let lastToThrow = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
-
-
-    this.canWePlayTheNextTurn = true;
     
     this.checkVariable(firstToThrow, 0);
-    // this.drawBoard();
-        
     this.checkVariable(secondToThrow, 1);
-    // this.drawBoard();
-        
     this.checkVariable(thirdToThrow, 2);
-    // this.drawBoard();
-    
     this.checkVariable(lastToThrow, 3);
-
-    
-    // this.playMove(firstToThrow);
-    
-    // this.drawBoard();
-
-    // this.playMove(secondToThrow);
-    
-    // this.drawBoard();
-
-    // this.playMove(thirdToThrow);
-    
-    // this.drawBoard();
-
-    // this.playMove(lastToThrow);
-    
-    // this.drawBoard();
-
-    this.canWePlayTheNextTurn === false;
 
     this.winningCardThrown();
 
@@ -382,20 +256,16 @@ export default class Game {
       this.robotTeam.totalGameScore >= 500 &&
       this.robotTeam.totalGameScore > this.humanTeam.totalGameScore
     ) {
-      // return this.robotTeam;
       return true;
     } else if (
       this.humanTeam.totalGameScore >= 500 &&
       this.robotTeam.totalGameScore >= 500 &&
       this.robotTeam.totalGameScore <= this.humanTeam.totalGameScore
       ) {
-      // return this.humanTeam;
       return true;
     } else if (this.humanTeam.totalGameScore >= 500) {
-      // return this.humanTeam;
       return true;
     } else if (this.robotTeam.totalGameScore >= 500) {
-      // return this.robotTeam;
       return true;
     } else {
       return false;
@@ -404,18 +274,12 @@ export default class Game {
 
   playGame() {
     debugger
-    if (this.PLAYERS[0] === undefined ||
-      this.PLAYERS[1] === undefined ||
-      this.PLAYERS[2] === undefined ||
-      this.PLAYERS[3] === undefined ||
-      this.currentDeck.cardsInDeck === undefined ||
-      this.ctx === undefined) {
+    if (this.isBoardLoaded === false) {
       return;
     } 
-    // this._dealCards();
-    // this.drawBoard();
+
     console.log("playgame")
-    // this.drawBoard();
+    debugger
       while (this.hasAnybodyWon() === false) {
         this.playRound();
         this.finalTally();

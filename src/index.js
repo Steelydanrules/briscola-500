@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas-game");
   let currentGame = new Game(canvas)
   debugger
-  // currentGame._dealCards();
-  currentGame.playGame();
-  // currentGame.playGame();
+  currentGame.drawInitialBoard();
+  setTimeout( () => currentGame.playGame(), 1000);
 })

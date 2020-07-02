@@ -1,8 +1,12 @@
 export default class ComputerPlayer {
-  constructor(team, id) {
+  constructor(team, id, xPos, yPos, rotAmt) {
     this.team = team;
     this.currentHand = [];
     this.id = id;
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.rotAmt = rotAmt;
+
   }
 
   addCard(card) {
@@ -16,7 +20,7 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove(e) {
+  promptMove() {
     debugger
     let toThrowIdx = 0;
     let cardToThrow = this.currentHand[toThrowIdx];
