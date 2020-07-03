@@ -227,12 +227,12 @@ export default class Game {
     let thirdToThrow = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
     let lastToThrow = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
     
-    this.checkVariable(firstToThrow, 0);
-    this.checkVariable(secondToThrow, 1);
-    this.checkVariable(thirdToThrow, 2);
-    this.checkVariable(lastToThrow, 3);
+    setTimeout( () => this.checkVariable(firstToThrow, 0)),
+    setTimeout( () => this.checkVariable(secondToThrow, 1)),
+    setTimeout( () => this.checkVariable(thirdToThrow, 2)),
+    setTimeout( () => this.checkVariable(lastToThrow, 3)),
 
-    this.winningCardThrown();
+    setTimeout( () => this.winningCardThrown())
 
     if (this.currentDeck.cardsInDeck.length !== 0) {
     let firstToDraw = this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)];
@@ -240,10 +240,10 @@ export default class Game {
     let thirdToDraw = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
     let lastToDraw = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
 
-    firstToDraw.addCard(this.currentDeck.cardsInDeck.pop());
-    secondToDraw.addCard(this.currentDeck.cardsInDeck.pop());
-    thirdToDraw.addCard(this.currentDeck.cardsInDeck.pop());
-    lastToDraw.addCard(this.currentDeck.cardsInDeck.pop());
+    setTimeout( () => firstToDraw.addCard(this.currentDeck.cardsInDeck.pop()));
+    setTimeout( () => secondToDraw.addCard(this.currentDeck.cardsInDeck.pop()));
+    setTimeout( () => thirdToDraw.addCard(this.currentDeck.cardsInDeck.pop()));
+    setTimeout( () => lastToDraw.addCard(this.currentDeck.cardsInDeck.pop()));
     }
   }
 
