@@ -65,11 +65,7 @@ export default class HumanPlayer {
       .slice(0, selectedIdx)
       .concat(this.currentHand.slice(selectedIdx + 1, this.currentHand.length));
 
-    if (cardToThrow === undefined) {
-      return
-    } else {
-      cardToThrow.faceUp = true;
-    }
+    // if (cardToThrow === undefined) return
     return cardToThrow;
   }
 
@@ -80,25 +76,25 @@ export default class HumanPlayer {
       setTimeout(this.promptMove, 1000);
     }
 
-      document.addEventListener("mousedown", (e) => {
-        if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
-          turnNotOver = false;
-          return this.throwCard(0);
-        } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
-          turnNotOver = false;
-          return this.throwCard(1);
-        } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
-          turnNotOver = false;
-          return this.throwCard(2);
-        } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
-          turnNotOver = false;
-          return this.throwCard(3);
-        } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
-          turnNotOver = false;
-          return this.throwCard(4);
-        }
-      });
-    };
+    document.addEventListener("mousedown", (e) => {
+      if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
+        turnNotOver = false;
+        return this.throwCard(0);
+      } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
+        turnNotOver = false;
+        return this.throwCard(1);
+      } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
+        turnNotOver = false;
+        return this.throwCard(2);
+      } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
+        turnNotOver = false;
+        return this.throwCard(3);
+      } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
+        turnNotOver = false;
+        return this.throwCard(4);
+      }
+    });
+  };
 
 
 };
