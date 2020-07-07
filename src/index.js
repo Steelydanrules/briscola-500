@@ -6,5 +6,5 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentGame = new Game(canvas)
   debugger
   currentGame.drawInitialBoard();
-  currentGame.playGame();
+  setTimeout(currentGame.playGame(), 10000);
 })

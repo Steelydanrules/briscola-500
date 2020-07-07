@@ -2,10 +2,10 @@
 // let currentGame = new Game(canvas);
 // setTimeout(() => currentGame.playGame(), 1000);
 
-const canvas = document.querySelector("canvas");
+// const canvas = document.querySelector("canvas");
 
 
-const c = canvas.getContext('2d');
+// const c = canvas.getContext('2d');
 
 //card placements:
 
@@ -108,19 +108,19 @@ const c = canvas.getContext('2d');
 //   };
 // }
 
-document.addEventListener("mousedown", (e) => {
-if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
-  console.log("card1");
-} else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
-  console.log("card2");
-} else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
-  console.log("card3");
-} else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
-  console.log("card4");
-} else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
-  console.log("card5");
-}
-});
+// document.addEventListener("mousedown", (e) => {
+// if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
+//   console.log("card1");
+// } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
+//   console.log("card2");
+// } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
+//   console.log("card3");
+// } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
+//   console.log("card4");
+// } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
+//   console.log("card5");
+// }
+// });
 
 
 

@@ -7,7 +7,9 @@ export default class HumanPlayer {
     this.xPos = xPos;
     this.yPos = yPos;
     this.rotAmt = rotAmt;
-
+    this.turnNotOver = true;
+    this.registerEventListeners();
+    this.amtHit = 0;
   }
 
   briscAvailable() {
@@ -42,21 +44,22 @@ export default class HumanPlayer {
     }
   };
 
-  chooseCard() {
-  document.addEventListener("mousedown", (e) => {
-    if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
-      return this.throwCard(0);
-    } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
-      return this.throwCard(1);
-    } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
-      return this.throwCard(2);
-    } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
-      return this.throwCard(3);
-    } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
-      return this.throwCard(4);
-    }
-  });
-}
+//   chooseCard() {
+//   document.addEventListener("mousedown", (e) => {
+//     console.log("event listener")
+//     if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
+//       return this.throwCard(0);
+//     } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
+//       return this.throwCard(1);
+//     } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
+//       return this.throwCard(2);
+//     } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
+//       return this.throwCard(3);
+//     } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
+//       return this.throwCard(4);
+//     }
+//   });
+// }
 
   throwCard(selectedIdx) {
 
@@ -69,31 +72,50 @@ export default class HumanPlayer {
     return cardToThrow;
   }
 
-  promptMove() {
-    let turnNotOver = true;
+  handleMouseDown(e) {
+    console.log("event listener")
+    if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
+      this.turnNotOver = false;
+      return this.throwCard(0);
+    } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
+      this.turnNotOver = false;
+      return this.throwCard(1);
+    } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
+      this.turnNotOver = false;
+      return this.throwCard(2);
+    } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
+      this.turnNotOver = false;
+      return this.throwCard(3);
+    } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
+      this.turnNotOver = false;
+      return this.throwCard(4);
+    }
+  }
 
-    while (turnNotOver) {
-      setTimeout(this.promptMove, 1000);
+  registerEventListeners() {
+    document.addEventListener("mousedown", this.handleMouseDown);
+  }
+  
+  removeEventListeners() {
+    document.removeEventListener("mousedown", this.handleMouseDown);
+  }
+
+  promptMove() {
+    console.log("prompted")
+    this.registerEventListeners();
+    this.amtHit += 1;
+
+    if (this.amtHit > 1000) {
+      this.turnNotOver = false;
     }
 
-    document.addEventListener("mousedown", (e) => {
-      if (e.pageX > 365 && e.pageX < 455 && e.pageY > 700 && e.pageY < 860) {
-        turnNotOver = false;
-        return this.throwCard(0);
-      } else if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860) {
-        turnNotOver = false;
-        return this.throwCard(1);
-      } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860) {
-        turnNotOver = false;
-        return this.throwCard(2);
-      } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860) {
-        turnNotOver = false;
-        return this.throwCard(3);
-      } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860) {
-        turnNotOver = false;
-        return this.throwCard(4);
-      }
-    });
+    if (this.turnNotOver) {
+      console.log("hit the if statement!", this.amtHit)
+      setTimeout(this.promptMove, 1000);
+      this.promptMove();
+    }
+
+    this.removeEventListeners();
   };
 
 

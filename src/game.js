@@ -152,8 +152,10 @@ export default class Game {
   }
 
   winningCardThrown() {
-    debugger
     console.log(this.thrownCards)
+    console.log("the round is over and above are the thrown cards")
+    debugger
+    
     if (this.thrownCards.length !== 4) return;
     // if (this.thrownCards.indexOf(undefined) !== -1) return;
 
