@@ -13,6 +13,7 @@ export default class Game {
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
+    // this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
 
     this.PLAYERS = [
       new HumanPlayer(this.humanTeam, 555, 440, 0),
@@ -223,8 +224,16 @@ export default class Game {
     lastToThrow.promptMove();
 
 
+    if (this.cardsThrown[0] === undefined ||
+      this.cardsThrown[1] === undefined ||
+      this.cardsThrown[2] === undefined ||
+      this.cardsThrown[3] === undefined
+      ) {
+      this.winningCardThrown();
+    } else {
+      setTimeout(this.winningCardThrown, 500);
+    }
 
-    this.winningCardThrown();
 
     if (this.currentDeck.cardsInDeck.length !== 0) {
     let firstToDraw = this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)];
@@ -267,7 +276,7 @@ export default class Game {
 
     console.log("playgame")
     debugger
-      while (!this.hasAnybodyWon()) {
+    while (!this.hasAnybodyWon()) {
         this.playRound();
         this.finalTally();
         this.startingPlayerIndex += 1;
