@@ -13,7 +13,6 @@ export default class Game {
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
-    // this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
 
     this.PLAYERS = [
       new HumanPlayer(this.humanTeam, 555, 440, 0),
@@ -22,8 +21,24 @@ export default class Game {
       new ComputerPlayer(this.robotTeam, 3, 555, 440, 0),
     ];
 
-    debugger
     console.log("game init")
+
+    this.drawInitialBoard = this.drawInitialBoard.bind(this);
+    this._dealCards = this._dealCards.bind(this);
+    this.callBrisc = this.callBrisc.bind(this);
+    this.drawCard = this.drawCard.bind(this);
+    this.thisRoundIsntOver = this.thisRoundIsntOver.bind(this);
+    this.addCardsValue = this.addCardsValue.bind(this);
+    this.finalTally = this.finalTally.bind(this);
+    this.playRound = this.playRound.bind(this);
+    this.winningCardThrown = this.winningCardThrown.bind(this);
+    this.promptTurn = this.promptTurn.bind(this);
+    this.renderThisUsersThrow = this.renderThisUsersThrow.bind(this);
+    this.playMove = this.playMove.bind(this);
+    this.playHand = this.playHand.bind(this);
+    this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
+    this.playGame = this.playGame.bind(this);
+
   };
 
   drawInitialBoard() {
@@ -84,7 +99,6 @@ export default class Game {
   };
 
   _dealCards() {
-    debugger
     if (this.PLAYERS[0].currentHand.length !== 0) return
 
     for (let i = 0; i < 5; i++) {
@@ -98,7 +112,6 @@ export default class Game {
   };
   
   callBrisc(suit, player) {
-    debugger
     if (this.currentBrisc === null) {
       this.currentBrisc = [suit];
       player.team.roundScore += 40;
@@ -109,12 +122,10 @@ export default class Game {
   };
   
   drawCard(player, card) {
-    debugger
     player.addCard(card)
   }
 
   thisRoundIsntOver() {
-    debugger
     if (this.PLAYERS[0].currentHand.length !== 0) {
       return true;
     } else {
@@ -123,7 +134,6 @@ export default class Game {
   }
 
   addCardsValue(team, cards) {
-    debugger
     let currentRoundTally = 0;
     cards.forEach(card => {
       currentRoundTally += card.points
@@ -133,13 +143,11 @@ export default class Game {
   }
 
   finalTally() {
-    debugger
     this.humanTeam.addTotalScore();
     this.robotTeam.addTotalScore();
   }
 
   playRound() {
-    debugger
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.currentDeck.shuffleDeck();
@@ -155,7 +163,6 @@ export default class Game {
   winningCardThrown() {
     console.log(this.thrownCards)
     console.log("the round is over and above are the thrown cards")
-    debugger
     
     if (this.thrownCards.length !== 4) return;
     // if (this.thrownCards.indexOf(undefined) !== -1) return;
@@ -205,14 +212,12 @@ export default class Game {
   }
 
   playMove(user) {
-    debugger
     let cardToThrow = user.promptMove();
     this.thrownCards.push(cardToThrow);
     this.renderThisUsersThrow(user);
   }
 
-  playHand() {
-    debugger    
+  playHand() {    
     let firstToThrow = this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)];
     let secondToThrow = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
     let thirdToThrow = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
@@ -249,7 +254,6 @@ export default class Game {
   }
 
   hasAnybodyWon() {
-    debugger
     if (
       this.humanTeam.totalGameScore >= 500 &&
       this.robotTeam.totalGameScore >= 500 &&
@@ -272,10 +276,8 @@ export default class Game {
   };
 
   playGame() {
-    debugger
 
     console.log("playgame")
-    debugger
     while (!this.hasAnybodyWon()) {
         this.playRound();
         this.finalTally();

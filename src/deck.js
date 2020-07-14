@@ -324,6 +324,9 @@ export default class Deck {
         imageUrl: "../images/ABats.png",
       },
     ];
+
+    this.showCard = this.showCard.bind(this);
+    this.shuffleDeck = this.shuffleDeck.bind(this);
   }
 
 

@@ -8,6 +8,13 @@ export default class HumanPlayer {
     this.yPos = yPos;
     this.rotAmt = rotAmt;
     this.turnNotOver = true;
+    this.briscAvailable = this.briscAvailable.bind(this);
+    this.addCard = this.addCard.bind(this);
+    this.throwCard = this.throwCard.bind(this);
+    this.handleMouseDown = this.handleMouseDown.bind(this);
+    this.registerEventListeners = this.registerEventListeners.bind(this);
+    this.this.removeEventListeners = this.removeEventListeners.bind(this);
+    this.promptMove = this.promptMove.bind(this);
     this.registerEventListeners();
     this.amtHit = 0;
   }

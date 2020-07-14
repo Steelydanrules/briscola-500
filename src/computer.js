@@ -6,7 +6,8 @@ export default class ComputerPlayer {
     this.xPos = xPos;
     this.yPos = yPos;
     this.rotAmt = rotAmt;
-
+    this.addCard = this.addCard.bind(this);
+    this.promptMove = this.promptMove.bind(this);
   }
 
   addCard(card) {
@@ -21,7 +22,6 @@ export default class ComputerPlayer {
   };
 
   promptMove() {
-    debugger
     let toThrowIdx = 0;
     let cardToThrow = this.currentHand[toThrowIdx];
     this.currentHand = this.currentHand
