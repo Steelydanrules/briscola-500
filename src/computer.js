@@ -16,7 +16,7 @@ export default class ComputerPlayer {
       card.team = this.team;
       this.currentHand.push(card);
     } else {
-      console.log("cpu trying to draw again.  IDK WHY")
+      console.log("cpu trying to draw again.  IDK WHY!")
       return
     }
   };
