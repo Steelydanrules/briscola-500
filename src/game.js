@@ -15,10 +15,10 @@ export default class Game {
     this.robotTeam = new Team("robotTeam");
 
     this.PLAYERS = [
-      new HumanPlayer(this.humanTeam, 555, 440, 0),
-      new ComputerPlayer(this.robotTeam, 1, 305, -380, 90),
-      new ComputerPlayer(this.humanTeam, 2, -645, -260, 180),
-      new ComputerPlayer(this.robotTeam, 3, 555, 440, 0),
+      new HumanPlayer(this.humanTeam, 555, 440, 0, canvas),
+      new ComputerPlayer(this.robotTeam, 1, 305, -380, 90, canvas),
+      new ComputerPlayer(this.humanTeam, 2, -645, -260, 180, canvas),
+      new ComputerPlayer(this.robotTeam, 3, 555, 440, 0, canvas),
     ];
 
     console.log("game init")
@@ -46,6 +46,38 @@ export default class Game {
   let noCard = new Image();
   faceDown.src = "../images/card-back-rename.jpg";
   noCard.src = "../images/no-card.png";
+  let humanPlayerHand = this.PLAYERS[0].currentHand;
+  let firstCard = new Image();
+  let secondCard = new Image();
+  let thirdCard = new Image();
+  let fourthCard = new Image();
+  let fifthCard = new Image();
+
+  if (humanPlayerHand.length > 0) {
+    firstCard.src = humanPlayerHand[0].imageUrl
+  } else {
+    firstCard.src = "../images/no-card.png"
+  }
+  if (humanPlayerHand.length > 1) {
+    secondCard.src = humanPlayerHand[1].imageUrl
+  } else {
+    secondCard.src = "../images/no-card.png"
+  }
+  if (humanPlayerHand.length > 2) {
+    thirdCard.src = humanPlayerHand[2].imageUrl
+  } else {
+    thirdCard.src = "../images/no-card.png"
+  }
+  if (humanPlayerHand.length > 3) {
+    fourthCard.src = humanPlayerHand[3].imageUrl
+  } else {
+    fourthCard.src = "../images/no-card.png"
+  }
+  if (humanPlayerHand.length > 4) {
+    fifthCard.src = humanPlayerHand[4].imageUrl
+  } else {
+    fifthCard.src = "../images/no-card.png"
+  }
 
     faceDown.onload = () => {
       console.log("drawint")
@@ -89,11 +121,11 @@ export default class Game {
   
       this.ctx.restore();
 
-      this.ctx.drawImage(faceDown, 355, 620, 90, 160);
-      this.ctx.drawImage(faceDown, 455, 620, 90, 160);
-      this.ctx.drawImage(faceDown, 555, 620, 90, 160);
-      this.ctx.drawImage(faceDown, 655, 620, 90, 160);
-      this.ctx.drawImage(faceDown, 755, 620, 90, 160);
+      this.ctx.drawImage(firstCard, 355, 620, 90, 160);
+      this.ctx.drawImage(secondCard, 455, 620, 90, 160);
+      this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
+      this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
+      this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
       this.ctx.drawImage(noCard, 555, 440, 90, 160);
     }
   };

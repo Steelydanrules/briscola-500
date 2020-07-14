@@ -1,5 +1,6 @@
 export default class ComputerPlayer {
-  constructor(team, id, xPos, yPos, rotAmt) {
+  constructor(team, id, xPos, yPos, rotAmt, canvas) {
+    this.ctx = canvas.getContext("2d");
     this.team = team;
     this.currentHand = [];
     this.id = id;
@@ -21,7 +22,7 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove() {
+  promptMove(nextPlayer) {
     let toThrowIdx = 0;
     let cardToThrow = this.currentHand[toThrowIdx];
     this.currentHand = this.currentHand
