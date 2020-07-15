@@ -45,7 +45,7 @@ export default class Game {
   let totalLoaded = 0;
   let faceDown = new Image();
   let noCard = new Image();
-  faceDown.src = "../images/card-back-rename.jpg";
+  faceDown.src = "../images/card-back-rename.JPG";
   noCard.src = "../images/no-card.png";
   let humanPlayerHand = this.PLAYERS[0].currentHand;
   let firstCard = new Image();
