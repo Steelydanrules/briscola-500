@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentGame = new Game(canvas)
   currentGame.currentDeck.shuffleDeck();
   currentGame._dealCards();
-  currentGame.drawInitialBoard(); // 50
+  setTimeout( () => currentGame.drawInitialBoard(), 250) // 50
   let startOfGamePlayer = 0;
   let startOfRoundPlayer = startOfGamePlayer
   

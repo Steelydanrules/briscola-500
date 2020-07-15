@@ -1,6 +1,9 @@
 # briscola-500
 JS version of Briscola (500 rules: 4 players, 5 cards, no auto-brisc, first team to 500 wins)
 
+# Live Link: 
+https://steelydanrules.github.io/briscola-500/
+
 # Background
 Briscola is the most popular card game in Italy.  I am re-creating the classic game's 500 version.  The basic rules goes as follows: 
 
