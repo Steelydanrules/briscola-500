@@ -7,7 +7,7 @@ export default class Game {
   constructor(canvas) {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
-    this.startingPlayerIndex = 1;
+    this.startingPlayerIndex = 0;
     this.startOfRoundMove = this.startingPlayerIndex;
     this.thrownCards = [];
     this.ctx = canvas.getContext("2d");
@@ -15,10 +15,10 @@ export default class Game {
     this.robotTeam = new Team("robotTeam");
 
     this.PLAYERS = [
-      new HumanPlayer(this.humanTeam, 555, 440, 0, canvas),
-      new ComputerPlayer(this.robotTeam, 1, 305, -380, 90, canvas),
-      new ComputerPlayer(this.humanTeam, 2, -645, -260, 180, canvas),
-      new ComputerPlayer(this.robotTeam, 3, 555, 440, 0, canvas),
+      new HumanPlayer(this.humanTeam, 555, 440, 0, canvas, this),
+      new ComputerPlayer(this.robotTeam, 1, 305, -380, 90, canvas, this),
+      new ComputerPlayer(this.humanTeam, 2, -645, -260, 180, canvas, this),
+      new ComputerPlayer(this.robotTeam, 3, 555, 440, 0, canvas, this),
     ];
 
     console.log("game init")
@@ -42,6 +42,7 @@ export default class Game {
   };
 
   drawInitialBoard() {
+  let totalLoaded = 0;
   let faceDown = new Image();
   let noCard = new Image();
   faceDown.src = "../images/card-back-rename.jpg";
@@ -79,7 +80,7 @@ export default class Game {
     fifthCard.src = "../images/no-card.png"
   }
 
-    faceDown.onload = () => {
+    setTimeout(() => {
       console.log("drawint")
       this.ctx.save();
       this.ctx.rotate(-90 * (Math.PI / 180));
@@ -126,8 +127,8 @@ export default class Game {
       this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
       this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
       this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
-      this.ctx.drawImage(noCard, 555, 440, 90, 160);
-    }
+      // this.ctx.drawImage(noCard, 555, 440, 90, 160);
+    }, 350);
   };
 
   _dealCards() {

@@ -1,6 +1,7 @@
 export default class ComputerPlayer {
-  constructor(team, id, xPos, yPos, rotAmt, canvas) {
+  constructor(team, id, xPos, yPos, rotAmt, canvas, game) {
     this.ctx = canvas.getContext("2d");
+    this.game = game
     this.team = team;
     this.currentHand = [];
     this.id = id;
@@ -22,16 +23,16 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove(nextPlayer) {
-    let toThrowIdx = 0;
+  promptMove() {
+    console.log("promped")
+    console.log(this.currentHand)
+    let toThrowIdx = Math.floor(Math.random() * this.currentHand * length);
+    console.log(toThrowIdx)
     let cardToThrow = this.currentHand[toThrowIdx];
+    console.log(cardToThrow)
     this.currentHand = this.currentHand
       .slice(0, toThrowIdx)
       .concat(this.currentHand.slice(toThrowIdx + 1, this.currentHand.length));
-
-    // console.log(cardToThrow)
-
-    cardToThrow.faceUp = true;
 
     return cardToThrow;
   };

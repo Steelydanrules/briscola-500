@@ -7,9 +7,10 @@
   <title>Briscola</title>
   <script src="./dist/main.js" async></script>
   <script type="text/javascript"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet" />
 </script>
 <script src="./dist/main.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" />
 
 
@@ -22,27 +23,57 @@
     <div class="top-container">
       <div class="gioca-briscola">
         <div class="github-linkedin-buttons">
-          <i class="fab fa-linkedin"></i>
-          <i class="fab fa-github"></i>
+          <a href="https://www.linkedin.com/in/karlkonetsky/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/Steelydanrules"><i class="fab fa-github"></i></a>
+          <a href="https://angel.co/u/karl-konetsky"><i class="fab fa-angellist"></i></a>
           </div>
           
           <h1>gioca a briscola :)</h1>
-          <button class="rules-button">la regole</button>
+          <button id="rules-button">la regole</button>
       </div>
     </div>
-    
     
     <div class="game-board-container" width="750px" height="750px">
       <div class="canvas-board">
-
         <canvas id="canvas-game" width="1200" height="780"></canvas>
         <script src="./src/canvas.js"></script>
-
-        
       </div>
-
     </div>
+  </div>
 
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>RULES (please read if you've never played!):</h2>
+      <p>
+      This is a two-team game, your partner is the one sitting directly across from you. Each player is
+      dealt 5 cards (there are 4 suits: denari (yellow gold/coins), spade (blue swords), coppe (red cups), bastoni (green
+      bats)). The point of the game is to keep on playing until 1 team gets 500 points.
+      <br>
+      <br>
+      
+      A card is thrown by the lead player; the only way for a team to win the hand is for the to throw a higher point value
+      card of the SAME suit, or any card of the called BRISCOLA suit. The rounds are initialized with <b>no</b> BRISCOLA suit (unlike
+      the conventional form of the game). The only way for a BRISCOLA to come into effect is one player has to have the King &
+      Queen of the same suit in their hand and show it to the rest of the players in the game on their own turn.  You will see a 
+      prompt on the right-hand side of the game when a BRISCOLA is available. Your team is
+      also granted 40 points when you call a BRISCOLA. Any subsequent BRISCOLA call grants your team 20 points but does not change the current BRISCOLA
+      suit.
+      <br>
+      <br>
+      
+      Calling a BRISCOLA means that the suit shown is now the "trump" suit. For instance: if a BRISCOLA of denari is called,
+      and one leads with an ace of coppes, a two of denari will win the hand if it's thrown on top. The only cards that can beat
+      a BRISCOLA are higher cards of the same suit. If the deck is empty and a BRISCOLA is in effect, teammates can show one
+      another their cards at the beginning of one's turn (you will have the option to "view partner's hand"). Once all cards are thrown/collected, the points are counted and the
+      deck is re-dealt. Point values & rankings are as follows (I am using Gold as an example); point values are on the bottom, 
+      and a card on the right will beat a card on the right (barring there is no brisc suit):
+
+      <br>
+      <img src="./images/BriscRankings.png" alt="point-values-here" class="rankings-modal-pic" />
+      
+    </p>
+    </div>
   </div>
 
 
