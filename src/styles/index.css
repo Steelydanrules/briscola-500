@@ -93,7 +93,7 @@ canvas img {
 
 
 .modal {
-  display: block;   /* change to none */
+  display: none;   /* change to none */
   position: fixed; 
   padding-top: 50px;
   left: 0; 
