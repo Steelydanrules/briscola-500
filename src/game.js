@@ -15,10 +15,10 @@ export default class Game {
     this.robotTeam = new Team("robotTeam");
 
     this.PLAYERS = [
-      new HumanPlayer(this.humanTeam, 555, 440, 0, canvas, this),
-      new ComputerPlayer(this.robotTeam, 1, 305, -380, 90, canvas, this),
-      new ComputerPlayer(this.humanTeam, 2, -645, -260, 180, canvas, this),
-      new ComputerPlayer(this.robotTeam, 3, 555, 440, 0, canvas, this),
+      new HumanPlayer(this.humanTeam, canvas, this),
+      new ComputerPlayer(this.robotTeam, 1, canvas, this),
+      new ComputerPlayer(this.humanTeam, 2, canvas, this),
+      new ComputerPlayer(this.robotTeam, 3, canvas, this),
     ];
 
     console.log("game init")
@@ -42,7 +42,6 @@ export default class Game {
   };
 
   drawInitialBoard() {
-  let totalLoaded = 0;
   let faceDown = new Image();
   let noCard = new Image();
   faceDown.src = "../images/card-back-rename.JPG";

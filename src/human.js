@@ -1,14 +1,11 @@
 export default class HumanPlayer {
-  constructor(team, xPos, yPos, rotAmt, canvas, game) {
+  constructor(team, canvas, game) {
     this.ctx = canvas.getContext("2d");
     this.game = game
     this.team = team;
     this.currentHand = [];
     this.id = 0;
     this.toThrowIdx = null;
-    this.xPos = xPos;
-    this.yPos = yPos;
-    this.rotAmt = rotAmt;
     this.turnNotOver = true;
     this.briscAvailable = this.briscAvailable.bind(this);
     this.addCard = this.addCard.bind(this);

@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
   setTimeout(firstToThrow.promptMove(), 1000);
-  // throwSecond(currentGame)
-  // throwThird(currentGame)
-  // throwLast(currentGame)
+  throwSecond(currentGame)
+  throwThird(currentGame)
+  throwLast(currentGame)
 
   function throwSecond() {
     if (currentGame.thrownCards.length === 1) {
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       console.log("2")
       console.log(currentGame.thrownCards)
-      setTimeout( () => throwSecond(), 2000);
+      setTimeout( () => throwSecond(), 1000);
     }
   };
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(lastToThrow.promptMove(), 1000);
     } else {
       console.log("last")
-      setTimeout(() => throwLast(), 2000);
+      setTimeout(() => throwLast(), 3000);
     }
   };
 
