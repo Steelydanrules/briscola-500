@@ -12,6 +12,10 @@ export default class ComputerPlayer {
     this.promptMove = this.promptMove.bind(this);
   }
 
+  renderCardThrown() {
+    
+  }
+
   addCard(card) {
     if (this.currentHand.length < 5) {
       card.owner = this;
@@ -26,8 +30,7 @@ export default class ComputerPlayer {
   promptMove() {
     console.log("promped")
     console.log(this.currentHand)
-    let toThrowIdx = Math.floor(Math.random() * this.currentHand * length);
-    console.log(toThrowIdx)
+    let toThrowIdx = Math.floor(Math.random() * this.currentHand.length);
     let cardToThrow = this.currentHand[toThrowIdx];
     console.log(cardToThrow)
     this.currentHand = this.currentHand
