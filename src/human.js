@@ -104,23 +104,23 @@ export default class HumanPlayer {
 
 
   throwCard(selectedIdx) {
-
     let cardToThrow = this.currentHand[selectedIdx];
     this.currentHand = this.currentHand
       .slice(0, selectedIdx)
       .concat(this.currentHand.slice(selectedIdx + 1, this.currentHand.length));
 
-    this.game.thrownCards.push(cardToThrow)
+    this.game.thrownCards.push(cardToThrow);
+
+    if (this.game.thrownCards.length === 4) {
+      setTimeout(() => this.game.winningCardThrown(this.game), 5000);
+    }
+
     return cardToThrow;
   }
 
 
   handleMouseDown(e) {
     e.preventDefault();
-    // console.log("event listener")
-    // console.log("x", e.pageX, "y", e.pageY)
-    // console.log(e)
-    // return
     if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 0) {
       console.log("0")
       this.renderThrow(0)

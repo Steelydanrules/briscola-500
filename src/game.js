@@ -7,9 +7,10 @@ export default class Game {
   constructor(canvas) {
     this.currentBrisc = null;
     this.currentDeck = new Deck();
-    this.startingPlayerIndex = 0;
-    this.startOfRoundMove = this.startingPlayerIndex;
+    this.startOfEntireRound = 0;
+    this.startOfThisHand = 0;
     this.thrownCards = [];
+    this.lastHand = [];
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
@@ -33,7 +34,6 @@ export default class Game {
     this.playRound = this.playRound.bind(this);
     this.winningCardThrown = this.winningCardThrown.bind(this);
     this.promptTurn = this.promptTurn.bind(this);
-    this.renderThisUsersThrow = this.renderThisUsersThrow.bind(this);
     this.playMove = this.playMove.bind(this);
     this.playHand = this.playHand.bind(this);
     this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
@@ -192,55 +192,66 @@ export default class Game {
     }
   }
 
-  winningCardThrown() {
-    console.log(this.thrownCards)
-    console.log("the round is over and above are the thrown cards")
-    
-    if (this.thrownCards.length !== 4) return;
-    // if (this.thrownCards.indexOf(undefined) !== -1) return;
-
-    let suitToBeat;
-    let highestCard;
-
-    if (this.currentBrisc) {
-      suitToBeat = this.currentBrisc;
-    } else {
-      suitToBeat = this.thrownCards[0].suit
-    };
-
-    for (let i = 0; i < 4; i++) {
-      if (this.thrownCards[i].suit === suitToBeat && 
-        highestCard === undefined
-        || this.thrownCards[i].rank > highestCard.rank) {
-        highestCard = this.thrownCards[i];
-      }
+  winningCardThrown(game) {
+    if (game.thrownCards.length !== 4) {
+      console.log("NOT YET!!!")
+      return
     }
+
+    console.log(game.thrownCards, "these are thrown cards");
+
+    debugger
+
+    let highestCard = game.thrownCards[0];
+    let suitToBeat = game.thrownCards[0].suit;
+
+
+      for (let i = 1; i < 4; i++) {
+        let thisThrown = game.thrownCards[i];
+        if (thisThrown.rank > highestCard.rank
+        && thisThrown.suit === suitToBeat) {
+          highestCard = thisThrown;
+        }
+      }
+
+      if (game.currentBrisc) {
+        suitToBeat = game.currentBrisc;
+        for (let i = 0; i < 4; i++) {
+          let thisThrown = game.thrownCards[i];
+
+          if(thisThrown.suit === suitToBeat 
+          && highestCard.suit !== suitToBeat) {
+            highestCard = thisThrown;
+          } else if(thisThrown.rank > highestCard.rank
+          && thisThrown.suit === suitToBeat
+          && highestCard.suit === suitToBeat) {
+            highestCard = thisThrown;
+          }
+        }
+      }
 
     if (new String(highestCard.owner.team.name) == "humanTeam") {
-      this.addCardsValue(this.humanTeam, this.thrownCards)
+      game.addCardsValue(game.humanTeam, game.thrownCards)
     } else {
-      this.addCardsValue(this.robotTeam, this.thrownCards)
+      game.addCardsValue(game.robotTeam, game.thrownCards)
     }
 
-    this.startOfRoundMove = this.PLAYERS.indexOf(highestCard.owner);
-    this.thrownCards = [];
+
+
+    game.startOfThisHand = game.PLAYERS.indexOf(highestCard.owner);
+    game.lastHand = game.thrownCards;
+    game.thrownCards = [];
+
+    console.log(game.humanTeam.currentRoundScore, "human score");
+    console.log(game.robotTeam.currentRoundScore, "robot score");
+    console.log(highestCard, "is the highest card thrown!!!");
+
   }
 
   promptTurn(user, numberOfCards) {
     if (this.thrownCards.length === numberOfCards) {
       this.playMove(user);
     } 
-  }
-
-  renderThisUsersThrow(card, user) {
-    let cardFace = new Image();
-    cardFace.src = card.imageUrl;
-    cardFace.onload = () => {
-      this.ctx.save();
-      this.ctx.rotate(user.rotAmt * (Math.PI / 180));
-      this.ctx.drawImage(cardFace, user.xPos, user.yPos, 90, 160);
-      this.ctx.restore();
-    }
   }
 
   playMove(user) {
@@ -250,33 +261,33 @@ export default class Game {
   }
 
   playHand() {    
-    let firstToThrow = this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)];
-    let secondToThrow = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
-    let thirdToThrow = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
-    let lastToThrow = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
+    // let firstToThrow = this.PLAYERS[((this.startOfThisHand + 0) % this.PLAYERS.length)];
+    // let secondToThrow = this.PLAYERS[((this.startOfThisHand + 1) % this.PLAYERS.length)];
+    // let thirdToThrow = this.PLAYERS[((this.startOfThisHand + 2) % this.PLAYERS.length)];
+    // let lastToThrow = this.PLAYERS[((this.startOfThisHand + 3) % this.PLAYERS.length)];
     
-    firstToThrow.promptMove();
-    secondToThrow.promptMove();
-    thirdToThrow.promptMove();
-    lastToThrow.promptMove();
+    // firstToThrow.promptMove();
+    // secondToThrow.promptMove();
+    // thirdToThrow.promptMove();
+    // lastToThrow.promptMove();
 
 
-    if (this.cardsThrown[0] === undefined ||
-      this.cardsThrown[1] === undefined ||
-      this.cardsThrown[2] === undefined ||
-      this.cardsThrown[3] === undefined
-      ) {
-      this.winningCardThrown();
-    } else {
-      setTimeout(this.winningCardThrown, 500);
-    }
+    // if (this.cardsThrown[0] === undefined ||
+    //   this.cardsThrown[1] === undefined ||
+    //   this.cardsThrown[2] === undefined ||
+    //   this.cardsThrown[3] === undefined
+    //   ) {
+    //   this.winningCardThrown();
+    // } else {
+    //   setTimeout(this.winningCardThrown, 500);
+    // }
 
 
     if (this.currentDeck.cardsInDeck.length !== 0) {
-    let firstToDraw = this.PLAYERS[((this.startOfRoundMove + 0) % this.PLAYERS.length)];
-    let secondToDraw = this.PLAYERS[((this.startOfRoundMove + 1) % this.PLAYERS.length)];
-    let thirdToDraw = this.PLAYERS[((this.startOfRoundMove + 2) % this.PLAYERS.length)];
-    let lastToDraw = this.PLAYERS[((this.startOfRoundMove + 3) % this.PLAYERS.length)];
+    let firstToDraw = this.PLAYERS[((this.startOfThisHand + 0) % this.PLAYERS.length)];
+    let secondToDraw = this.PLAYERS[((this.startOfThisHand + 1) % this.PLAYERS.length)];
+    let thirdToDraw = this.PLAYERS[((this.startOfThisHand + 2) % this.PLAYERS.length)];
+    let lastToDraw = this.PLAYERS[((this.startOfThisHand + 3) % this.PLAYERS.length)];
 
     firstToDraw.addCard(this.currentDeck.cardsInDeck.pop());
     secondToDraw.addCard(this.currentDeck.cardsInDeck.pop());
@@ -306,6 +317,7 @@ export default class Game {
       return false;
     }
   };
+  
 
   playGame() {
 
@@ -313,8 +325,8 @@ export default class Game {
     while (!this.hasAnybodyWon()) {
         this.playRound();
         this.finalTally();
-        this.startingPlayerIndex += 1;
-        this.startOfRoundMove = (this.startingPlayerIndex + 1) % this.PLAYERS.length;
+        this.startOfEntireRound += 1;
+        this.startOfThisHand = (this.startOfEntireRound + 1) % this.PLAYERS.length;
       } 
 
   

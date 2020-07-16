@@ -132,7 +132,12 @@ export default class ComputerPlayer {
       .slice(0, toThrowIdx)
       .concat(this.currentHand.slice(toThrowIdx + 1, this.currentHand.length));
 
-    this.game.thrownCards.push(cardToThrow)
+    this.game.thrownCards.push(cardToThrow);
+
+    if (this.game.thrownCards.length === 4) {
+      setTimeout(() => this.game.winningCardThrown(this.game), 5000);
+    }
+
 
     return cardToThrow;
   };
