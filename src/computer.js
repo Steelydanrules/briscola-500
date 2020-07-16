@@ -40,16 +40,7 @@ export default class ComputerPlayer {
         thrownCardyPos: -380
       }
     };
-//       this.PLAYERS = [
-//   new HumanPlayer(this.humanTeam, 555, 440, 0, canvas, this),
-//   new ComputerPlayer(this.robotTeam, 1, 305, -380, 90, canvas, this),
-//   new ComputerPlayer(this.humanTeam, 2, -645, -260, 180, canvas, this),
-//   new ComputerPlayer(this.robotTeam, 3, 555, 440, 0, canvas, this),
-// ];
 }
-
-
-
 
   renderThrow(num) {
     console.log("rendering")
@@ -137,7 +128,6 @@ export default class ComputerPlayer {
     if (this.game.thrownCards.length === 4) {
       setTimeout(() => this.game.winningCardThrown(this.game), 5000);
     }
-
 
     return cardToThrow;
   };

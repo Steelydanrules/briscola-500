@@ -38,7 +38,6 @@ export default class Game {
     this.playHand = this.playHand.bind(this);
     this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
     this.playGame = this.playGame.bind(this);
-
   };
 
   drawInitialBoard() {
@@ -52,31 +51,46 @@ export default class Game {
   let thirdCard = new Image();
   let fourthCard = new Image();
   let fifthCard = new Image();
+  let cpuFirstCard = new Image();
+  let cpuSecondCard = new Image();
+  let cpuThirdCard = new Image();
+  let cpuFourthCard = new Image();
+  let couFifthCard = new Image();
 
   if (humanPlayerHand.length > 0) {
-    firstCard.src = humanPlayerHand[0].imageUrl
+    firstCard.src = humanPlayerHand[0].imageUrl;
+    cpuFirstCard.src = "../images/card-back-rename.JPG"
   } else {
-    firstCard.src = "../images/no-card.png"
+    firstCard.src = "../images/no-card.png";
+    cpuFirstCard.src = "../images/no-card.png"
   }
   if (humanPlayerHand.length > 1) {
-    secondCard.src = humanPlayerHand[1].imageUrl
+    secondCard.src = humanPlayerHand[1].imageUrl;
+    cpuSecondCard.src = "../images/card-back-rename.JPG"
   } else {
-    secondCard.src = "../images/no-card.png"
+    secondCard.src = "../images/no-card.png";
+    cpuSecondCard.src = "../images/no-card.png"
   }
   if (humanPlayerHand.length > 2) {
-    thirdCard.src = humanPlayerHand[2].imageUrl
+    thirdCard.src = humanPlayerHand[2].imageUrl;
+    cpuThirdCard.src = "../images/card-back-rename.JPG"
   } else {
-    thirdCard.src = "../images/no-card.png"
+    thirdCard.src = "../images/no-card.png";
+    cpuThirdCard.src = "../images/no-card.png"
   }
   if (humanPlayerHand.length > 3) {
-    fourthCard.src = humanPlayerHand[3].imageUrl
+    fourthCard.src = humanPlayerHand[3].imageUrl;
+    cpuFourthCard.src = "../images/card-back-rename.JPG"
   } else {
-    fourthCard.src = "../images/no-card.png"
+    fourthCard.src = "../images/no-card.png";
+    cpuFourthCard.src = "../images/no-card.png"
   }
   if (humanPlayerHand.length > 4) {
-    fifthCard.src = humanPlayerHand[4].imageUrl
+    fifthCard.src = humanPlayerHand[4].imageUrl;
+    couFifthCard.src = "../images/card-back-rename.JPG"
   } else {
-    fifthCard.src = "../images/no-card.png"
+    fifthCard.src = "../images/no-card.png";
+    couFifthCard.src = "../images/no-card.png"
   }
 
     setTimeout(() => {
@@ -85,26 +99,28 @@ export default class Game {
       this.ctx.rotate(-90 * (Math.PI / 180));
 
       // right comp
-      this.ctx.drawImage(faceDown, -195, 1040, 90, 160);    
-      this.ctx.drawImage(faceDown, -295, 1040, 90, 160);
-      this.ctx.drawImage(faceDown, -395, 1040, 90, 160);
-      this.ctx.drawImage(faceDown, -495, 1040, 90, 160);
-      this.ctx.drawImage(faceDown, -595, 1040, 90, 160);
+      this.ctx.drawImage(cpuFirstCard, -195, 1040, 90, 160);    
+      this.ctx.drawImage(cpuSecondCard, -295, 1040, 90, 160);
+      this.ctx.drawImage(cpuThirdCard, -395, 1040, 90, 160);
+      this.ctx.drawImage(cpuFourthCard, -495, 1040, 90, 160);
+      this.ctx.drawImage(couFifthCard, -595, 1040, 90, 160);
       this.ctx.drawImage(noCard, -395, 820, 90, 160);
 
       // deck
-      this.ctx.drawImage(faceDown, -395, 520, 90, 160);
+      if (this.currentDeck.length !== 0) {
+        this.ctx.drawImage(faceDown, -395, 520, 90, 160);
+      }
 
       this.ctx.restore();
       this.ctx.save();
       this.ctx.rotate(90 * (Math.PI / 180));
 
       //left cpu
-      this.ctx.drawImage(faceDown, 105, -160, 90, 160);
-      this.ctx.drawImage(faceDown, 205, -160, 90, 160);
-      this.ctx.drawImage(faceDown, 305, -160, 90, 160);
-      this.ctx.drawImage(faceDown, 405, -160, 90, 160);
-      this.ctx.drawImage(faceDown, 505, -160, 90, 160);
+      this.ctx.drawImage(cpuFirstCard, 105, -160, 90, 160);
+      this.ctx.drawImage(cpuSecondCard, 205, -160, 90, 160);
+      this.ctx.drawImage(cpuThirdCard, 305, -160, 90, 160);
+      this.ctx.drawImage(cpuFourthCard, 405, -160, 90, 160);
+      this.ctx.drawImage(couFifthCard, 505, -160, 90, 160);
       this.ctx.drawImage(noCard, 305, -380, 90, 160);
     
       this.ctx.restore();
@@ -112,11 +128,11 @@ export default class Game {
       this.ctx.rotate(180 * (Math.PI / 180));
 
       //partner
-      this.ctx.drawImage(faceDown, -445, -80, 90, 160);
-      this.ctx.drawImage(faceDown, -545, -80, 90, 160);
-      this.ctx.drawImage(faceDown, -645, -80, 90, 160);
-      this.ctx.drawImage(faceDown, -745, -80, 90, 160);
-      this.ctx.drawImage(faceDown, -845, -80, 90, 160);
+      this.ctx.drawImage(cpuFirstCard, -445, -80, 90, 160);
+      this.ctx.drawImage(cpuSecondCard, -545, -80, 90, 160);
+      this.ctx.drawImage(cpuThirdCard, -645, -80, 90, 160);
+      this.ctx.drawImage(cpuFourthCard, -745, -80, 90, 160);
+      this.ctx.drawImage(couFifthCard, -845, -80, 90, 160);
       this.ctx.drawImage(noCard, -645, -260, 90, 160);
   
       this.ctx.restore();
@@ -193,6 +209,7 @@ export default class Game {
   }
 
   winningCardThrown(game) {
+    if (game === undefined) return;
     if (game.thrownCards.length !== 4) {
       console.log("NOT YET!!!")
       return
@@ -296,22 +313,22 @@ export default class Game {
     }
   }
 
-  hasAnybodyWon() {
+  hasAnybodyWon(game) {
     if (
-      this.humanTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore > this.humanTeam.totalGameScore
+      game.humanTeam.totalGameScore >= 500 &&
+      game.robotTeam.totalGameScore >= 500 &&
+      game.robotTeam.totalGameScore > game.humanTeam.totalGameScore
     ) {
       return true;
     } else if (
-      this.humanTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore <= this.humanTeam.totalGameScore
+      game.humanTeam.totalGameScore >= 500 &&
+      game.robotTeam.totalGameScore >= 500 &&
+      game.robotTeam.totalGameScore <= game.humanTeam.totalGameScore
       ) {
       return true;
-    } else if (this.humanTeam.totalGameScore >= 500) {
+    } else if (game.humanTeam.totalGameScore >= 500) {
       return true;
-    } else if (this.robotTeam.totalGameScore >= 500) {
+    } else if (game.robotTeam.totalGameScore >= 500) {
       return true;
     } else {
       return false;
