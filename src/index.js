@@ -3,7 +3,6 @@ import Game from './game.js';
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas-game");
   let currentGame = new Game(canvas);
-  let currentHandOver = false;
 
   function dealGame(game, startOfEntireRound){
     game.currentDeck.shuffleDeck();
@@ -50,11 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
+    
+
   };
 
   dealGame(currentGame, 0);
   playTurn();
   currentGame.winningCardThrown();
+
+
+
 
 
 

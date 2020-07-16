@@ -157,11 +157,9 @@ export default class HumanPlayer {
     document.removeEventListener("mousedown", this.handleMouseDown);
   }
 
-  promptMove(nextPlayer) {
+  promptMove() {
     console.log("prompted")
     this.registerEventListeners();
-
-
 
 
 

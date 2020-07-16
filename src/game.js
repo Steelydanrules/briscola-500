@@ -11,6 +11,7 @@ export default class Game {
     this.startOfThisHand = 0;
     this.thrownCards = [];
     this.lastHand = [];
+    this.lastStarter = null;
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
@@ -33,11 +34,11 @@ export default class Game {
     this.finalTally = this.finalTally.bind(this);
     this.playRound = this.playRound.bind(this);
     this.winningCardThrown = this.winningCardThrown.bind(this);
-    this.promptTurn = this.promptTurn.bind(this);
     this.playMove = this.playMove.bind(this);
     this.playHand = this.playHand.bind(this);
     this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
     this.playGame = this.playGame.bind(this);
+    this.eachPlayerDraws = this.eachPlayerDraws.bind(this);
   };
 
   drawInitialBoard() {
@@ -142,7 +143,7 @@ export default class Game {
       this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
       this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
       this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
-      // this.ctx.drawImage(noCard, 555, 440, 90, 160);
+      this.ctx.drawImage(noCard, 555, 440, 90, 160);
     }, 350);
   };
 
@@ -247,6 +248,7 @@ export default class Game {
         }
       }
 
+    // add to winning team
     if (new String(highestCard.owner.team.name) == "humanTeam") {
       game.addCardsValue(game.humanTeam, game.thrownCards)
     } else {
@@ -255,9 +257,17 @@ export default class Game {
 
 
 
-    game.startOfThisHand = game.PLAYERS.indexOf(highestCard.owner);
     game.lastHand = game.thrownCards;
+    game.lastStarter = game.startOfThisHand;
+
+    game.startOfThisHand = game.PLAYERS.indexOf(highestCard.owner);
     game.thrownCards = [];
+
+    if (game.currentDeck.length !== 0) {
+      game.eachPlayerDraws(game.startOfThisHand)
+    }
+
+    game.drawInitialBoard();
 
     console.log(game.humanTeam.currentRoundScore, "human score");
     console.log(game.robotTeam.currentRoundScore, "robot score");
@@ -265,10 +275,17 @@ export default class Game {
 
   }
 
-  promptTurn(user, numberOfCards) {
-    if (this.thrownCards.length === numberOfCards) {
-      this.playMove(user);
-    } 
+  eachPlayerDraws(firstIdx) {
+    let firstToDraw = this.PLAYERS[((firstIdx + 0) % 4)];
+    let secondToDraw = this.PLAYERS[((firstIdx + 1) % 4)];
+    let thirdToDraw = this.PLAYERS[((firstIdx + 2) % 4)];
+    let lastToDraw = this.PLAYERS[((firstIdx + 3) % 4)];
+
+    firstToDraw.addCard(this.currentDeck.cardsInDeck.pop());
+    secondToDraw.addCard(this.currentDeck.cardsInDeck.pop());
+    thirdToDraw.addCard(this.currentDeck.cardsInDeck.pop());
+    lastToDraw.addCard(this.currentDeck.cardsInDeck.pop());
+
   }
 
   playMove(user) {

@@ -110,7 +110,7 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove() {
+  promptMove(game, nextToThrow) {
     console.log("promped", this.id)
     console.log(this.currentHand)
     let toThrowIdx = Math.floor(Math.random() * this.currentHand.length);
