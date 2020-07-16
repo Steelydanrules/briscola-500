@@ -122,31 +122,26 @@ export default class HumanPlayer {
   handleMouseDown(e) {
     e.preventDefault();
     if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 0) {
-      console.log("0")
       this.renderThrow(0)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 1000);
       return this.throwCard(0);
     } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 1) {
-      console.log("1")
       this.renderThrow(1)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 1000);
       return this.throwCard(1);
     } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 2) {
-      console.log("2")
       this.renderThrow(2)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 1000);
       return this.throwCard(2);
     } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 3) {
-      console.log("3")
       this.renderThrow(3)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 1000);
       return this.throwCard(3);
     } else if (e.pageX > 865 && e.pageX < 955 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 4) {
-      console.log("4")
       this.renderThrow(4)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 1000);
