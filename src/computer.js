@@ -110,7 +110,7 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove(game, nextToThrow) {
+  promptMove() {
     console.log("promped", this.id)
     console.log(this.currentHand)
     let toThrowIdx = Math.floor(Math.random() * this.currentHand.length);
@@ -127,6 +127,8 @@ export default class ComputerPlayer {
 
     if (this.game.thrownCards.length === 4) {
       setTimeout(() => this.game.winningCardThrown(this.game), 5000);
+    } else {
+      this.game.nextThrow();
     }
 
     return cardToThrow;

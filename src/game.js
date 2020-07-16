@@ -39,6 +39,10 @@ export default class Game {
     this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
     this.playGame = this.playGame.bind(this);
     this.eachPlayerDraws = this.eachPlayerDraws.bind(this);
+    // this.throwSecond = this.throwSecond.bind(this);
+    // this.throwThird = this.throwThird.bind(this);
+    // this.throwLast = this.throwLast.bind(this);
+    this.nextThrow = this.nextThrow.bind(this);
   };
 
   drawInitialBoard() {
@@ -272,8 +276,81 @@ export default class Game {
     console.log(game.humanTeam.currentRoundScore, "human score");
     console.log(game.robotTeam.currentRoundScore, "robot score");
     console.log(highestCard, "is the highest card thrown!!!");
-
   }
+
+
+  // throwSecond(player) {
+  //   if (this.thrownCards === undefined 
+  //     || this.thrownCards.length !== 1
+  //     || player === undefined) {
+  //       debugger
+  //       console.log("second hit")
+  //     setTimeout(() => this.throwSecond(), 3000);
+  //   } else {
+  //     console.log(this.thrownCards)
+  //     setTimeout(player.promptMove(), 1000);
+  //   }
+  // };
+
+  // throwThird(player) {
+  //   if (this.thrownCards === undefined 
+  //     || this.thrownCards.length !== 2
+  //     || player === undefined) {
+  //     setTimeout(() => this.throwThird(), 3000);
+  //   } else {
+  //     console.log(this.thrownCards)
+  //     setTimeout(player.promptMove(), 1000);
+  //   }
+  // };
+
+  // throwLast(player) {
+  //   if (this.thrownCards === undefined 
+  //     || this.thrownCards.length !== 3
+  //     || player === undefined) {
+  //     setTimeout(() => this.throwLast(), 3000);
+  //   } else {
+  //     console.log(this.thrownCards)
+  //     setTimeout(player.promptMove(), 1000);
+  //   }
+  // };
+
+  nextThrow() {
+    let secondToThrow = this.PLAYERS[((this.startOfThisHand + 1) % this.PLAYERS.length)];
+    let thirdToThrow = this.PLAYERS[((this.startOfThisHand + 2) % this.PLAYERS.length)];
+    let lastToThrow = this.PLAYERS[((this.startOfThisHand + 3) % this.PLAYERS.length)];
+
+    if (this.thrownCards.length === 1) {
+      setTimeout( () => secondToThrow.promptMove(), 500)
+    }
+
+    if (this.thrownCards.length === 2) {
+      setTimeout( () => thirdToThrow.promptMove(), 500)
+    }
+
+    if (this.thrownCards.length === 3) {
+      setTimeout( () => lastToThrow.promptMove(), 500)
+    }
+    // this.throwSecond(secondToThrow);
+    // this.throwThird(thirdToThrow);
+    // this.throwLast(lastToThrow);
+    
+  }
+
+  playTurn() {
+  let firstToThrow = this.PLAYERS[((this.startOfThisHand + 0) % this.PLAYERS.length)];
+  // let secondToThrow = this.PLAYERS[((this.startOfThisHand + 1) % this.PLAYERS.length)];
+  // let thirdToThrow = this.PLAYERS[((this.startOfThisHand + 2) % this.PLAYERS.length)];
+  // let lastToThrow = this.PLAYERS[((this.startOfThisHand + 3) % this.PLAYERS.length)];
+
+  firstToThrow.promptMove(this);
+
+  // this.throwSecond(secondToThrow);
+  // this.throwThird(thirdToThrow);
+  // this.throwLast(lastToThrow);
+
+  // this.winningCardThrown();
+
+};
 
   eachPlayerDraws(firstIdx) {
     let firstToDraw = this.PLAYERS[((firstIdx + 0) % 4)];
@@ -285,7 +362,6 @@ export default class Game {
     secondToDraw.addCard(this.currentDeck.cardsInDeck.pop());
     thirdToDraw.addCard(this.currentDeck.cardsInDeck.pop());
     lastToDraw.addCard(this.currentDeck.cardsInDeck.pop());
-
   }
 
   playMove(user) {
