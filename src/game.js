@@ -112,8 +112,10 @@ export default class Game {
       this.ctx.drawImage(noCard, -395, 820, 90, 160);
 
       // deck
-      if (this.currentDeck.length !== 0) {
+      if (this.currentDeck.cardsInDeck.length !== 0) {
         this.ctx.drawImage(faceDown, -395, 520, 90, 160);
+      } else {
+        this.ctx.drawImage(noCard, -395, 520, 90, 160);
       }
 
       this.ctx.restore();
@@ -213,33 +215,33 @@ export default class Game {
     }
   }
 
-  winningCardThrown(game) {
-    if (game === undefined) return;
-    if (game.thrownCards.length !== 4) {
+  winningCardThrown() {
+    if (this === undefined) return;
+    if (this.thrownCards.length !== 4) {
       console.log("NOT YET!!!")
       return
     }
 
-    console.log(game.thrownCards, "these are thrown cards");
+    console.log(this.thrownCards, "these are thrown cards");
 
     debugger
 
-    let highestCard = game.thrownCards[0];
-    let suitToBeat = game.thrownCards[0].suit;
+    let highestCard = this.thrownCards[0];
+    let suitToBeat = this.thrownCards[0].suit;
 
 
       for (let i = 1; i < 4; i++) {
-        let thisThrown = game.thrownCards[i];
+        let thisThrown = this.thrownCards[i];
         if (thisThrown.rank > highestCard.rank
         && thisThrown.suit === suitToBeat) {
           highestCard = thisThrown;
         }
       }
 
-      if (game.currentBrisc) {
-        suitToBeat = game.currentBrisc;
+      if (this.currentBrisc) {
+        suitToBeat = this.currentBrisc;
         for (let i = 0; i < 4; i++) {
-          let thisThrown = game.thrownCards[i];
+          let thisThrown = this.thrownCards[i];
 
           if(thisThrown.suit === suitToBeat 
           && highestCard.suit !== suitToBeat) {
@@ -254,27 +256,33 @@ export default class Game {
 
     // add to winning team
     if (new String(highestCard.owner.team.name) == "humanTeam") {
-      game.addCardsValue(game.humanTeam, game.thrownCards)
+      this.addCardsValue(this.humanTeam, this.thrownCards)
     } else {
-      game.addCardsValue(game.robotTeam, game.thrownCards)
+      this.addCardsValue(this.robotTeam, this.thrownCards)
     }
 
 
 
-    game.lastHand = game.thrownCards;
-    game.lastStarter = game.startOfThisHand;
+    this.lastHand = this.thrownCards;
+    this.lastStarter = this.startOfThisHand;
 
-    game.startOfThisHand = game.PLAYERS.indexOf(highestCard.owner);
-    game.thrownCards = [];
+    this.startOfThisHand = this.PLAYERS.indexOf(highestCard.owner);
+    this.thrownCards = [];
 
-    if (game.currentDeck.length !== 0) {
-      game.eachPlayerDraws(game.startOfThisHand)
+
+
+    if (this.currentDeck.cardsInDeck.length !== 0) {
+      console.log(this.currentDeck.cardsInDeck.length, "cards left")
+      this.eachPlayerDraws(this.startOfThisHand);
+    }
+    if (this.PLAYERS[0].currentHand.length !== 0) {
+      this.playTurn();
     }
 
-    game.drawInitialBoard();
+    this.drawInitialBoard();
 
-    console.log(game.humanTeam.currentRoundScore, "human score");
-    console.log(game.robotTeam.currentRoundScore, "robot score");
+    console.log(this.humanTeam.currentRoundScore, "human score");
+    console.log(this.robotTeam.currentRoundScore, "robot score");
     console.log(highestCard, "is the highest card thrown!!!");
   }
 
