@@ -10,7 +10,7 @@ export default class Game {
     this.startOfEntireRound = 0;
     this.startOfThisHand = 0;
     this.thrownCards = [];
-    this.lastHand = [];
+    this.lastHand = {};
     this.lastStarter = null;
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
@@ -32,6 +32,7 @@ export default class Game {
     this.hasAnybodyWon = this.hasAnybodyWon.bind(this);
     this.eachPlayerDraws = this.eachPlayerDraws.bind(this);
     this.nextThrow = this.nextThrow.bind(this);
+    this.populateLastHand = this.populateLastHand.bind(this);
   };
 
   drawInitialBoard() {
@@ -50,6 +51,28 @@ export default class Game {
   let cpuThirdCard = new Image();
   let cpuFourthCard = new Image();
   let couFifthCard = new Image();
+
+  let lastUser = new Image();
+  let lastCPU1 = new Image();
+  let lastCPU2 = new Image();
+  let lastCPU3 = new Image();
+
+    if (this.lastHand[0] === undefined) {
+    lastUser.src = "../images/no-card.png";
+    lastCPU1.src = "../images/no-card.png";
+    lastCPU2.src = "../images/no-card.png";
+    lastCPU3.src = "../images/no-card.png";
+  } else {
+    lastUser.src = this.lastHand[0].imageUrl;
+    lastCPU1.src = this.lastHand[1].imageUrl;
+    lastCPU2.src = this.lastHand[2].imageUrl;
+    lastCPU3.src = this.lastHand[3].imageUrl;
+  }
+
+
+
+
+
 
   if (humanPlayerHand.length > 0) {
     firstCard.src = humanPlayerHand[0].imageUrl;
@@ -133,11 +156,46 @@ export default class Game {
   
       this.ctx.restore();
 
+      if (this.currentDeck.cardsInDeck.length > 0) {
+        this.ctx.font = "36px Georgia";
+        this.ctx.fillStyle = "red"
+        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 580, 360);
+      }
+
+      this.ctx.drawImage(noCard, 0, 39, 350, 50); //move this!!
+      this.ctx.drawImage(noCard, 875, 39, 350, 50); //move this!!
+
+      this.ctx.font = "24px Georgia";
+      this.ctx.fillStyle = "red"
+      this.ctx.fillText("Total Game Score (first to 500)", 15, 20);
+      this.ctx.fillText("Current Round Score", 900, 20);
+
+      this.ctx.font = "16px Georgia";
+      this.ctx.fillStyle = "red"
+      this.ctx.fillText("Your Team                            Other Team", 50, 35);
+      this.ctx.fillText("Your Team                            Other Team", 875, 35);
+
+      this.ctx.font = "24px Georgia";
+      this.ctx.fillStyle = "whitesmoke"
+      this.ctx.fillText(this.humanTeam.totalGameScore, 75, 55);
+      this.ctx.fillText(this.robotTeam.totalGameScore, 265, 55);
+
+      this.ctx.fillText(this.humanTeam.currentRoundScore, 900, 55);
+      this.ctx.fillText(this.robotTeam.currentRoundScore, 1100, 55);
+
+
+
       this.ctx.drawImage(firstCard, 355, 620, 90, 160);
       this.ctx.drawImage(secondCard, 455, 620, 90, 160);
       this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
       this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
       this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
+
+      this.ctx.drawImage(lastUser, 155, 700, 45, 80);
+      this.ctx.drawImage(lastCPU1, 205, 665, 45, 80);
+      this.ctx.drawImage(lastCPU2, 155, 610, 45, 80);
+      this.ctx.drawImage(lastCPU3, 105, 665, 45, 80);
+
       this.ctx.drawImage(noCard, 555, 440, 90, 160);
     }, 350);
   };
@@ -228,8 +286,7 @@ export default class Game {
 
 
 
-    this.lastHand = this.thrownCards;
-    this.lastStarter = this.startOfThisHand;
+    this.populateLastHand();
 
     this.startOfThisHand = this.PLAYERS.indexOf(highestCard.owner);
     this.thrownCards = [];
@@ -253,6 +310,16 @@ export default class Game {
     console.log(this.robotTeam.currentRoundScore, "robot score");
     console.log(highestCard, "is the highest card thrown!!!");
   }
+
+  populateLastHand() {
+    for (let i = 0; i < 4; i++) {
+      let card = this.thrownCards[i];
+      this.lastHand[card.owner.id] = card;
+    }
+    console.log(this.lastHand, "here's the last hand, fucker");
+  }
+
+
 
   nextThrow() {
     let secondToThrow = this.PLAYERS[((this.startOfThisHand + 1) % this.PLAYERS.length)];

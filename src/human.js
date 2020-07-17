@@ -5,8 +5,6 @@ export default class HumanPlayer {
     this.team = team;
     this.currentHand = [];
     this.id = 0;
-    this.toThrowIdx = null;
-    this.turnNotOver = true;
     this.briscAvailable = this.briscAvailable.bind(this);
     this.addCard = this.addCard.bind(this);
     this.throwCard = this.throwCard.bind(this);
@@ -16,7 +14,6 @@ export default class HumanPlayer {
     this.promptMove = this.promptMove.bind(this);
     this.renderThrow = this.renderThrow.bind(this);
     this.registerEventListeners();
-    this.amtHit = 0;
   }
 
   briscAvailable() {
@@ -160,10 +157,6 @@ export default class HumanPlayer {
   promptMove() {
     console.log("prompted")
     this.registerEventListeners();
-
-
-
   };
-
 
 };
