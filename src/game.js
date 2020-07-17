@@ -11,7 +11,6 @@ export default class Game {
     this.startOfThisHand = 0;
     this.thrownCards = [];
     this.lastHand = {};
-    this.lastStarter = null;
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
@@ -33,29 +32,30 @@ export default class Game {
     this.eachPlayerDraws = this.eachPlayerDraws.bind(this);
     this.nextThrow = this.nextThrow.bind(this);
     this.populateLastHand = this.populateLastHand.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   };
 
   drawInitialBoard() {
-  let faceDown = new Image();
-  let noCard = new Image();
+  const faceDown = new Image();
+  const noCard = new Image();
   faceDown.src = "../images/card-back-rename.JPG";
   noCard.src = "../images/no-card.png";
-  let humanPlayerHand = this.PLAYERS[0].currentHand;
-  let firstCard = new Image();
-  let secondCard = new Image();
-  let thirdCard = new Image();
-  let fourthCard = new Image();
-  let fifthCard = new Image();
-  let cpuFirstCard = new Image();
-  let cpuSecondCard = new Image();
-  let cpuThirdCard = new Image();
-  let cpuFourthCard = new Image();
-  let couFifthCard = new Image();
+  const humanPlayerHand = this.PLAYERS[0].currentHand;
+  const firstCard = new Image();
+  const secondCard = new Image();
+  const thirdCard = new Image();
+  const fourthCard = new Image();
+  const fifthCard = new Image();
+  const cpuFirstCard = new Image();
+  const cpuSecondCard = new Image();
+  const cpuThirdCard = new Image();
+  const cpuFourthCard = new Image();
+  const couFifthCard = new Image();
 
-  let lastUser = new Image();
-  let lastCPU1 = new Image();
-  let lastCPU2 = new Image();
-  let lastCPU3 = new Image();
+  const lastUser = new Image();
+  const lastCPU1 = new Image();
+  const lastCPU2 = new Image();
+  const lastCPU3 = new Image();
 
     if (this.lastHand[0] === undefined) {
     lastUser.src = "../images/no-card.png";
@@ -68,10 +68,6 @@ export default class Game {
     lastCPU2.src = this.lastHand[2].imageUrl;
     lastCPU3.src = this.lastHand[3].imageUrl;
   }
-
-
-
-
 
 
   if (humanPlayerHand.length > 0) {
@@ -111,7 +107,6 @@ export default class Game {
   }
 
     setTimeout(() => {
-      console.log("drawint")
       this.ctx.save();
       this.ctx.rotate(-90 * (Math.PI / 180));
 
@@ -177,11 +172,11 @@ export default class Game {
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "whitesmoke"
-      this.ctx.fillText(this.humanTeam.totalGameScore, 75, 55);
-      this.ctx.fillText(this.robotTeam.totalGameScore, 265, 55);
+      this.ctx.fillText(this.humanTeam.totalGameScore, 75, 60);
+      this.ctx.fillText(this.robotTeam.totalGameScore, 265, 60);
 
-      this.ctx.fillText(this.humanTeam.currentRoundScore, 900, 55);
-      this.ctx.fillText(this.robotTeam.currentRoundScore, 1100, 55);
+      this.ctx.fillText(this.humanTeam.currentRoundScore, 900, 60);
+      this.ctx.fillText(this.robotTeam.currentRoundScore, 1100, 60);
 
 
 
@@ -244,10 +239,6 @@ export default class Game {
       return
     }
 
-    console.log(this.thrownCards, "these are thrown cards");
-
-    debugger
-
     let highestCard = this.thrownCards[0];
     let suitToBeat = this.thrownCards[0].suit;
 
@@ -294,21 +285,35 @@ export default class Game {
 
     // to draw or not
     if (this.currentDeck.cardsInDeck.length !== 0) {
-      console.log(this.currentDeck.cardsInDeck.length, "cards left")
       this.eachPlayerDraws(this.startOfThisHand);
     }
     // to play or not
     if (this.PLAYERS[0].currentHand.length !== 0) {
       this.playTurn();
     } else {
-      //restart the game!!
+      setTimeout( () => this.restartGame(), 2500);
     }
 
     this.drawInitialBoard();
+  }
 
-    console.log(this.humanTeam.currentRoundScore, "human score");
-    console.log(this.robotTeam.currentRoundScore, "robot score");
-    console.log(highestCard, "is the highest card thrown!!!");
+  restartGame(){
+    this.finalTally();
+    if (!this.hasAnybodyWon()) {
+    this.startOfEntireRound++;
+    this.startOfThisHand = this.startOfThisHand;
+    this.currentBrisc = null;
+    this.currentDeck = new Deck();
+    this.thrownCards = [];
+    this.lastHand = {};
+    this.currentDeck.shuffleDeck();
+    this._dealCards();
+    this.playTurn();
+    this.drawInitialBoard();
+    } else {
+      console.log("gamover")
+    }
+
   }
 
   populateLastHand() {
@@ -316,10 +321,7 @@ export default class Game {
       let card = this.thrownCards[i];
       this.lastHand[card.owner.id] = card;
     }
-    console.log(this.lastHand, "here's the last hand, fucker");
   }
-
-
 
   nextThrow() {
     let secondToThrow = this.PLAYERS[((this.startOfThisHand + 1) % this.PLAYERS.length)];
@@ -327,15 +329,15 @@ export default class Game {
     let lastToThrow = this.PLAYERS[((this.startOfThisHand + 3) % this.PLAYERS.length)];
 
     if (this.thrownCards.length === 1) {
-      setTimeout( () => secondToThrow.promptMove(), 500)
+      setTimeout( () => secondToThrow.promptMove(), 1000)
     }
 
     if (this.thrownCards.length === 2) {
-      setTimeout( () => thirdToThrow.promptMove(), 500)
+      setTimeout( () => thirdToThrow.promptMove(), 1000)
     }
 
     if (this.thrownCards.length === 3) {
-      setTimeout( () => lastToThrow.promptMove(), 500)
+      setTimeout( () => lastToThrow.promptMove(), 1000)
     }
   }
 
@@ -360,22 +362,22 @@ export default class Game {
     lastToDraw.addCard(this.currentDeck.cardsInDeck.pop());
   }
 
-  hasAnybodyWon(game) {
+  hasAnybodyWon() {
     if (
-      game.humanTeam.totalGameScore >= 500 &&
-      game.robotTeam.totalGameScore >= 500 &&
-      game.robotTeam.totalGameScore > game.humanTeam.totalGameScore
+      this.humanTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore > this.humanTeam.totalGameScore
     ) {
       return true;
     } else if (
-      game.humanTeam.totalGameScore >= 500 &&
-      game.robotTeam.totalGameScore >= 500 &&
-      game.robotTeam.totalGameScore <= game.humanTeam.totalGameScore
+      this.humanTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore >= 500 &&
+      this.robotTeam.totalGameScore <= this.humanTeam.totalGameScore
       ) {
       return true;
-    } else if (game.humanTeam.totalGameScore >= 500) {
+    } else if (this.humanTeam.totalGameScore >= 500) {
       return true;
-    } else if (game.robotTeam.totalGameScore >= 500) {
+    } else if (this.robotTeam.totalGameScore >= 500) {
       return true;
     } else {
       return false;

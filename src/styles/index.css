@@ -67,7 +67,7 @@ canvas img {
   border-radius: 25px;
   outline: none;
   border: 1px solid black;
-  background-color: red;
+  background-color: whitesmoke;
   cursor: pointer;
   font-family: 'Arvo', serif;
 }

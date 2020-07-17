@@ -84,9 +84,6 @@ export default class HumanPlayer {
     };
 
     setTimeout(() => {
-      console.log("startTurn")
-      console.log(this.currentHand)
-
       this.ctx.drawImage(firstCard, 355, 620, 90, 160);
       this.ctx.drawImage(secondCard, 455, 620, 90, 160);
       this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
@@ -94,10 +91,9 @@ export default class HumanPlayer {
       this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
       this.ctx.drawImage(throwCard, 555, 440, 90, 160);
     }, 500);
-
 }
 
-  
+
 
 
   throwCard(selectedIdx) {
@@ -109,7 +105,7 @@ export default class HumanPlayer {
     this.game.thrownCards.push(cardToThrow);
 
     if (this.game.thrownCards.length === 4) {
-      setTimeout(() => this.game.winningCardThrown(this.game), 5000);
+      setTimeout(() => this.game.winningCardThrown(this.game), 2500);
     }
 
     return cardToThrow;
@@ -121,27 +117,27 @@ export default class HumanPlayer {
     if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 0) {
       this.renderThrow(0)
       this.removeEventListeners();
-      setTimeout( () => this.game.nextThrow(), 1000);
+      setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(0);
     } else if (e.pageX > 565 && e.pageX < 655 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 1) {
       this.renderThrow(1)
       this.removeEventListeners();
-      setTimeout( () => this.game.nextThrow(), 1000);
+      setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(1);
     } else if (e.pageX > 665 && e.pageX < 755 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 2) {
       this.renderThrow(2)
       this.removeEventListeners();
-      setTimeout( () => this.game.nextThrow(), 1000);
+      setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(2);
     } else if (e.pageX > 765 && e.pageX < 855 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 3) {
       this.renderThrow(3)
       this.removeEventListeners();
-      setTimeout( () => this.game.nextThrow(), 1000);
+      setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(3);
     } else if (e.pageX > 865 && e.pageX < 955 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 4) {
       this.renderThrow(4)
       this.removeEventListeners();
-      setTimeout( () => this.game.nextThrow(), 1000);
+      setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(4);
     }
   }
@@ -155,7 +151,6 @@ export default class HumanPlayer {
   }
 
   promptMove() {
-    console.log("prompted")
     this.registerEventListeners();
   };
 

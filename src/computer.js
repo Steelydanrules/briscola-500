@@ -43,9 +43,7 @@ export default class ComputerPlayer {
 }
 
   renderThrow(num) {
-    console.log("rendering")
     let pI = this.positions[this.id];
-    console.log(pI)
     
     let firstCard = new Image();
     let secondCard = new Image();
@@ -83,9 +81,6 @@ export default class ComputerPlayer {
     };
 
     setTimeout(() => {
-      console.log("startTurn")
-      console.log(this.currentHand)
-      debugger
       this.ctx.save();
       this.ctx.rotate(pI.rot * (Math.PI / 180));
       this.ctx.drawImage(firstCard, pI.one, pI.card1to5yPos, 90, 160);
@@ -95,7 +90,7 @@ export default class ComputerPlayer {
       this.ctx.drawImage(fifthCard, pI.five, pI.card1to5yPos, 90, 160);
       this.ctx.drawImage(throwCard, pI.three, pI.thrownCardyPos, 90, 160);
       this.ctx.restore();
-    }, 2000);
+    }, 500);
 
   }
 
@@ -111,12 +106,8 @@ export default class ComputerPlayer {
   };
 
   promptMove() {
-    console.log("promped", this.id)
-    console.log(this.currentHand)
     let toThrowIdx = Math.floor(Math.random() * this.currentHand.length);
-    console.log(toThrowIdx, "to throw idx")
     let cardToThrow = this.currentHand[toThrowIdx];
-    console.log(cardToThrow, "cardtothrow")
     this.renderThrow(toThrowIdx)
 
     this.currentHand = this.currentHand
@@ -126,7 +117,7 @@ export default class ComputerPlayer {
     this.game.thrownCards.push(cardToThrow);
 
     if (this.game.thrownCards.length === 4) {
-      setTimeout(() => this.game.winningCardThrown(this.game), 5000);
+      setTimeout(() => this.game.winningCardThrown(this.game), 2500);
     } else {
       this.game.nextThrow();
     }
