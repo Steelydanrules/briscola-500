@@ -52,7 +52,7 @@ export default class Game {
   const cpuFourthCard = new Image();
   const couFifthCard = new Image();
   const testImg = new Image(); //delete
-  testImg.src = "../images/Bill_Burr_Traveling_Virus_Worcester_2006.jpg" //delete
+  testImg.src = "./src/images/Bill_Burr_Traveling_Virus_Worcester_2006.jpg" //delete
 
   const lastUser = new Image();
   const lastCPU1 = new Image();
@@ -188,7 +188,7 @@ export default class Game {
       this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
       this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
 
-      this.ctx.drawImage(testImg, 100, 300, 900, 800); //delte
+      this.ctx.drawImage(testImg, 100, 300, 900, 800); //delete
 
       this.ctx.drawImage(lastUser, 155, 700, 45, 80);
       this.ctx.drawImage(lastCPU1, 205, 665, 45, 80);
