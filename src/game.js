@@ -51,6 +51,8 @@ export default class Game {
   const cpuThirdCard = new Image();
   const cpuFourthCard = new Image();
   const couFifthCard = new Image();
+  const testImg = new Image(); //delete
+  testImg.src = "../images/Bill_Burr_Traveling_Virus_Worcester_2006.jpg" //delete
 
   const lastUser = new Image();
   const lastCPU1 = new Image();
@@ -154,11 +156,12 @@ export default class Game {
       if (this.currentDeck.cardsInDeck.length > 0) {
         this.ctx.font = "36px Georgia";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 580, 360);
+        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 583, 360);
       }
 
-      this.ctx.drawImage(noCard, 0, 39, 350, 50); //move this!!
-      this.ctx.drawImage(noCard, 875, 39, 350, 50); //move this!!
+      this.ctx.drawImage(noCard, 0, 0, 350, 90); //move this!!
+      this.ctx.drawImage(noCard, 865, 0, 350, 90); //move this!!
+      this.ctx.drawImage(noCard, 855, 600, 350, 185); //move this!!
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "red"
@@ -179,12 +182,13 @@ export default class Game {
       this.ctx.fillText(this.robotTeam.currentRoundScore, 1100, 60);
 
 
-
       this.ctx.drawImage(firstCard, 355, 620, 90, 160);
       this.ctx.drawImage(secondCard, 455, 620, 90, 160);
       this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
       this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
       this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
+
+      this.ctx.drawImage(testImg, 100, 300, 900, 800); //delte
 
       this.ctx.drawImage(lastUser, 155, 700, 45, 80);
       this.ctx.drawImage(lastCPU1, 205, 665, 45, 80);
@@ -301,7 +305,7 @@ export default class Game {
     this.finalTally();
     if (!this.hasAnybodyWon()) {
     this.startOfEntireRound++;
-    this.startOfThisHand = this.startOfThisHand;
+    this.startOfThisHand = this.startOfEntireRound;
     this.currentBrisc = null;
     this.currentDeck = new Deck();
     this.thrownCards = [];

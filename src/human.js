@@ -17,7 +17,7 @@ export default class HumanPlayer {
   }
 
   briscAvailable() {
-    if (this.currentHand.length < 3) return;
+    if (this.currentHand.length < 3) return [];
     let possibleBriscs = { "DENARI": 0, "SPADE": 0, "COPPE": 0, "BASTONI": 0 };
     let actualBriscs = [];
 
@@ -107,7 +107,6 @@ export default class HumanPlayer {
     if (this.game.thrownCards.length === 4) {
       setTimeout(() => this.game.winningCardThrown(this.game), 2500);
     }
-
     return cardToThrow;
   }
 
@@ -142,6 +141,12 @@ export default class HumanPlayer {
     }
   }
 
+  //brisc calling shit
+//         this.ctx.font = "24px Georgia";
+// this.ctx.fillStyle = "red"
+
+// this.ctx.fillText("Call a Brisc", 970, 640);
+
   registerEventListeners() {
     document.addEventListener("mousedown", this.handleMouseDown);
   }
@@ -151,6 +156,17 @@ export default class HumanPlayer {
   }
 
   promptMove() {
+    const briscAvailable = this.briscAvailable();
+    console.log(briscAvailable)
+    if (briscAvailable.length > 1) {
+      // this.registerBriscCallingEventListeners();
+      console.log("brisc avail")
+    }
+
+
+
+
+
     this.registerEventListeners();
   };
 
