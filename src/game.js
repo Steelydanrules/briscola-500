@@ -107,7 +107,7 @@ export default class Game {
     fifthCard.src = "../images/no-card.png";
     couFifthCard.src = "../images/no-card.png"
   }
-
+ 
     setTimeout(() => {
       this.ctx.save();
       this.ctx.rotate(-90 * (Math.PI / 180));
