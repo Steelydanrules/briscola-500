@@ -52,7 +52,7 @@ export default class Game {
   const cpuFourthCard = new Image();
   const couFifthCard = new Image();
   const testImg = new Image(); //delete
-  testImg.src = "./src/images/Bill_Burr_Traveling_Virus_Worcester_2006.jpg" //delete
+  testImg.src = "./images/Bill_Burr_Traveling_Virus_Worcester_2006.jpg" //delete
 
   const lastUser = new Image();
   const lastCPU1 = new Image();
