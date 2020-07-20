@@ -20,14 +20,11 @@ export default class HumanPlayer {
     this.renderThrow = this.renderThrow.bind(this);
     this.registerEventListeners();
     this.renderBriscCards = this.renderBriscCards.bind(this);
-    this.clearBrisc = this.clearBrisc.bind(this);
     this.modifyBriscPoints = this.modifyBriscPoints.bind(this);
-    this.actualBriscs = [];
   }
 
   briscAvailable() {
     if (this.currentHand.length < 3) {
-      this.actualBriscs = [];
       this.possibleBriscs = {
         "DENARI": 0,
         "SPADE": 0,
@@ -36,25 +33,12 @@ export default class HumanPlayer {
       };
       return
     }; 
-
-    for (let suit in this.possibleBriscs) {
-      if (this.possibleBriscs[suit] > 6) {
-        this.actualBriscs.push(suit);
-      }
-    }
-
-    return this.actualBriscs;
   };
-
-  clearBrisc(suit){
-    this.possibleBriscs[suit] = 0;
-  }
 
   modifyBriscPoints(card) {
     if (card.points === 3 || card.points === 4 && this.possibleBriscs[card.suit] !== 0) {
       this.possibleBriscs[card.suit] -= card.points;
     }
-
   }
 
   renderBriscCards(){
@@ -221,10 +205,48 @@ export default class HumanPlayer {
     return cardToThrow;
   }
 
-
   handleMouseDown(e) {
     e.preventDefault();
-    console.log(e.pageX, e.pageY);
+    if (e.pageX > 985 && e.pageX < 1055 && 
+      e.pageY > 722 && e.pageY < 852 &&
+      this.possibleBriscs["DENARI"] === 7) {
+      console.log("DENARI");
+      this.possibleBriscs["DENARI"] = 0;
+      this.game.callBrisc("DENARI", this);
+      this.game.drawInitialBoard();
+      this.renderBriscCards();
+    };
+
+    if (e.pageX > 1060 && e.pageX < 1130 && 
+      e.pageY > 722 && e.pageY < 852 &&
+      this.possibleBriscs["SPADE"] === 7) {
+      console.log("SPADE");
+      this.possibleBriscs["SPADE"] = 0;
+      this.game.callBrisc("SPADE", this);
+      this.game.drawInitialBoard();
+      this.renderBriscCards();
+    };
+
+    if (e.pageX > 1135 && e.pageX < 1205 && 
+      e.pageY > 722 && e.pageY < 852 &&
+      this.possibleBriscs["COPPE"] === 7) {
+      console.log("COPPE");
+      this.possibleBriscs["COPPE"] = 0;
+      this.game.callBrisc("COPPE", this);
+      this.game.drawInitialBoard();
+      this.renderBriscCards();
+    };
+
+    if (e.pageX > 1210 && e.pageX < 1280 && 
+      e.pageY > 722 && e.pageY < 852 &&
+      this.possibleBriscs["BASTONI"] === 7) {
+      console.log("BASTONI");
+      this.possibleBriscs["BASTONI"] = 0;
+      this.game.callBrisc("BASTONI", this);
+      this.game.drawInitialBoard();
+      this.renderBriscCards();
+    };
+
     if (e.pageX > 465 && e.pageX < 555 && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 0) {
       this.renderThrow(0)
       this.removeEventListeners();
@@ -269,7 +291,7 @@ export default class HumanPlayer {
 
   promptMove() {
     this.briscAvailable();
-    console.log(this.possibleBriscs);
+    console.log(this.game.currentBrisc);
 
     // console.log(briscAvailable)
     // if (briscAvailable.length > 1) {

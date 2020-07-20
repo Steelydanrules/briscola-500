@@ -5,7 +5,7 @@ import Team from "./team.js";
 
 export default class Game {
   constructor(canvas) {
-    this.currentBrisc = null;
+    this.currentBrisc = [];
     this.currentDeck = new Deck();
     this.startOfEntireRound = 0;
     this.startOfThisHand = 0;
@@ -50,7 +50,7 @@ export default class Game {
   const cpuSecondCard = new Image();
   const cpuThirdCard = new Image();
   const cpuFourthCard = new Image();
-  const couFifthCard = new Image();
+  const cpuFifthCard = new Image();
 
 
   const lastUser = new Image();
@@ -101,10 +101,10 @@ export default class Game {
   }
   if (humanPlayerHand.length > 4) {
     fifthCard.src = humanPlayerHand[4].imageUrl;
-    couFifthCard.src = "../images/card-back-rename.JPG"
+    cpuFifthCard.src = "../images/card-back-rename.JPG"
   } else {
     fifthCard.src = "../images/no-card.png";
-    couFifthCard.src = "../images/no-card.png"
+    cpuFifthCard.src = "../images/no-card.png"
   }
  
     setTimeout(() => {
@@ -116,7 +116,7 @@ export default class Game {
       this.ctx.drawImage(cpuSecondCard, -295, 1040, 90, 160);
       this.ctx.drawImage(cpuThirdCard, -395, 1040, 90, 160);
       this.ctx.drawImage(cpuFourthCard, -495, 1040, 90, 160);
-      this.ctx.drawImage(couFifthCard, -595, 1040, 90, 160);
+      this.ctx.drawImage(cpuFifthCard, -595, 1040, 90, 160);
       this.ctx.drawImage(noCard, -395, 820, 90, 160);
 
       // deck
@@ -135,7 +135,7 @@ export default class Game {
       this.ctx.drawImage(cpuSecondCard, 205, -160, 90, 160);
       this.ctx.drawImage(cpuThirdCard, 305, -160, 90, 160);
       this.ctx.drawImage(cpuFourthCard, 405, -160, 90, 160);
-      this.ctx.drawImage(couFifthCard, 505, -160, 90, 160);
+      this.ctx.drawImage(cpuFifthCard, 505, -160, 90, 160);
       this.ctx.drawImage(noCard, 305, -380, 90, 160);
     
       this.ctx.restore();
@@ -147,7 +147,7 @@ export default class Game {
       this.ctx.drawImage(cpuSecondCard, -545, -80, 90, 160);
       this.ctx.drawImage(cpuThirdCard, -645, -80, 90, 160);
       this.ctx.drawImage(cpuFourthCard, -745, -80, 90, 160);
-      this.ctx.drawImage(couFifthCard, -845, -80, 90, 160);
+      this.ctx.drawImage(cpuFifthCard, -845, -80, 90, 160);
       this.ctx.drawImage(noCard, -645, -260, 90, 160);
   
       this.ctx.restore();
@@ -192,18 +192,19 @@ export default class Game {
       this.ctx.drawImage(lastCPU2, 155, 610, 45, 80);
       this.ctx.drawImage(lastCPU3, 105, 665, 45, 80);
 
-      if (this.currentDeck.cardsInDeck.length === 20) {
-        //reset brisc
-        this.ctx.drawImage(noCard, 215, 500, 125, 150);
-      }
-
-
       this.ctx.drawImage(noCard, 555, 440, 90, 160);
     }, 350);
   };
 
   _dealCards() {
     if (this.PLAYERS[0].currentHand.length !== 0) return
+
+    const noCard = new Image();
+    noCard.src = "../images/no-card.png";
+
+
+    setTimeout( () => {
+      this.ctx.drawImage(noCard, 215, 500, 125, 150)}, 200);
 
     for (let i = 0; i < 5; i++) {
 
@@ -216,11 +217,15 @@ export default class Game {
   };
   
   callBrisc(suit, player) {
-    if (this.currentBrisc === null) {
-      this.currentBrisc = [suit];
-      player.team.roundScore += 40;
+    debugger
+    console.log("calling")
+    if (this.currentBrisc.length === 0) {
+      this.currentBrisc.push(suit);
+      player.team.currentRoundScore += 40;
 
       const briscCard = new Image();
+      const noCard = new Image();
+      noCard.src = "../images/no-card.png";
 
       if (suit === "DENARI") {
         briscCard.src = "../images/AGold.png"
@@ -239,11 +244,13 @@ export default class Game {
       this.ctx.fillStyle = "red"
       this.ctx.fillText("Current Brisc:", 230, 535);
       this.ctx.drawImage(briscCard, 255, 550, 45, 80);
-      }, 100);
+      this.ctx.drawImage(noCard, 865, 0, 350, 90);
+
+      }, 200);
 
     } else if (this.currentBrisc.indexOf(suit) === -1) {
       this.currentBrisc.push(suit);
-      player.team.roundScore += 20;
+      player.team.currentRoundScore += 20;
     }
   };
   
@@ -281,8 +288,8 @@ export default class Game {
       }
 
       // winning card yes brisc
-      if (this.currentBrisc) {
-        suitToBeat = this.currentBrisc;
+      if (this.currentBrisc.length !== 0) {
+        suitToBeat = this.currentBrisc[0];
         for (let i = 0; i < 4; i++) {
           let thisThrown = this.thrownCards[i];
 
@@ -331,7 +338,7 @@ export default class Game {
     if (!this.hasAnybodyWon()) {
     this.startOfEntireRound++;
     this.startOfThisHand = this.startOfEntireRound;
-    this.currentBrisc = null;
+    this.currentBrisc = [];
     this.currentDeck = new Deck();
     this.thrownCards = [];
     this.lastHand = {};
