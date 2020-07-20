@@ -193,7 +193,7 @@ export default class Game {
       this.ctx.drawImage(lastCPU3, 105, 665, 45, 80);
 
       this.ctx.drawImage(noCard, 555, 440, 90, 160);
-    }, 350);
+    }, 1000);
   };
 
   _dealCards() {
