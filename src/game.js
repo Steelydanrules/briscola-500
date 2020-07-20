@@ -106,7 +106,8 @@ export default class Game {
     fifthCard.src = "../images/no-card.png";
     cpuFifthCard.src = "../images/no-card.png"
   }
- 
+
+
     setTimeout(() => {
       this.ctx.save();
       this.ctx.rotate(-90 * (Math.PI / 180));
@@ -193,7 +194,7 @@ export default class Game {
       this.ctx.drawImage(lastCPU3, 105, 665, 45, 80);
 
       this.ctx.drawImage(noCard, 555, 440, 90, 160);
-    }, 1000);
+    }, 350);
   };
 
   _dealCards() {
@@ -211,13 +212,11 @@ export default class Game {
     this.PLAYERS.forEach(player => {
         let cardToDraw = this.currentDeck.cardsInDeck.pop();
         player.addCard(cardToDraw);
-        // cardToDraw.owner = player;
       }
     )};
   };
   
   callBrisc(suit, player) {
-    debugger
     console.log("calling")
     if (this.currentBrisc.length === 0) {
       this.currentBrisc.push(suit);
