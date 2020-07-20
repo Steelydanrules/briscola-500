@@ -12,69 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     game.startOfThisHand = startOfEntireRound;
   }
 
-  // function playTurn(){
-  //   let firstToThrow = currentGame.PLAYERS[((currentGame.startOfThisHand + 0) % currentGame.PLAYERS.length)];
-  //   let secondToThrow = currentGame.PLAYERS[((currentGame.startOfThisHand + 1) % currentGame.PLAYERS.length)];
-  //   let thirdToThrow = currentGame.PLAYERS[((currentGame.startOfThisHand + 2) % currentGame.PLAYERS.length)];
-  //   let lastToThrow = currentGame.PLAYERS[((currentGame.startOfThisHand + 3) % currentGame.PLAYERS.length)];
-    
-  //   setTimeout(firstToThrow.promptMove(), 1000);
-  //   throwSecond();
-  //   throwThird();
-  //   throwLast();
-
-  //   function throwSecond() {
-  //     if (currentGame.thrownCards.length === 1) {
-  //       setTimeout(secondToThrow.promptMove(), 1000);
-  //     } else {
-  //       console.log(currentGame.thrownCards)
-  //       setTimeout( () => throwSecond(), 1000);
-  //     }
-  //   };
-
-  //   function throwThird() {
-  //     if (currentGame.thrownCards.length === 2) {
-  //       setTimeout(thirdToThrow.promptMove(), 1000);
-  //     } else {
-  //       console.log(currentGame.thrownCards)
-  //       setTimeout(() => throwThird(), 2000);
-  //     }
-  //   };
-
-  //   function throwLast() {
-  //     if (currentGame.thrownCards.length === 3) {
-  //       setTimeout(lastToThrow.promptMove(), 1000);
-  //     } else {
-  //       setTimeout(() => throwLast(), 3000);
-  //     }
-  //   };
-
-  //   currentGame.winningCardThrown();
-
-  // };
-
   dealGame(currentGame, 0);
   currentGame.playTurn();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // modal stuff
   let modalBtn = document.getElementById("rules-button")

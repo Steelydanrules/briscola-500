@@ -51,8 +51,7 @@ export default class Game {
   const cpuThirdCard = new Image();
   const cpuFourthCard = new Image();
   const couFifthCard = new Image();
-  const testImg = new Image(); //delete
-  testImg.src = "./images/Bill_Burr_Traveling_Virus_Worcester_2006.jpg" //delete
+
 
   const lastUser = new Image();
   const lastCPU1 = new Image();
@@ -161,7 +160,7 @@ export default class Game {
 
       this.ctx.drawImage(noCard, 0, 0, 350, 90); //move this!!
       this.ctx.drawImage(noCard, 865, 0, 350, 90); //move this!!
-      this.ctx.drawImage(noCard, 855, 600, 350, 185); //move this!!
+
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "red"
@@ -188,12 +187,16 @@ export default class Game {
       this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
       this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
 
-      this.ctx.drawImage(testImg, 100, 300, 900, 800); //delete
-
       this.ctx.drawImage(lastUser, 155, 700, 45, 80);
       this.ctx.drawImage(lastCPU1, 205, 665, 45, 80);
       this.ctx.drawImage(lastCPU2, 155, 610, 45, 80);
       this.ctx.drawImage(lastCPU3, 105, 665, 45, 80);
+
+      if (this.currentDeck.cardsInDeck.length === 20) {
+        //reset brisc
+        this.ctx.drawImage(noCard, 215, 500, 125, 150);
+      }
+
 
       this.ctx.drawImage(noCard, 555, 440, 90, 160);
     }, 350);
@@ -206,8 +209,8 @@ export default class Game {
 
     this.PLAYERS.forEach(player => {
         let cardToDraw = this.currentDeck.cardsInDeck.pop();
-        player.currentHand.push(cardToDraw);
-        cardToDraw.owner = player;
+        player.addCard(cardToDraw);
+        // cardToDraw.owner = player;
       }
     )};
   };
@@ -216,6 +219,28 @@ export default class Game {
     if (this.currentBrisc === null) {
       this.currentBrisc = [suit];
       player.team.roundScore += 40;
+
+      const briscCard = new Image();
+
+      if (suit === "DENARI") {
+        briscCard.src = "../images/AGold.png"
+      } else if (suit === "SPADE") {
+        briscCard.src = "../images/ASwords.png"
+      } else if (suit === "COPPE") {
+        briscCard.src = "../images/ACups.png"
+      } else if (suit === "BASTONI") {
+        briscCard.src = "../images/ABats.png"
+      } else {
+        briscCard.src = "../images/no-card.png"
+      };
+
+      setTimeout(() => {
+      this.ctx.font = "16px Georgia";
+      this.ctx.fillStyle = "red"
+      this.ctx.fillText("Current Brisc:", 230, 535);
+      this.ctx.drawImage(briscCard, 255, 550, 45, 80);
+      }, 100);
+
     } else if (this.currentBrisc.indexOf(suit) === -1) {
       this.currentBrisc.push(suit);
       player.team.roundScore += 20;
@@ -346,6 +371,8 @@ export default class Game {
   }
 
   playTurn() {
+  this.PLAYERS[0].briscAvailable();
+  this.PLAYERS[0].renderBriscCards();
   let firstToThrow = this.PLAYERS[((this.startOfThisHand + 0) % this.PLAYERS.length)];
   // let secondToThrow = this.PLAYERS[((this.startOfThisHand + 1) % this.PLAYERS.length)];
   // let thirdToThrow = this.PLAYERS[((this.startOfThisHand + 2) % this.PLAYERS.length)];

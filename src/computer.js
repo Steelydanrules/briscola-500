@@ -116,6 +116,7 @@ export default class ComputerPlayer {
 
     this.game.thrownCards.push(cardToThrow);
 
+
     if (this.game.thrownCards.length === 4) {
       setTimeout(() => this.game.winningCardThrown(this.game), 2500);
     } else {
