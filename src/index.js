@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function dealGame(game, startOfEntireRound){
     game.currentDeck.shuffleDeck();
     game._dealCards();
-    setTimeout( () => game.drawInitialBoard(), 250) // 50
+    setTimeout( () => game.drawInitialBoard(), 250)
     game.startOfEntireRound = startOfEntireRound;
     game.startOfThisHand = startOfEntireRound;
   }
@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   closeBtn.onclick = function () {
-    modal.style.display = "none" //change to none
+    modal.style.display = "none"
   };
 
   window.onclick = function (e) {
     if (e.target == modal) {
-      modal.style.display = "none" //change to none
+      modal.style.display = "none"
     }
-  }
+  };
 
 });

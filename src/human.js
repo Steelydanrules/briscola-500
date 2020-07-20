@@ -104,19 +104,19 @@ export default class HumanPlayer {
 
 
     setTimeout(() => {
-      this.ctx.drawImage(blockBrisc, 855, 600, 350, 185); //move this!!
+      this.ctx.drawImage(blockBrisc, 855, 600, 350, 185);
 
-      this.ctx.drawImage(kingGold, 875, 640, 45, 80); //move this!!
-      this.ctx.drawImage(queenGold, 900, 690, 45, 80); //move this!!
+      this.ctx.drawImage(kingGold, 875, 640, 45, 80);
+      this.ctx.drawImage(queenGold, 900, 690, 45, 80);
 
-      this.ctx.drawImage(kingSwords, 950, 640, 45, 80); //move this!!
-      this.ctx.drawImage(queenSwords, 975, 690, 45, 80); //move this!!
+      this.ctx.drawImage(kingSwords, 950, 640, 45, 80);
+      this.ctx.drawImage(queenSwords, 975, 690, 45, 80);
 
-      this.ctx.drawImage(kingCups, 1025, 640, 45, 80); //move this!!
-      this.ctx.drawImage(queenCups, 1050, 690, 45, 80); //move this!!
+      this.ctx.drawImage(kingCups, 1025, 640, 45, 80);
+      this.ctx.drawImage(queenCups, 1050, 690, 45, 80);
 
-      this.ctx.drawImage(kingBats, 1100, 640, 45, 80); //move this!!
-      this.ctx.drawImage(queenBats, 1125, 690, 45, 80); //move this!!
+      this.ctx.drawImage(kingBats, 1100, 640, 45, 80);
+      this.ctx.drawImage(queenBats, 1125, 690, 45, 80);
 
 
       this.ctx.font = "24px Georgia";
@@ -186,9 +186,6 @@ export default class HumanPlayer {
       this.ctx.drawImage(throwCard, 555, 440, 90, 160);
     }, 500);
 }
-
-
-
 
   throwCard(selectedIdx) {
     let cardToThrow = this.currentHand[selectedIdx];
@@ -275,12 +272,6 @@ export default class HumanPlayer {
     }
   }
 
-  //brisc calling shit
-//         this.ctx.font = "24px Georgia";
-// this.ctx.fillStyle = "red"
-
-// this.ctx.fillText("Call a Brisc", 970, 640);
-
   registerEventListeners() {
     document.addEventListener("mousedown", this.handleMouseDown);
   }
@@ -291,14 +282,6 @@ export default class HumanPlayer {
 
   promptMove() {
     this.briscAvailable();
-    console.log(this.game.currentBrisc);
-
-    // console.log(briscAvailable)
-    // if (briscAvailable.length > 1) {
-    //   // this.registerBriscCallingEventListeners();
-    //   console.log("brisc avail")
-    // }
-
     this.registerEventListeners();
   };
 

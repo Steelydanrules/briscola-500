@@ -347,7 +347,7 @@ export default class Game {
     this.playTurn();
     this.drawInitialBoard();
     } else {
-      console.log("gamover")
+      console.log("gamover");
     }
 
   }
@@ -401,21 +401,17 @@ export default class Game {
   }
 
   hasAnybodyWon() {
-    if (
-      this.humanTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore > this.humanTeam.totalGameScore
-    ) {
-      return true;
-    } else if (
-      this.humanTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore >= 500 &&
-      this.robotTeam.totalGameScore <= this.humanTeam.totalGameScore
-      ) {
-      return true;
-    } else if (this.humanTeam.totalGameScore >= 500) {
-      return true;
-    } else if (this.robotTeam.totalGameScore >= 500) {
+    if (this.humanTeam.totalGameScore >= 500 ||
+      this.robotTeam.totalGameScore >= 500) {
+        
+      let modal = document.querySelector(".game-over")
+      let myScore = document.querySelector(".my-score")
+      let yourScore = document.querySelector(".their-score")
+
+      myScore.value = this.humanTeam.totalGameScore;
+      yourScore.value = this.humanTeam.totalGameScore;
+      modal.style.display = "block";
+        
       return true;
     } else {
       return false;
