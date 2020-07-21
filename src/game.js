@@ -38,7 +38,7 @@ export default class Game {
   drawInitialBoard() {
   const faceDown = new Image();
   const noCard = new Image();
-  faceDown.src = "../images/card-back-rename.JPG";
+  faceDown.src = "images/card-back-rename.JPG";
   noCard.src = "../images/no-card.png";
   const humanPlayerHand = this.PLAYERS[0].currentHand;
   const firstCard = new Image();
@@ -244,6 +244,18 @@ export default class Game {
       this.ctx.fillText("Current Brisc:", 230, 535);
       this.ctx.drawImage(briscCard, 255, 550, 45, 80);
       this.ctx.drawImage(noCard, 865, 0, 350, 90);
+      this.ctx.font = "24px Georgia";
+      this.ctx.fillStyle = "red"
+      this.ctx.fillText("Current Round Score", 900, 20);
+      this.ctx.font = "16px Georgia";
+      this.ctx.fillStyle = "red"
+      this.ctx.fillText("Your Team                            Other Team", 50, 35);
+      this.ctx.fillText("Your Team                            Other Team", 875, 35);
+
+      this.ctx.font = "24px Georgia";
+      this.ctx.fillStyle = "whitesmoke"
+      this.ctx.fillText(this.humanTeam.currentRoundScore, 900, 60);
+      this.ctx.fillText(this.robotTeam.currentRoundScore, 1100, 60);
 
       }, 200);
 

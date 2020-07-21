@@ -121,7 +121,7 @@ export default class HumanPlayer {
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "red"
-      this.ctx.fillText("Call a brisc on your turn!!!!", 900, 630);
+      this.ctx.fillText("Call a brisc on your turn", 900, 630);
     }, 250)
 
 
@@ -210,7 +210,7 @@ export default class HumanPlayer {
       console.log("DENARI");
       this.possibleBriscs["DENARI"] = 0;
       this.game.callBrisc("DENARI", this);
-      this.game.drawInitialBoard();
+      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
@@ -220,7 +220,7 @@ export default class HumanPlayer {
       console.log("SPADE");
       this.possibleBriscs["SPADE"] = 0;
       this.game.callBrisc("SPADE", this);
-      this.game.drawInitialBoard();
+      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
@@ -230,7 +230,7 @@ export default class HumanPlayer {
       console.log("COPPE");
       this.possibleBriscs["COPPE"] = 0;
       this.game.callBrisc("COPPE", this);
-      this.game.drawInitialBoard();
+      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
@@ -240,7 +240,7 @@ export default class HumanPlayer {
       console.log("BASTONI");
       this.possibleBriscs["BASTONI"] = 0;
       this.game.callBrisc("BASTONI", this);
-      this.game.drawInitialBoard();
+      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
