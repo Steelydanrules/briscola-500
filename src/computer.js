@@ -55,29 +55,29 @@ export default class ComputerPlayer {
     throwCard.src = this.currentHand[num].imageUrl;
 
     if (this.currentHand.length !== 0 && num !== 0) {
-      firstCard.src = "./src/public/images/card-back-rename.JPG"
+      firstCard.src = "../src/public/images/card-back-rename.JPG"
     } else {
-      firstCard.src = "./src/public/images/no-card.png"
+      firstCard.src = "../src/public/images/no-card.png"
     };
     if (this.currentHand.length > 1 && num !== 1) {
-      secondCard.src = "./src/public/images/card-back-rename.JPG"
+      secondCard.src = "../src/public/images/card-back-rename.JPG"
     } else {
-      secondCard.src = "./src/public/images/no-card.png"
+      secondCard.src = "../src/public/images/no-card.png"
     };
     if (this.currentHand.length > 2 && num !== 2) {
-      thirdCard.src = "./src/public/images/card-back-rename.JPG"
+      thirdCard.src = "../src/public/images/card-back-rename.JPG"
     } else {
-      thirdCard.src = "./src/public/images/no-card.png"
+      thirdCard.src = "../src/public/images/no-card.png"
     };
     if (this.currentHand.length > 3 && num !== 3) {
-      fourthCard.src = "./src/public/images/card-back-rename.JPG"
+      fourthCard.src = "../src/public/images/card-back-rename.JPG"
     } else {
-      fourthCard.src = "./src/public/images/no-card.png"
+      fourthCard.src = "../src/public/images/no-card.png"
     };
     if (this.currentHand.length > 4 && num !== 4) {
-      fifthCard.src = "./src/public/images/card-back-rename.JPG"
+      fifthCard.src = "../src/public/images/card-back-rename.JPG"
     } else {
-      fifthCard.src = "./src/public/images/no-card.png"
+      fifthCard.src = "../src/public/images/no-card.png"
     };
 
     setTimeout(() => {

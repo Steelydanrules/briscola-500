@@ -38,8 +38,8 @@ export default class Game {
   drawInitialBoard() {
   const faceDown = new Image();
   const noCard = new Image();
-  faceDown.src = "./src/public/images/card-back-rename.JPG";
-  noCard.src = "./src/public/images/no-card.png";
+  faceDown.src = "../src/public/images/card-back-rename.JPG";
+  noCard.src = "../src/public/images/no-card.png";
   const humanPlayerHand = this.PLAYERS[0].currentHand;
   const firstCard = new Image();
   const secondCard = new Image();
@@ -59,10 +59,10 @@ export default class Game {
   const lastCPU3 = new Image();
 
     if (this.lastHand[0] === undefined) {
-    lastUser.src = "./src/public/images/no-card.png";
-    lastCPU1.src = "./src/public/images/no-card.png";
-    lastCPU2.src = "./src/public/images/no-card.png";
-    lastCPU3.src = "./src/public/images/no-card.png";
+    lastUser.src = "../src/public/images/no-card.png";
+    lastCPU1.src = "../src/public/images/no-card.png";
+    lastCPU2.src = "../src/public/images/no-card.png";
+    lastCPU3.src = "../src/public/images/no-card.png";
   } else {
     lastUser.src = this.lastHand[0].imageUrl;
     lastCPU1.src = this.lastHand[1].imageUrl;
@@ -73,38 +73,38 @@ export default class Game {
 
   if (humanPlayerHand.length > 0) {
     firstCard.src = humanPlayerHand[0].imageUrl;
-    cpuFirstCard.src = "./src/public/images/card-back-rename.JPG"
+    cpuFirstCard.src = "../src/public/images/card-back-rename.JPG"
   } else {
-    firstCard.src = "./src/public/images/no-card.png";
-    cpuFirstCard.src = "./src/public/images/no-card.png"
+    firstCard.src = "../src/public/images/no-card.png";
+    cpuFirstCard.src = "../src/public/images/no-card.png"
   }
   if (humanPlayerHand.length > 1) {
     secondCard.src = humanPlayerHand[1].imageUrl;
-    cpuSecondCard.src = "./src/public/images/card-back-rename.JPG"
+    cpuSecondCard.src = "../src/public/images/card-back-rename.JPG"
   } else {
-    secondCard.src = "./src/public/images/no-card.png";
-    cpuSecondCard.src = "./src/public/images/no-card.png"
+    secondCard.src = "../src/public/images/no-card.png";
+    cpuSecondCard.src = "../src/public/images/no-card.png"
   }
   if (humanPlayerHand.length > 2) {
     thirdCard.src = humanPlayerHand[2].imageUrl;
-    cpuThirdCard.src = "./src/public/images/card-back-rename.JPG"
+    cpuThirdCard.src = "../src/public/images/card-back-rename.JPG"
   } else {
-    thirdCard.src = "./src/public/images/no-card.png";
-    cpuThirdCard.src = "./src/public/images/no-card.png"
+    thirdCard.src = "../src/public/images/no-card.png";
+    cpuThirdCard.src = "../src/public/images/no-card.png"
   }
   if (humanPlayerHand.length > 3) {
     fourthCard.src = humanPlayerHand[3].imageUrl;
-    cpuFourthCard.src = "./src/public/images/card-back-rename.JPG"
+    cpuFourthCard.src = "../src/public/images/card-back-rename.JPG"
   } else {
-    fourthCard.src = "./src/public/images/no-card.png";
-    cpuFourthCard.src = "./src/public/images/no-card.png"
+    fourthCard.src = "../src/public/images/no-card.png";
+    cpuFourthCard.src = "../src/public/images/no-card.png"
   }
   if (humanPlayerHand.length > 4) {
     fifthCard.src = humanPlayerHand[4].imageUrl;
-    cpuFifthCard.src = "./src/public/images/card-back-rename.JPG"
+    cpuFifthCard.src = "../src/public/images/card-back-rename.JPG"
   } else {
-    fifthCard.src = "./src/public/images/no-card.png";
-    cpuFifthCard.src = "./src/public/images/no-card.png"
+    fifthCard.src = "../src/public/images/no-card.png";
+    cpuFifthCard.src = "../src/public/images/no-card.png"
   }
 
 
@@ -201,7 +201,7 @@ export default class Game {
     if (this.PLAYERS[0].currentHand.length !== 0) return
 
     const noCard = new Image();
-    noCard.src = "./src/public/images/no-card.png";
+    noCard.src = "../src/public/images/no-card.png";
 
 
     setTimeout( () => {
@@ -224,18 +224,18 @@ export default class Game {
 
       const briscCard = new Image();
       const noCard = new Image();
-      noCard.src = "./src/public/images/no-card.png";
+      noCard.src = "../src/public/images/no-card.png";
 
       if (suit === "DENARI") {
-        briscCard.src = "./src/public/images/AGold.png"
+        briscCard.src = "../src/public/images/AGold.png"
       } else if (suit === "SPADE") {
-        briscCard.src = "./src/public/images/ASwords.png"
+        briscCard.src = "../src/public/images/ASwords.png"
       } else if (suit === "COPPE") {
-        briscCard.src = "./src/public/images/ACups.png"
+        briscCard.src = "../src/public/images/ACups.png"
       } else if (suit === "BASTONI") {
-        briscCard.src = "./src/public/images/ABats.png"
+        briscCard.src = "../src/public/images/ABats.png"
       } else {
-        briscCard.src = "./src/public/images/no-card.png"
+        briscCard.src = "../src/public/images/no-card.png"
       };
 
       setTimeout(() => {
