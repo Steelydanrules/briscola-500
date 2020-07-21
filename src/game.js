@@ -60,21 +60,11 @@ export default class Game {
 
     if (this.lastHand[0] === undefined) {
 
-    lastUser.src = "src/public/images/no-card.png"; //change
-    lastCPU1.src = "src/public/images/no-card.png"; //change
-    lastCPU2.src = "src/public/images/no-card.png"; //change
-    lastCPU3.src = "src/public/images/no-card.png"; //change
+    lastUser.src = "src/public/images/no-card.png"; 
+    lastCPU1.src = "src/public/images/no-card.png"; 
+    lastCPU2.src = "src/public/images/no-card.png"; 
+    lastCPU3.src = "src/public/images/no-card.png";
   } else {
-      this.ctx.font = "26px Georgia";
-      this.ctx.fillStyle = "red"
-      this.ctx.fillText("L", 20, 625);
-      this.ctx.fillText("A", 40, 635);
-      this.ctx.fillText("S", 60, 645);
-      this.ctx.fillText("T", 80, 655);
-      this.ctx.fillText("H", 20, 675);
-      this.ctx.fillText("A", 40, 685);
-      this.ctx.fillText("N", 60, 695);
-      this.ctx.fillText("D", 80, 705);
     lastUser.src = this.lastHand[0].imageUrl;
     lastCPU1.src = this.lastHand[1].imageUrl;
     lastCPU2.src = this.lastHand[2].imageUrl;
