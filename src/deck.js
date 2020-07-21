@@ -9,7 +9,7 @@ export default class Deck {
         rank: 1,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/2Gold.png",
+        imageUrl: "./src/public/images/2Gold.png",
       },
       {
         suit: "DENARI",
@@ -17,7 +17,7 @@ export default class Deck {
         rank: 2,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/4Gold.png",
+        imageUrl: "./src/public/images/4Gold.png",
       },
       {
         suit: "DENARI",
@@ -25,7 +25,7 @@ export default class Deck {
         rank: 3,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/5Gold.png",
+        imageUrl: "./src/public/images/5Gold.png",
       },
       {
         suit: "DENARI",
@@ -33,7 +33,7 @@ export default class Deck {
         rank: 4,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/6Gold.png",
+        imageUrl: "./src/public/images/6Gold.png",
       },
       {
         suit: "DENARI",
@@ -41,7 +41,7 @@ export default class Deck {
         rank: 5,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/7Gold.png",
+        imageUrl: "./src/public/images/7Gold.png",
       },
       {
         suit: "DENARI",
@@ -49,7 +49,7 @@ export default class Deck {
         rank: 6,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/JGold.png",
+        imageUrl: "./src/public/images/JGold.png",
       },
       {
         suit: "DENARI",
@@ -57,7 +57,7 @@ export default class Deck {
         rank: 7,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/QGold.png",
+        imageUrl: "./src/public/images/QGold.png",
       },
       {
         suit: "DENARI",
@@ -65,7 +65,7 @@ export default class Deck {
         rank: 8,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/KGold.png",
+        imageUrl: "./src/public/images/KGold.png",
       },
       {
         suit: "DENARI",
@@ -73,7 +73,7 @@ export default class Deck {
         rank: 9,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/3Gold.png",
+        imageUrl: "./src/public/images/3Gold.png",
       },
       {
         suit: "DENARI",
@@ -81,7 +81,7 @@ export default class Deck {
         rank: 10,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/AGold.png",
+        imageUrl: "./src/public/images/AGold.png",
       },
       {
         suit: "SPADE",
@@ -89,7 +89,7 @@ export default class Deck {
         rank: 1,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/2Swords.png",
+        imageUrl: "./src/public/images/2Swords.png",
       },
       {
         suit: "SPADE",
@@ -97,7 +97,7 @@ export default class Deck {
         rank: 2,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/4Swords.png",
+        imageUrl: "./src/public/images/4Swords.png",
       },
       {
         suit: "SPADE",
@@ -105,7 +105,7 @@ export default class Deck {
         rank: 3,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/5Swords.png",
+        imageUrl: "./src/public/images/5Swords.png",
       },
       {
         suit: "SPADE",
@@ -113,7 +113,7 @@ export default class Deck {
         rank: 4,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/6Swords.png",
+        imageUrl: "./src/public/images/6Swords.png",
       },
       {
         suit: "SPADE",
@@ -121,7 +121,7 @@ export default class Deck {
         rank: 5,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/7Swords.png",
+        imageUrl: "./src/public/images/7Swords.png",
       },
       {
         suit: "SPADE",
@@ -129,7 +129,7 @@ export default class Deck {
         rank: 6,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/JSwords.png",
+        imageUrl: "./src/public/images/JSwords.png",
       },
       {
         suit: "SPADE",
@@ -137,7 +137,7 @@ export default class Deck {
         rank: 7,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/QSwords.png",
+        imageUrl: "./src/public/images/QSwords.png",
       },
       {
         suit: "SPADE",
@@ -145,7 +145,7 @@ export default class Deck {
         rank: 8,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/KSwords.png",
+        imageUrl: "./src/public/images/KSwords.png",
       },
       {
         suit: "SPADE",
@@ -153,7 +153,7 @@ export default class Deck {
         rank: 9,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/3Swords.png",
+        imageUrl: "./src/public/images/3Swords.png",
       },
       {
         suit: "SPADE",
@@ -161,7 +161,7 @@ export default class Deck {
         rank: 10,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/ASwords.png",
+        imageUrl: "./src/public/images/ASwords.png",
       },
       {
         suit: "COPPE",
@@ -169,7 +169,7 @@ export default class Deck {
         rank: 1,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/2Cups.png",
+        imageUrl: "./src/public/images/2Cups.png",
       },
       {
         suit: "COPPE",
@@ -177,7 +177,7 @@ export default class Deck {
         rank: 2,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/4Cups.png",
+        imageUrl: "./src/public/images/4Cups.png",
       },
       {
         suit: "COPPE",
@@ -185,7 +185,7 @@ export default class Deck {
         rank: 3,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/5Cups.png",
+        imageUrl: "./src/public/images/5Cups.png",
       },
       {
         suit: "COPPE",
@@ -193,7 +193,7 @@ export default class Deck {
         rank: 4,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/6Cups.png",
+        imageUrl: "./src/public/images/6Cups.png",
       },
       {
         suit: "COPPE",
@@ -201,7 +201,7 @@ export default class Deck {
         rank: 5,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/7Cups.png",
+        imageUrl: "./src/public/images/7Cups.png",
       },
       {
         suit: "COPPE",
@@ -209,7 +209,7 @@ export default class Deck {
         rank: 6,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/JCups.png",
+        imageUrl: "./src/public/images/JCups.png",
       },
       {
         suit: "COPPE",
@@ -217,7 +217,7 @@ export default class Deck {
         rank: 7,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/QCups.png",
+        imageUrl: "./src/public/images/QCups.png",
       },
       {
         suit: "COPPE",
@@ -225,7 +225,7 @@ export default class Deck {
         rank: 8,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/KCups.png",
+        imageUrl: "./src/public/images/KCups.png",
       },
       {
         suit: "COPPE",
@@ -233,7 +233,7 @@ export default class Deck {
         rank: 9,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/3Cups.png",
+        imageUrl: "./src/public/images/3Cups.png",
       },
       {
         suit: "COPPE",
@@ -241,7 +241,7 @@ export default class Deck {
         rank: 10,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/ACups.png",
+        imageUrl: "./src/public/images/ACups.png",
       },
       {
         suit: "BASTONI",
@@ -249,7 +249,7 @@ export default class Deck {
         rank: 1,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/2Bats.png",
+        imageUrl: "./src/public/images/2Bats.png",
       },
       {
         suit: "BASTONI",
@@ -257,7 +257,7 @@ export default class Deck {
         rank: 2,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/4Bats.png",
+        imageUrl: "./src/public/images/4Bats.png",
       },
       {
         suit: "BASTONI",
@@ -265,7 +265,7 @@ export default class Deck {
         rank: 3,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/5Bats.png",
+        imageUrl: "./src/public/images/5Bats.png",
       },
       {
         suit: "BASTONI",
@@ -273,7 +273,7 @@ export default class Deck {
         rank: 4,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/6Bats.png",
+        imageUrl: "./src/public/images/6Bats.png",
       },
       {
         suit: "BASTONI",
@@ -281,7 +281,7 @@ export default class Deck {
         rank: 5,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/7Bats.png",
+        imageUrl: "./src/public/images/7Bats.png",
       },
       {
         suit: "BASTONI",
@@ -289,7 +289,7 @@ export default class Deck {
         rank: 6,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/JBats.png",
+        imageUrl: "./src/public/images/JBats.png",
       },
       {
         suit: "BASTONI",
@@ -297,7 +297,7 @@ export default class Deck {
         rank: 7,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/QBats.png",
+        imageUrl: "./src/public/images/QBats.png",
       },
       {
         suit: "BASTONI",
@@ -305,7 +305,7 @@ export default class Deck {
         rank: 8,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/KBats.png",
+        imageUrl: "./src/public/images/KBats.png",
       },
       {
         suit: "BASTONI",
@@ -313,7 +313,7 @@ export default class Deck {
         rank: 9,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/3Bats.png",
+        imageUrl: "./src/public/images/3Bats.png",
       },
       {
         suit: "BASTONI",
@@ -321,7 +321,7 @@ export default class Deck {
         rank: 10,
         faceUp: false,
         owner: null,
-        imageUrl: "/images/ABats.png",
+        imageUrl: "./src/public/images/ABats.png",
       },
     ];
 
