@@ -421,7 +421,7 @@ export default class Game {
       let yourScore = document.querySelector(".their-score")
 
       myScore.value = this.humanTeam.totalGameScore;
-      yourScore.value = this.humanTeam.totalGameScore;
+      yourScore.value = this.robotTeam.totalGameScore;
       modal.style.display = "block";
         
       return true;

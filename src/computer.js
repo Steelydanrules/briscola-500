@@ -8,6 +8,11 @@ export default class ComputerPlayer {
     this.addCard = this.addCard.bind(this);
     this.promptMove = this.promptMove.bind(this);
     this.renderThrow = this.renderThrow.bind(this);
+    this.chooseBestCard = this.chooseBestCard.bind(this);
+    this.briscAvailable = this.briscAvailable.bind(this);
+    this.worstCardThrower = this.worstCardThrower.bind(this);
+    this.modifyBriscPoints = this.modifyBriscPoints.bind(this);
+    this.toCallBrisc = this.toCallBrisc.bind(this);
     this.positions = {
       1: { 
         rot: -90,
@@ -40,7 +45,27 @@ export default class ComputerPlayer {
         thrownCardyPos: -380
       }
     };
+    this.possibleBriscs = {
+      "DENARI": 0,
+      "SPADE": 0,
+      "COPPE": 0,
+      "BASTONI": 0
+    };
+
+    
 }
+
+  briscAvailable() {
+    if (this.currentHand.length < 3) {
+      this.possibleBriscs = {
+        "DENARI": 0,
+        "SPADE": 0,
+        "COPPE": 0,
+        "BASTONI": 0
+      };
+      return
+    };
+  };
 
   renderThrow(num) {
     let pI = this.positions[this.id];
@@ -96,7 +121,11 @@ export default class ComputerPlayer {
 
   addCard(card) {
     if (this.currentHand.length < 5) {
+      if (card.points === 3 || card.points === 4) {
+        this.possibleBriscs[card.suit] += card.points
+      }
       card.owner = this;
+      card.faceUp = true;
       card.team = this.team;
       this.currentHand.push(card);
     } else {
@@ -105,10 +134,67 @@ export default class ComputerPlayer {
     }
   };
 
-  promptMove() {
-    let toThrowIdx = Math.floor(Math.random() * this.currentHand.length);
-    let cardToThrow = this.currentHand[toThrowIdx];
-    this.renderThrow(toThrowIdx)
+  worstCardThrower(){
+    let smallestIdx = 0;
+    for (let i = 1; i < 5; i++) {
+      let card = this.currentHand[i];
+
+      if (card.rank < this.currentHand[smallestIdx].rank) {
+        smallestIdx = i;
+      }
+    }
+    return smallestIdx;
+  }
+
+  modifyBriscPoints(card) {
+    if (card.points === 3 || card.points === 4 && this.possibleBriscs[card.suit] !== 0) {
+      this.possibleBriscs[card.suit] -= card.points;
+    }
+  }
+
+  toCallBrisc(suit) {
+    this.game.callBrisc(suit, this)
+    return
+
+    let totalpoints = 0;
+
+    for (let i = 0; i < this.currentHand.length; i++) {
+      let card = this.currentHand[i];
+      if (card.suit === suit) {
+        totalpoints += card.points;
+      };
+    };
+
+    if (totalpoints > 7 && this.currentHand.length > 4) {
+      this.game.callBrisc(suit, this)
+    } else if (totalpoints >= 7 && this.currentHand.length === 3) {
+      this.game.callBrisc(suit, this)
+    };
+  }
+
+  chooseBestCard(){
+    let toThrowIdx;
+    let cardToThrow;
+
+    if (this.game.currentDeck.cardsInDeck.length !== 0) {
+      toThrowIdx = this.worstCardThrower();
+      cardToThrow = this.currentHand[toThrowIdx];
+    } else {
+      toThrowIdx = Math.floor(Math.random() * this.currentHand.length);
+      cardToThrow = this.currentHand[toThrowIdx];
+
+      let points = ["DENARI", "SPADE", "COPPE", "BASTONI"];
+      for (let i = 0; i < 4; i++) {
+        let suit = points[i];
+        if (this.possibleBriscs[suit] === 7) {
+          this.toCallBrisc(suit);
+        };
+      };
+    };
+
+
+    this.modifyBriscPoints(cardToThrow);
+    this.renderThrow(toThrowIdx);
 
     this.currentHand = this.currentHand
       .slice(0, toThrowIdx)
@@ -116,13 +202,20 @@ export default class ComputerPlayer {
 
     this.game.thrownCards.push(cardToThrow);
 
+  }
+
+
+  promptMove() {
+    console.log(this.possibleBriscs)
+    this.briscAvailable();
+    this.chooseBestCard();
 
     if (this.game.thrownCards.length === 4) {
       setTimeout(() => this.game.winningCardThrown(this.game), 2500);
     } else {
       this.game.nextThrow();
-    }
+    };
 
-    return cardToThrow;
+    return;
   };
 };
