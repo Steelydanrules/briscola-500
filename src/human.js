@@ -44,62 +44,62 @@ export default class HumanPlayer {
   renderBriscCards(){
 
     const blockBrisc = new Image();
-    blockBrisc.src = "../src/public/images/no-card.png"
+    blockBrisc.src = "src/public/images/no-card.png"
 
     const kingGold = new Image(); //DENARI
     if (this.possibleBriscs["DENARI"] === 4 || this.possibleBriscs["DENARI"] === 7) {
-    kingGold.src = "../src/public/images/KGold.png"
+    kingGold.src = "src/public/images/KGold.png"
     } else {
-    kingGold.src = "../src/public/images/card-back-rename.JPG"
+    kingGold.src = "src/public/images/card-back-rename.JPG"
     };
 
     const queenGold = new Image();
     if (this.possibleBriscs["DENARI"] === 3 || this.possibleBriscs["DENARI"] === 7) {
-    queenGold.src = "../src/public/images/QGold.png"
+    queenGold.src = "src/public/images/QGold.png"
     } else {
-    queenGold.src = "../src/public/images/card-back-rename.JPG"
+    queenGold.src = "src/public/images/card-back-rename.JPG"
     };
 
     const kingSwords = new Image(); //SPADE
     if (this.possibleBriscs["SPADE"] === 4 || this.possibleBriscs["SPADE"] === 7) {
-    kingSwords.src = "../src/public/images/KSwords.png"
+    kingSwords.src = "src/public/images/KSwords.png"
     } else {
-    kingSwords.src = "../src/public/images/card-back-rename.JPG"
+    kingSwords.src = "src/public/images/card-back-rename.JPG"
     };
 
     const queenSwords = new Image();
     if (this.possibleBriscs["SPADE"] === 3 || this.possibleBriscs["SPADE"] === 7) {
-    queenSwords.src = "../src/public/images/QSwords.png"
+    queenSwords.src = "src/public/images/QSwords.png"
     } else {
-    queenSwords.src = "../src/public/images/card-back-rename.JPG"
+    queenSwords.src = "src/public/images/card-back-rename.JPG"
     };
 
     const kingCups = new Image(); //COPPE
     if (this.possibleBriscs["COPPE"] === 4 || this.possibleBriscs["COPPE"] === 7) {
-    kingCups.src = "../src/public/images/KCups.png"
+    kingCups.src = "src/public/images/KCups.png"
     } else {
-    kingCups.src = "../src/public/images/card-back-rename.JPG"
+    kingCups.src = "src/public/images/card-back-rename.JPG"
     };
 
     const queenCups = new Image();
     if (this.possibleBriscs["COPPE"] === 3 || this.possibleBriscs["COPPE"] === 7) {
-    queenCups.src = "../src/public/images/QCups.png"
+    queenCups.src = "src/public/images/QCups.png"
    } else {
-    queenCups.src = "../src/public/images/card-back-rename.JPG"
+    queenCups.src = "src/public/images/card-back-rename.JPG"
     };
 
     const kingBats = new Image(); //BASTONI
     if (this.possibleBriscs["BASTONI"] === 4 || this.possibleBriscs["BASTONI"] === 7) {
-    kingBats.src = "../src/public/images/KBats.png"
+    kingBats.src = "src/public/images/KBats.png"
     } else {
-    kingBats.src = "../src/public/images/card-back-rename.JPG"
+    kingBats.src = "src/public/images/card-back-rename.JPG"
     };
 
     const queenBats = new Image();
     if (this.possibleBriscs["BASTONI"] === 3 || this.possibleBriscs["BASTONI"] === 7) {
-    queenBats.src = "../src/public/images/QBats.png"
+    queenBats.src = "src/public/images/QBats.png"
     } else {
-    queenBats.src = "../src/public/images/card-back-rename.JPG"
+    queenBats.src = "src/public/images/card-back-rename.JPG"
     };
 
 
@@ -154,27 +154,27 @@ export default class HumanPlayer {
     if (this.currentHand.length !== 0 && num !== 0) {
       firstCard.src = this.currentHand[0].imageUrl
     } else {
-      firstCard.src = "../src/public/images/no-card.png"
+      firstCard.src = "src/public/images/no-card.png"
     };
     if (this.currentHand.length > 1 && num !== 1) {
       secondCard.src = this.currentHand[1].imageUrl
     } else {
-      secondCard.src = "../src/public/images/no-card.png"
+      secondCard.src = "src/public/images/no-card.png"
     };
     if (this.currentHand.length > 2 && num !== 2) {
       thirdCard.src = this.currentHand[2].imageUrl
     } else {
-      thirdCard.src = "../src/public/images/no-card.png"
+      thirdCard.src = "src/public/images/no-card.png"
     };
     if (this.currentHand.length > 3 && num !== 3) {
       fourthCard.src = this.currentHand[3].imageUrl
     } else {
-      fourthCard.src = "../src/public/images/no-card.png"
+      fourthCard.src = "src/public/images/no-card.png"
     };
     if (this.currentHand.length > 4 && num !== 4) {
       fifthCard.src = this.currentHand[4].imageUrl
     } else {
-      fifthCard.src = "../src/public/images/no-card.png"
+      fifthCard.src = "src/public/images/no-card.png"
     };
 
     setTimeout(() => {
