@@ -281,6 +281,8 @@ export default class HumanPlayer {
   }
 
   promptMove() {
+    console.log(window)
+    debugger
     this.briscAvailable();
     this.registerEventListeners();
   };
