@@ -11,7 +11,7 @@ canvas {
   z-index: 0;
   border: 1px solid black;
   display: flex;
-  margin-left: 100px;
+  margin-left: auto;
   margin-right: auto;
   text-align: center;
   background-color: #444444;
@@ -40,7 +40,7 @@ canvas img {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-left: 100px;
+  margin-left: auto;
   margin-right: auto;
   width: 1200px;
   color: red;
