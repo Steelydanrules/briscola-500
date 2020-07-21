@@ -38,7 +38,7 @@ export default class Game {
   drawInitialBoard() {
   const faceDown = new Image();
   const noCard = new Image();
-  faceDown.src = "./images/card-back-rename.JPG";
+  faceDown.src = "../images/card-back-rename.JPG";
   noCard.src = "../images/no-card.png";
   const humanPlayerHand = this.PLAYERS[0].currentHand;
   const firstCard = new Image();
