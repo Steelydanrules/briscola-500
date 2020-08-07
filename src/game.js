@@ -123,9 +123,9 @@ export default class Game {
 
       // deck
       if (this.currentDeck.cardsInDeck.length !== 0) {
-        this.ctx.drawImage(faceDown, -300, 476›, 55, 98);
+        this.ctx.drawImage(faceDown, -300, 474, 55, 98);
       } else {
-        this.ctx.drawImage(noCard, -300, 520, 55, 98);
+        this.ctx.drawImage(noCard, -300, 474, 55, 98);
       }
 
       this.ctx.restore();
@@ -157,7 +157,7 @@ export default class Game {
       if (this.currentDeck.cardsInDeck.length > 0) {
         this.ctx.font = "36px Georgia";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 583, 360);
+        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 502, 282);
       }
 
       this.ctx.drawImage(noCard, 0, 0, 350, 90); //move this!!
@@ -183,18 +183,18 @@ export default class Game {
       this.ctx.fillText(this.robotTeam.currentRoundScore, 940, 60);
 
 
-      this.ctx.drawImage(firstCard, 355, 620, 55, 98);
-      this.ctx.drawImage(secondCard, 455, 620, 55, 98);
-      this.ctx.drawImage(thirdCard, 555, 620, 55, 98);
-      this.ctx.drawImage(fourthCard, 655, 620, 55, 98);
-      this.ctx.drawImage(fifthCard, 755, 620, 55, 98);
+      this.ctx.drawImage(firstCard, 300, 505, 81, 144);
+      this.ctx.drawImage(secondCard, 390, 505, 81, 144);
+      this.ctx.drawImage(thirdCard, 480, 505, 81, 144);
+      this.ctx.drawImage(fourthCard, 570, 505, 81, 144);
+      this.ctx.drawImage(fifthCard, 660, 505, 81, 144);
 
-      this.ctx.drawImage(lastUser, 155, 700, 45, 80);
-      this.ctx.drawImage(lastCPU1, 205, 665, 45, 80);
-      this.ctx.drawImage(lastCPU2, 155, 610, 45, 80);
-      this.ctx.drawImage(lastCPU3, 105, 665, 45, 80);
+      this.ctx.drawImage(faceDown, 155, 480, 40, 72); // change to lastUser
+      this.ctx.drawImage(faceDown, 205, 530, 40, 72); // change to lastCPU1
+      this.ctx.drawImage(faceDown, 155, 580, 40, 72); // change to lastCPU2
+      this.ctx.drawImage(faceDown, 105, 530, 40, 72); // change to lastCPU3
 
-      this.ctx.drawImage(faceDown, 555, 440, 55, 98); // change to no card
+      this.ctx.drawImage(faceDown, 480, 345, 81, 144); // change to no card
     }, 350);
   };
 

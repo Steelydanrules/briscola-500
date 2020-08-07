@@ -105,24 +105,24 @@ export default class HumanPlayer {
 
 
     setTimeout(() => {
-      this.ctx.drawImage(blockBrisc, 855, 600, 350, 185);
+      this.ctx.drawImage(blockBrisc, 743, 500, 350, 185);
 
-      this.ctx.drawImage(kingGold, 875, 640, 45, 80);
-      this.ctx.drawImage(queenGold, 900, 690, 45, 80);
+      this.ctx.drawImage(kingGold, 750, 530, 35, 65);
+      this.ctx.drawImage(queenGold, 770, 580, 35, 65);
 
-      this.ctx.drawImage(kingSwords, 950, 640, 45, 80);
-      this.ctx.drawImage(queenSwords, 975, 690, 45, 80);
+      this.ctx.drawImage(kingSwords, 810, 530, 35, 65);
+      this.ctx.drawImage(queenSwords, 830, 580, 35, 65);
 
-      this.ctx.drawImage(kingCups, 1025, 640, 45, 80);
-      this.ctx.drawImage(queenCups, 1050, 690, 45, 80);
+      this.ctx.drawImage(kingCups, 870, 530, 35, 65);
+      this.ctx.drawImage(queenCups, 890, 580, 35, 65);
 
-      this.ctx.drawImage(kingBats, 1100, 640, 45, 80);
-      this.ctx.drawImage(queenBats, 1125, 690, 45, 80);
+      this.ctx.drawImage(kingBats, 930, 530, 35, 65);
+      this.ctx.drawImage(queenBats, 950, 580, 35, 65);
 
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "red"
-      this.ctx.fillText("Call a brisc on your turn", 900, 630);
+      this.ctx.fillText("Call a brisc on your turn", 743, 522);
     }, 250)
 
 
@@ -292,6 +292,7 @@ export default class HumanPlayer {
   }
 
   promptMove() {
+    this.game.promptMove("DENARI", this); //delete this
     this.briscAvailable();
     this.registerEventListeners();
   };
