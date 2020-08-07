@@ -36,6 +36,7 @@ export default class Game {
   };
 
   drawInitialBoard() {
+    console.log(this.currentBrisc)
   const faceDown = new Image();
   const noCard = new Image();
   faceDown.src = "src/public/images/card-back-rename.JPG";
@@ -160,8 +161,8 @@ export default class Game {
         this.ctx.fillText(this.currentDeck.cardsInDeck.length, 502, 282);
       }
 
-      this.ctx.drawImage(noCard, 0, 0, 350, 90); //move this!!
-      this.ctx.drawImage(noCard, 705, 0, 350, 90); //move this!!
+      this.ctx.drawImage(noCard, 0, 0, 350, 90); //good - blocks score TL
+      this.ctx.drawImage(noCard, 705, 0, 350, 90); //good - blocks score TR
 
 
       this.ctx.font = "24px Georgia";
@@ -242,21 +243,21 @@ export default class Game {
       setTimeout(() => {
       this.ctx.font = "16px Georgia";
       this.ctx.fillStyle = "red"
-      this.ctx.fillText("Current Brisc:", 230, 535);
-      this.ctx.drawImage(briscCard, 255, 550, 45, 80);
-      this.ctx.drawImage(noCard, 865, 0, 350, 90);
+      this.ctx.fillText("Current Brisc:", 195, 420);
+      this.ctx.drawImage(briscCard, 220, 435, 45, 80);
+      this.ctx.drawImage(noCard, 700, 0, 350, 90);
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "red"
-      this.ctx.fillText("Current Round Score", 900, 20);
+      this.ctx.fillText("Current Round Score", 740, 20);
       this.ctx.font = "16px Georgia";
       this.ctx.fillStyle = "red"
       this.ctx.fillText("Your Team                            Other Team", 50, 35);
-      this.ctx.fillText("Your Team                            Other Team", 875, 35);
+      this.ctx.fillText("Your Team                            Other Team", 715, 35);
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "whitesmoke"
-      this.ctx.fillText(this.humanTeam.currentRoundScore, 900, 60);
-      this.ctx.fillText(this.robotTeam.currentRoundScore, 1100, 60);
+      this.ctx.fillText(this.humanTeam.currentRoundScore, 745, 60);
+      this.ctx.fillText(this.robotTeam.currentRoundScore, 940, 60);
 
       }, 200);
 

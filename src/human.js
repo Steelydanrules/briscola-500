@@ -292,7 +292,7 @@ export default class HumanPlayer {
   }
 
   promptMove() {
-    this.game.promptMove("DENARI", this); //delete this
+    this.game.callBrisc("DENARI", this); //delete this
     this.briscAvailable();
     this.registerEventListeners();
   };
