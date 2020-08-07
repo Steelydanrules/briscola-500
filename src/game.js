@@ -114,18 +114,18 @@ export default class Game {
       this.ctx.rotate(-90 * (Math.PI / 180));
 
       // right comp
-      this.ctx.drawImage(cpuFirstCard, -195, 1040, 90, 160);    
-      this.ctx.drawImage(cpuSecondCard, -295, 1040, 90, 160);
-      this.ctx.drawImage(cpuThirdCard, -395, 1040, 90, 160);
-      this.ctx.drawImage(cpuFourthCard, -495, 1040, 90, 160);
-      this.ctx.drawImage(cpuFifthCard, -595, 1040, 90, 160);
-      this.ctx.drawImage(noCard, -395, 820, 90, 160);
+      this.ctx.drawImage(cpuFirstCard, -160, 902, 55, 98);    
+      this.ctx.drawImage(cpuSecondCard, -230, 902, 55, 98);
+      this.ctx.drawImage(cpuThirdCard, -300, 902, 55, 98);
+      this.ctx.drawImage(cpuFourthCard, -370, 902, 55, 98);
+      this.ctx.drawImage(cpuFifthCard, -440, 902, 55, 98);
+      this.ctx.drawImage(faceDown, -300, 755, 55, 98); // change to no card
 
       // deck
       if (this.currentDeck.cardsInDeck.length !== 0) {
-        this.ctx.drawImage(faceDown, -395, 520, 90, 160);
+        this.ctx.drawImage(faceDown, -300, 476›, 55, 98);
       } else {
-        this.ctx.drawImage(noCard, -395, 520, 90, 160);
+        this.ctx.drawImage(noCard, -300, 520, 55, 98);
       }
 
       this.ctx.restore();
@@ -133,24 +133,24 @@ export default class Game {
       this.ctx.rotate(90 * (Math.PI / 180));
 
       //left cpu
-      this.ctx.drawImage(cpuFirstCard, 105, -160, 90, 160);
-      this.ctx.drawImage(cpuSecondCard, 205, -160, 90, 160);
-      this.ctx.drawImage(cpuThirdCard, 305, -160, 90, 160);
-      this.ctx.drawImage(cpuFourthCard, 405, -160, 90, 160);
-      this.ctx.drawImage(cpuFifthCard, 505, -160, 90, 160);
-      this.ctx.drawImage(noCard, 305, -380, 90, 160);
+      this.ctx.drawImage(cpuFirstCard, 105, -98, 55, 98);
+      this.ctx.drawImage(cpuSecondCard, 175, -98, 55, 98);
+      this.ctx.drawImage(cpuThirdCard, 245, -98, 55, 98);
+      this.ctx.drawImage(cpuFourthCard, 315, -98, 55, 98);
+      this.ctx.drawImage(cpuFifthCard, 385, -98, 55, 98);
+      this.ctx.drawImage(faceDown, 245, -245, 55, 98); // change to no card
     
       this.ctx.restore();
       this.ctx.save();
       this.ctx.rotate(180 * (Math.PI / 180));
 
       //partner
-      this.ctx.drawImage(cpuFirstCard, -445, -80, 90, 160);
-      this.ctx.drawImage(cpuSecondCard, -545, -80, 90, 160);
-      this.ctx.drawImage(cpuThirdCard, -645, -80, 90, 160);
-      this.ctx.drawImage(cpuFourthCard, -745, -80, 90, 160);
-      this.ctx.drawImage(cpuFifthCard, -845, -80, 90, 160);
-      this.ctx.drawImage(noCard, -645, -260, 90, 160);
+      this.ctx.drawImage(cpuFirstCard, -410, -98, 55, 98);
+      this.ctx.drawImage(cpuSecondCard, -480, -98, 55, 98);
+      this.ctx.drawImage(cpuThirdCard, -550, -98, 55, 98);
+      this.ctx.drawImage(cpuFourthCard, -620, -98, 55, 98);
+      this.ctx.drawImage(cpuFifthCard, -690, -98, 55, 98);
+      this.ctx.drawImage(faceDown, -550, -220, 55, 98); // change to no card
   
       this.ctx.restore();
 
@@ -161,40 +161,40 @@ export default class Game {
       }
 
       this.ctx.drawImage(noCard, 0, 0, 350, 90); //move this!!
-      this.ctx.drawImage(noCard, 865, 0, 350, 90); //move this!!
+      this.ctx.drawImage(noCard, 705, 0, 350, 90); //move this!!
 
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "red"
       this.ctx.fillText("Total Game Score (first to 500)", 15, 20);
-      this.ctx.fillText("Current Round Score", 900, 20);
+      this.ctx.fillText("Current Round Score", 740, 20);
 
       this.ctx.font = "16px Georgia";
       this.ctx.fillStyle = "red"
       this.ctx.fillText("Your Team                            Other Team", 50, 35);
-      this.ctx.fillText("Your Team                            Other Team", 875, 35);
+      this.ctx.fillText("Your Team                            Other Team", 715, 35);
 
       this.ctx.font = "24px Georgia";
       this.ctx.fillStyle = "whitesmoke"
       this.ctx.fillText(this.humanTeam.totalGameScore, 75, 60);
       this.ctx.fillText(this.robotTeam.totalGameScore, 265, 60);
 
-      this.ctx.fillText(this.humanTeam.currentRoundScore, 900, 60);
-      this.ctx.fillText(this.robotTeam.currentRoundScore, 1100, 60);
+      this.ctx.fillText(this.humanTeam.currentRoundScore, 745, 60);
+      this.ctx.fillText(this.robotTeam.currentRoundScore, 940, 60);
 
 
-      this.ctx.drawImage(firstCard, 355, 620, 90, 160);
-      this.ctx.drawImage(secondCard, 455, 620, 90, 160);
-      this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
-      this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
-      this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
+      this.ctx.drawImage(firstCard, 355, 620, 55, 98);
+      this.ctx.drawImage(secondCard, 455, 620, 55, 98);
+      this.ctx.drawImage(thirdCard, 555, 620, 55, 98);
+      this.ctx.drawImage(fourthCard, 655, 620, 55, 98);
+      this.ctx.drawImage(fifthCard, 755, 620, 55, 98);
 
       this.ctx.drawImage(lastUser, 155, 700, 45, 80);
       this.ctx.drawImage(lastCPU1, 205, 665, 45, 80);
       this.ctx.drawImage(lastCPU2, 155, 610, 45, 80);
       this.ctx.drawImage(lastCPU3, 105, 665, 45, 80);
 
-      this.ctx.drawImage(noCard, 555, 440, 90, 160);
+      this.ctx.drawImage(faceDown, 555, 440, 55, 98); // change to no card
     }, 350);
   };
 

@@ -16,33 +16,33 @@ export default class ComputerPlayer {
     this.positions = {
       1: { 
         rot: -90,
-        one: -195,
-        two: -295,
-        three: -395,
-        four: -495,
-        five: -595,
-        card1to5yPos: 1040,
-        thrownCardyPos: 820
+        one: -160,
+        two: -230,
+        three: -300,
+        four: -370,
+        five: -440,
+        card1to5yPos: 902,
+        thrownCardyPos: 755
       },
       2: { 
         rot: 180,
-        one: -445,
-        two: -545,
-        three: -645,
-        four: -745,
-        five: -845,
-        card1to5yPos: -80,
-        thrownCardyPos: -260
+        one: -410,
+        two: -480,
+        three: -550,
+        four: -620,
+        five: -690,
+        card1to5yPos: -98,
+        thrownCardyPos: -220
       },
       3: { 
         rot: 90,
         one: 105,
-        two: 205,
-        three: 305,
-        four: 405,
-        five: 505,
-        card1to5yPos: -160,
-        thrownCardyPos: -380
+        two: 175,
+        three: 245,
+        four: 315,
+        five: 385,
+        card1to5yPos: -98,
+        thrownCardyPos: -245
       }
     };
     this.possibleBriscs = {
@@ -108,12 +108,12 @@ export default class ComputerPlayer {
     setTimeout(() => {
       this.ctx.save();
       this.ctx.rotate(pI.rot * (Math.PI / 180));
-      this.ctx.drawImage(firstCard, pI.one, pI.card1to5yPos, 90, 160);
-      this.ctx.drawImage(secondCard, pI.two, pI.card1to5yPos, 90, 160);
-      this.ctx.drawImage(thirdCard, pI.three, pI.card1to5yPos, 90, 160);
-      this.ctx.drawImage(fourthCard, pI.four, pI.card1to5yPos, 90, 160);
-      this.ctx.drawImage(fifthCard, pI.five, pI.card1to5yPos, 90, 160);
-      this.ctx.drawImage(throwCard, pI.three, pI.thrownCardyPos, 90, 160);
+      this.ctx.drawImage(firstCard, pI.one, pI.card1to5yPos, 55, 98);
+      this.ctx.drawImage(secondCard, pI.two, pI.card1to5yPos, 55, 98);
+      this.ctx.drawImage(thirdCard, pI.three, pI.card1to5yPos, 55, 98);
+      this.ctx.drawImage(fourthCard, pI.four, pI.card1to5yPos, 55, 98);
+      this.ctx.drawImage(fifthCard, pI.five, pI.card1to5yPos, 55, 98);
+      this.ctx.drawImage(throwCard, pI.three, pI.thrownCardyPos, 55, 98);
       this.ctx.restore();
     }, 500);
 
