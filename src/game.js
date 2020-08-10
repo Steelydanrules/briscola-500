@@ -120,11 +120,11 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -300, 902, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -370, 902, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -440, 902, 55, 98);
-      this.ctx.drawImage(noCard, -300, 755, 55, 98); 
+      this.ctx.drawImage(faceDown, -314, 700, 81, 144); //change to noCard
 
       // deck
       if (this.currentDeck.cardsInDeck.length !== 0) {
-        this.ctx.drawImage(faceDown, -300, 474, 55, 98);
+        this.ctx.drawImage(faceDown, -320, 474, 55, 98);
       } else {
         this.ctx.drawImage(noCard, -300, 474, 55, 98);
       }
@@ -139,7 +139,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, 245, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, 315, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, 385, -98, 55, 98);
-      this.ctx.drawImage(noCard, 245, -245, 55, 98); 
+      this.ctx.drawImage(faceDown, 231, -300, 81, 144); //change to noCard
     
       this.ctx.restore();
       this.ctx.save();
@@ -151,7 +151,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -550, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -620, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -690, -98, 55, 98);
-      this.ctx.drawImage(noCard, -550, -220, 55, 98);
+      this.ctx.drawImage(faceDown, -564, -250, 81, 144); //change to noCard
   
       this.ctx.restore();
 
@@ -159,8 +159,8 @@ export default class Game {
       if (this.currentDeck.cardsInDeck.length > 0) {
         this.ctx.font = "36px Georgia";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 502, 282);
-      }
+        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 502, 300);
+      };
 
       this.ctx.drawImage(noCard, 0, 0, 350, 90); //good - blocks score TL
       this.ctx.drawImage(noCard, 705, 0, 350, 90); //good - blocks score TR
@@ -196,7 +196,7 @@ export default class Game {
       this.ctx.drawImage(lastCPU2, 155, 580, 40, 72);
       this.ctx.drawImage(lastCPU3, 105, 530, 40, 72);
 
-      this.ctx.drawImage(noCard, 480, 345, 81, 144);
+      this.ctx.drawImage(faceDown, 480, 345, 81, 144); //change to noCard
     }, 350);
   };
 

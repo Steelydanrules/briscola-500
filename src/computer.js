@@ -113,7 +113,7 @@ export default class ComputerPlayer {
       this.ctx.drawImage(thirdCard, pI.three, pI.card1to5yPos, 55, 98);
       this.ctx.drawImage(fourthCard, pI.four, pI.card1to5yPos, 55, 98);
       this.ctx.drawImage(fifthCard, pI.five, pI.card1to5yPos, 55, 98);
-      this.ctx.drawImage(throwCard, pI.three, pI.thrownCardyPos, 55, 98);
+      this.ctx.drawImage(throwCard, pI.three, pI.thrownCardyPos, 81, 144);
       this.ctx.restore();
     }, 500);
 
