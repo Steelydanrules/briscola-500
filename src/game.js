@@ -120,7 +120,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -300, 902, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -370, 902, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -440, 902, 55, 98);
-      this.ctx.drawImage(faceDown, -300, 755, 55, 98); // change to no card
+      this.ctx.drawImage(noCard, -300, 755, 55, 98); 
 
       // deck
       if (this.currentDeck.cardsInDeck.length !== 0) {
@@ -139,7 +139,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, 245, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, 315, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, 385, -98, 55, 98);
-      this.ctx.drawImage(faceDown, 245, -245, 55, 98); // change to no card
+      this.ctx.drawImage(noCard, 245, -245, 55, 98); 
     
       this.ctx.restore();
       this.ctx.save();
@@ -151,10 +151,11 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -550, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -620, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -690, -98, 55, 98);
-      this.ctx.drawImage(faceDown, -550, -220, 55, 98); // change to no card
+      this.ctx.drawImage(noCard, -550, -220, 55, 98);
   
       this.ctx.restore();
 
+      //draw deck
       if (this.currentDeck.cardsInDeck.length > 0) {
         this.ctx.font = "36px Georgia";
         this.ctx.fillStyle = "red"
@@ -183,19 +184,19 @@ export default class Game {
       this.ctx.fillText(this.humanTeam.currentRoundScore, 745, 60);
       this.ctx.fillText(this.robotTeam.currentRoundScore, 940, 60);
 
-
+      //user
       this.ctx.drawImage(firstCard, 300, 505, 81, 144);
       this.ctx.drawImage(secondCard, 390, 505, 81, 144);
       this.ctx.drawImage(thirdCard, 480, 505, 81, 144);
       this.ctx.drawImage(fourthCard, 570, 505, 81, 144);
       this.ctx.drawImage(fifthCard, 660, 505, 81, 144);
 
-      this.ctx.drawImage(faceDown, 155, 480, 40, 72); // change to lastUser
-      this.ctx.drawImage(faceDown, 205, 530, 40, 72); // change to lastCPU1
-      this.ctx.drawImage(faceDown, 155, 580, 40, 72); // change to lastCPU2
-      this.ctx.drawImage(faceDown, 105, 530, 40, 72); // change to lastCPU3
+      this.ctx.drawImage(lastUser, 155, 480, 40, 72);
+      this.ctx.drawImage(lastCPU1, 205, 530, 40, 72);
+      this.ctx.drawImage(lastCPU2, 155, 580, 40, 72);
+      this.ctx.drawImage(lastCPU3, 105, 530, 40, 72);
 
-      this.ctx.drawImage(faceDown, 480, 345, 81, 144); // change to no card
+      this.ctx.drawImage(noCard, 480, 345, 81, 144);
     }, 350);
   };
 

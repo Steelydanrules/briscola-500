@@ -179,12 +179,12 @@ export default class HumanPlayer {
     };
 
     setTimeout(() => {
-      this.ctx.drawImage(firstCard, 355, 620, 90, 160);
-      this.ctx.drawImage(secondCard, 455, 620, 90, 160);
-      this.ctx.drawImage(thirdCard, 555, 620, 90, 160);
-      this.ctx.drawImage(fourthCard, 655, 620, 90, 160);
-      this.ctx.drawImage(fifthCard, 755, 620, 90, 160);
-      this.ctx.drawImage(throwCard, 555, 440, 90, 160);
+      this.ctx.drawImage(firstCard, 300, 505, 81, 144);
+      this.ctx.drawImage(secondCard, 390, 505, 81, 144);
+      this.ctx.drawImage(thirdCard, 480, 505, 81, 144);
+      this.ctx.drawImage(fourthCard, 570, 505, 81, 144);
+      this.ctx.drawImage(fifthCard, 660, 505, 81, 144);
+      this.ctx.drawImage(throwCard, 480, 345, 81, 144);
     }, 500);
 }
 
@@ -292,7 +292,6 @@ export default class HumanPlayer {
   }
 
   promptMove() {
-    this.game.callBrisc("DENARI", this); //delete this
     this.briscAvailable();
     this.registerEventListeners();
   };
