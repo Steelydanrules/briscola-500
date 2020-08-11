@@ -36,7 +36,6 @@ export default class Game {
   };
 
   drawInitialBoard() {
-    console.log(this.currentBrisc)
   const faceDown = new Image();
   const noCard = new Image();
   faceDown.src = "src/public/images/card-back-rename.JPG";
@@ -120,14 +119,14 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -300, 902, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -370, 902, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -440, 902, 55, 98);
-      this.ctx.drawImage(faceDown, -314, 700, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, -314, 700, 81, 144); //change to noCard
 
       // deck
       if (this.currentDeck.cardsInDeck.length !== 0) {
         this.ctx.drawImage(faceDown, -320, 474, 55, 98);
       } else {
-        this.ctx.drawImage(noCard, -300, 474, 55, 98);
-      }
+        this.ctx.drawImage(noCard, -320, 474, 55, 98);
+      };
 
       this.ctx.restore();
       this.ctx.save();
@@ -139,7 +138,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, 245, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, 315, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, 385, -98, 55, 98);
-      this.ctx.drawImage(faceDown, 231, -300, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, 231, -300, 81, 144); //change to noCard
     
       this.ctx.restore();
       this.ctx.save();
@@ -151,7 +150,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -550, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -620, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -690, -98, 55, 98);
-      this.ctx.drawImage(faceDown, -564, -250, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, -564, -250, 81, 144); //change to noCard
   
       this.ctx.restore();
 
@@ -159,7 +158,7 @@ export default class Game {
       if (this.currentDeck.cardsInDeck.length > 0) {
         this.ctx.font = "36px Georgia";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 502, 300);
+        this.ctx.fillText(this.currentDeck.cardsInDeck.length, 506, 300);
       };
 
       this.ctx.drawImage(noCard, 0, 0, 350, 90); //good - blocks score TL
@@ -196,7 +195,7 @@ export default class Game {
       this.ctx.drawImage(lastCPU2, 155, 580, 40, 72);
       this.ctx.drawImage(lastCPU3, 105, 530, 40, 72);
 
-      this.ctx.drawImage(faceDown, 480, 345, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, 480, 345, 81, 144); //change to noCard
     }, 350);
   };
 
@@ -208,7 +207,7 @@ export default class Game {
 
 
     setTimeout( () => {
-      this.ctx.drawImage(noCard, 215, 500, 125, 150)}, 200);
+      this.ctx.drawImage(noCard, 195, 400, 100, 125)}, 200);
 
     for (let i = 0; i < 5; i++) {
 
@@ -220,10 +219,17 @@ export default class Game {
   };
   
   callBrisc(suit, player) {
-    console.log("calling")
     if (this.currentBrisc.length === 0) {
       this.currentBrisc.push(suit);
       player.team.currentRoundScore += 40;
+
+      if (player.id === 1) {
+        alert(`THE OPPONENT ON THE RIGHT CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 point for them!)`)
+      } else if (player.id === 3) {
+        alert(`THE OPPONENT ON THE LEFT CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 point for them!)`)
+      } else if (player.id === 2) {
+        alert(`YOUR PARTNER CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 point for you!)`)
+      }
 
       const briscCard = new Image();
       const noCard = new Image();
@@ -263,6 +269,14 @@ export default class Game {
       }, 200);
 
     } else if (this.currentBrisc.indexOf(suit) === -1) {
+      if (player.id === 1) {
+        alert(`THE OPPONENT ON THE RIGHT CALLED A BRISC OF ${suit} (+20 point for them!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
+      } else if (player.id === 3) {
+        alert(`THE OPPONENT ON THE LEFT CALLED A BRISC OF ${suit} (+20 point for them!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
+      } else if (player.id === 2) {
+        alert(`YOUR PARTNER CALLED A BRISC OF ${suit} (+20 point for you!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
+      };
+
       this.currentBrisc.push(suit);
       player.team.currentRoundScore += 20;
     }

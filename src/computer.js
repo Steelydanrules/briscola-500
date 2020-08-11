@@ -22,7 +22,8 @@ export default class ComputerPlayer {
         four: -370,
         five: -440,
         card1to5yPos: 902,
-        thrownCardyPos: 755
+        thrownCardyPos: 700,
+        throwCardxPos: -314
       },
       2: { 
         rot: 180,
@@ -32,7 +33,8 @@ export default class ComputerPlayer {
         four: -620,
         five: -690,
         card1to5yPos: -98,
-        thrownCardyPos: -220
+        thrownCardyPos: -250,
+        throwCardxPos: -564
       },
       3: { 
         rot: 90,
@@ -42,7 +44,8 @@ export default class ComputerPlayer {
         four: 315,
         five: 385,
         card1to5yPos: -98,
-        thrownCardyPos: -245
+        thrownCardyPos: -300,
+        throwCardxPos: 231
       }
     };
     this.possibleBriscs = {
@@ -113,7 +116,9 @@ export default class ComputerPlayer {
       this.ctx.drawImage(thirdCard, pI.three, pI.card1to5yPos, 55, 98);
       this.ctx.drawImage(fourthCard, pI.four, pI.card1to5yPos, 55, 98);
       this.ctx.drawImage(fifthCard, pI.five, pI.card1to5yPos, 55, 98);
-      this.ctx.drawImage(throwCard, pI.three, pI.thrownCardyPos, 81, 144);
+
+
+      this.ctx.drawImage(throwCard, pI.throwCardxPos, pI.thrownCardyPos, 81, 144);
       this.ctx.restore();
     }, 500);
 
@@ -206,7 +211,6 @@ export default class ComputerPlayer {
 
 
   promptMove() {
-    console.log(this.possibleBriscs)
     this.briscAvailable();
     this.chooseBestCard();
 

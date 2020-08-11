@@ -218,40 +218,32 @@ export default class HumanPlayer {
     if (e.pageX > (margin + 985) && e.pageX < (margin + 1055) && 
       e.pageY > 722 && e.pageY < 852 &&
       this.possibleBriscs["DENARI"] === 7) {
-      console.log("DENARI");
       this.possibleBriscs["DENARI"] = 0;
       this.game.callBrisc("DENARI", this);
-      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
     if (e.pageX > (margin + 1060) && e.pageX < (margin + 1130) && 
       e.pageY > 722 && e.pageY < 852 &&
       this.possibleBriscs["SPADE"] === 7) {
-      console.log("SPADE");
       this.possibleBriscs["SPADE"] = 0;
       this.game.callBrisc("SPADE", this);
-      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
     if (e.pageX > (margin + 1135) && e.pageX < (margin + 1205) && 
       e.pageY > 722 && e.pageY < 852 &&
       this.possibleBriscs["COPPE"] === 7) {
-      console.log("COPPE");
       this.possibleBriscs["COPPE"] = 0;
       this.game.callBrisc("COPPE", this);
-      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
     if (e.pageX > (margin + 1210) && e.pageX < (margin + 1280) && 
       e.pageY > 722 && e.pageY < 852 &&
       this.possibleBriscs["BASTONI"] === 7) {
-      console.log("BASTONI");
       this.possibleBriscs["BASTONI"] = 0;
       this.game.callBrisc("BASTONI", this);
-      // this.game.drawInitialBoard();
       this.renderBriscCards();
     };
 
