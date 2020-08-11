@@ -119,7 +119,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -300, 902, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -370, 902, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -440, 902, 55, 98);
-      this.ctx.drawImage(noCard, -314, 700, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, -314, 700, 81, 144);
 
       // deck
       if (this.currentDeck.cardsInDeck.length !== 0) {
@@ -138,7 +138,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, 245, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, 315, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, 385, -98, 55, 98);
-      this.ctx.drawImage(noCard, 231, -300, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, 231, -300, 81, 144);
     
       this.ctx.restore();
       this.ctx.save();
@@ -150,7 +150,7 @@ export default class Game {
       this.ctx.drawImage(cpuThirdCard, -550, -98, 55, 98);
       this.ctx.drawImage(cpuFourthCard, -620, -98, 55, 98);
       this.ctx.drawImage(cpuFifthCard, -690, -98, 55, 98);
-      this.ctx.drawImage(noCard, -564, -250, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, -564, -250, 81, 144);
   
       this.ctx.restore();
 
@@ -195,7 +195,7 @@ export default class Game {
       this.ctx.drawImage(lastCPU2, 155, 580, 40, 72);
       this.ctx.drawImage(lastCPU3, 105, 530, 40, 72);
 
-      this.ctx.drawImage(noCard, 480, 345, 81, 144); //change to noCard
+      this.ctx.drawImage(noCard, 480, 345, 81, 144);
     }, 350);
   };
 
