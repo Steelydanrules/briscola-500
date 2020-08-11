@@ -204,6 +204,8 @@ export default class HumanPlayer {
   }
 
   handleMouseDown(e) {
+    console.log(e.pageY, "Y")
+    console.log(e.pageX, "X")
     
     let gameBoard = document.getElementsByClassName("game-board-container")
     let margin = gameBoard[0].offsetWidth
@@ -215,59 +217,59 @@ export default class HumanPlayer {
     };
 
     e.preventDefault();
-    if (e.pageX > (margin + 985) && e.pageX < (margin + 1055) && 
-      e.pageY > 722 && e.pageY < 852 &&
+    if (e.pageX > (margin + 963) && e.pageX < (margin + 1018) && 
+      e.pageY > 611 && e.pageY < 726 &&
       this.possibleBriscs["DENARI"] === 7) {
       this.possibleBriscs["DENARI"] = 0;
       this.game.callBrisc("DENARI", this);
       this.renderBriscCards();
     };
 
-    if (e.pageX > (margin + 1060) && e.pageX < (margin + 1130) && 
-      e.pageY > 722 && e.pageY < 852 &&
+    if (e.pageX > (margin + 1023) && e.pageX < (margin + 1078) && 
+      e.pageY > 611 && e.pageY < 726 &&
       this.possibleBriscs["SPADE"] === 7) {
       this.possibleBriscs["SPADE"] = 0;
       this.game.callBrisc("SPADE", this);
       this.renderBriscCards();
     };
 
-    if (e.pageX > (margin + 1135) && e.pageX < (margin + 1205) && 
-      e.pageY > 722 && e.pageY < 852 &&
+    if (e.pageX > (margin + 1083) && e.pageX < (margin + 1138) && 
+      e.pageY > 611 && e.pageY < 726 &&
       this.possibleBriscs["COPPE"] === 7) {
       this.possibleBriscs["COPPE"] = 0;
       this.game.callBrisc("COPPE", this);
       this.renderBriscCards();
     };
 
-    if (e.pageX > (margin + 1210) && e.pageX < (margin + 1280) && 
-      e.pageY > 722 && e.pageY < 852 &&
+    if (e.pageX > (margin + 1143) && e.pageX < (margin + 1198) && 
+      e.pageY > 611 && e.pageY < 726 &&
       this.possibleBriscs["BASTONI"] === 7) {
       this.possibleBriscs["BASTONI"] = 0;
       this.game.callBrisc("BASTONI", this);
       this.renderBriscCards();
     };
 
-    if (e.pageX > (margin + 465) && e.pageX < (margin + 555) && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 0) {
+    if (e.pageX > (margin + 513) && e.pageX < (margin + 594) && e.pageY > 585 && e.pageY < 729 && this.currentHand.length > 0) {
       this.renderThrow(0)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(0);
-    } else if (e.pageX > (margin + 565) && e.pageX < (margin + 655) && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 1) {
+    } else if (e.pageX > (margin + 603) && e.pageX < (margin + 684) && e.pageY > 585 && e.pageY < 729 && this.currentHand.length > 1) {
       this.renderThrow(1)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(1);
-    } else if (e.pageX > (margin + 665) && e.pageX < (margin + 755) && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 2) {
+    } else if (e.pageX > (margin + 693) && e.pageX < (margin + 774) && e.pageY > 585 && e.pageY < 729 && this.currentHand.length > 2) {
       this.renderThrow(2)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(2);
-    } else if (e.pageX > (margin + 765) && e.pageX < (margin + 855) && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 3) {
+    } else if (e.pageX > (margin + 783) && e.pageX < (margin + 864) && e.pageY > 585 && e.pageY < 729 && this.currentHand.length > 3) {
       this.renderThrow(3)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 0);
       return this.throwCard(3);
-    } else if (e.pageX > (margin + 865) && e.pageX < (margin + 955) && e.pageY > 700 && e.pageY < 860 && this.currentHand.length > 4) {
+    } else if (e.pageX > (margin + 873) && e.pageX < (margin + 954) && e.pageY > 585 && e.pageY < 729 && this.currentHand.length > 4) {
       this.renderThrow(4)
       this.removeEventListeners();
       setTimeout( () => this.game.nextThrow(), 0);
