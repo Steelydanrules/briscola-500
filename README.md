@@ -27,7 +27,7 @@ Calling a BRISCOLA means that the suit shown is now the "trump" suit.  For insta
 |0|2|
 
 
-![wire](images/wire.png)
+![wire](src/public/images/wire.png)
 
 # MVP 1
 Game logic 1-2 days
