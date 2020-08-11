@@ -84,12 +84,14 @@ canvas img {
 }
 
 .fab{
+  color: #CEBF42;
   font-size: 35px;
 }
 
 .fab:hover {
-  opacity: 85%;
+  opacity: 70%;
   transition: ease-in;
+  transition-duration: .25s;
   cursor: pointer;
 }
 
@@ -173,6 +175,7 @@ canvas img {
   padding: 50px; 
   margin: auto; 
   width: 75%;  
+  height: 75%;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 1.2s;
   animation-name: animatetop;
@@ -180,8 +183,8 @@ canvas img {
 }
 
 .rankings-modal-pic{
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 80%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;

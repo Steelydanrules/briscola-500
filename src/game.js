@@ -432,9 +432,9 @@ export default class Game {
     if (this.humanTeam.totalGameScore >= 500 ||
       this.robotTeam.totalGameScore >= 500) {
         
-      let modal = document.querySelector(".game-over")
-      let myScore = document.querySelector(".my-score")
-      let yourScore = document.querySelector(".their-score")
+      let modal = document.querySelector(".game-over");
+      let myScore = document.querySelector(".my-score");
+      let yourScore = document.querySelector(".their-score");
 
       myScore.value = this.humanTeam.totalGameScore;
       yourScore.value = this.robotTeam.totalGameScore;
