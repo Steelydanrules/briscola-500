@@ -212,3 +212,32 @@ canvas img {
   to {top:0; opacity:1}
 }
 
+.not-working-modal {
+  display: block;
+  position: fixed; 
+  padding-top: 50px;
+  left: 0; 
+  top: 0;
+  width: 100vw;
+  height: 100vh; 
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.not-working-modal-content {
+  font-family: 'Arvo', serif;
+  font-size: 16px;
+  border-radius: 15px;
+  background-color: cornsilk;
+  position: relative; 
+  background-color: white;
+  padding: 50px; 
+  margin: auto; 
+  width: 75%;  
+  height: 75%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1.2s;
+  animation-name: animatetop;
+  animation-duration: 1.2s
+}
