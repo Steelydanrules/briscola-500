@@ -224,11 +224,11 @@ export default class Game {
       player.team.currentRoundScore += 40;
 
       if (player.id === 1) {
-        alert(`THE OPPONENT ON THE RIGHT CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 point for them!)`)
+        alert(`THE OPPONENT ON THE RIGHT CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 points for them!)`)
       } else if (player.id === 3) {
-        alert(`THE OPPONENT ON THE LEFT CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 point for them!)`)
+        alert(`THE OPPONENT ON THE LEFT CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 points for them!)`)
       } else if (player.id === 2) {
-        alert(`YOUR PARTNER CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 point for you!)`)
+        alert(`YOUR PARTNER CALLED A BRISC AND THE CURRENT BRISC IS ${suit} (+40 points for you!)`)
       }
 
       const briscCard = new Image();
@@ -270,11 +270,11 @@ export default class Game {
 
     } else if (this.currentBrisc.indexOf(suit) === -1) {
       if (player.id === 1) {
-        alert(`THE OPPONENT ON THE RIGHT CALLED A BRISC OF ${suit} (+20 point for them!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
+        alert(`THE OPPONENT ON THE RIGHT CALLED A BRISC OF ${suit} (+20 points for them!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
       } else if (player.id === 3) {
-        alert(`THE OPPONENT ON THE LEFT CALLED A BRISC OF ${suit} (+20 point for them!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
+        alert(`THE OPPONENT ON THE LEFT CALLED A BRISC OF ${suit} (+20 points for them!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
       } else if (player.id === 2) {
-        alert(`YOUR PARTNER CALLED A BRISC OF ${suit} (+20 point for you!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
+        alert(`YOUR PARTNER CALLED A BRISC OF ${suit} (+20 points for you!). THE CURRENT BRISC IS STILL ${this.currentBrisc[0]}`)
       };
 
       this.currentBrisc.push(suit);
