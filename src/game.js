@@ -194,7 +194,7 @@ export default class Game {
       this.ctx.drawImage(lastCPU1, 205, 530, 40, 72);
       this.ctx.drawImage(lastCPU2, 155, 580, 40, 72);
       this.ctx.drawImage(lastCPU3, 105, 530, 40, 72);
-
+      
       this.ctx.drawImage(noCard, 480, 345, 81, 144);
     }, 350);
   };
