@@ -153,7 +153,7 @@ export default class Game {
       this.ctx.drawImage(noCard, -564, -250, 81, 144);
   
       this.ctx.restore();
-
+ 
       //draw deck 
       if (this.currentDeck.cardsInDeck.length > 0) {
         this.ctx.font = "36px Georgia";
