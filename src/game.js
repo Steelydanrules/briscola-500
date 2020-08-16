@@ -154,7 +154,7 @@ export default class Game {
   
       this.ctx.restore();
 
-      //draw deck
+      //draw deck 
       if (this.currentDeck.cardsInDeck.length > 0) {
         this.ctx.font = "36px Georgia";
         this.ctx.fillStyle = "red"

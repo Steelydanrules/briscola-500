@@ -95,7 +95,7 @@ export default class HumanPlayer {
     } else {
     kingBats.src = "src/public/images/card-back-rename.JPG"
     };
-
+ 
     const queenBats = new Image();
     if (this.possibleBriscs["BASTONI"] === 3 || this.possibleBriscs["BASTONI"] === 7) {
     queenBats.src = "src/public/images/QBats.png"

@@ -54,7 +54,7 @@ export default class ComputerPlayer {
       "COPPE": 0,
       "BASTONI": 0
     };
-
+ 
     
 }
 
