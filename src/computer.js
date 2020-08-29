@@ -53,10 +53,8 @@ export default class ComputerPlayer {
       "SPADE": 0,
       "COPPE": 0,
       "BASTONI": 0
-    };
-  
-    
-}
+    };  
+  }
 
   briscAvailable() {
     if (this.currentHand.length < 3) {
@@ -147,7 +145,9 @@ export default class ComputerPlayer {
       if (card.rank < this.currentHand[smallestIdx].rank) {
         smallestIdx = i;
       }
-    }
+    };
+
+
     return smallestIdx;
   }
 
