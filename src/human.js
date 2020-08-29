@@ -203,10 +203,7 @@ export default class HumanPlayer {
     return cardToThrow;
   }
 
-  handleMouseDown(e) {
-    console.log(e.pageY, "Y")
-    console.log(e.pageX, "X")
-    
+  handleMouseDown(e) {    
     let gameBoard = document.getElementsByClassName("game-board-container")
     let margin = gameBoard[0].offsetWidth
     

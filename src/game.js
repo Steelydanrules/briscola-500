@@ -342,7 +342,6 @@ export default class Game {
 
 
     this.populateLastHand();
-
     this.startOfThisHand = this.PLAYERS.indexOf(highestCard.owner);
     this.thrownCards = [];
 

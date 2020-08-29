@@ -172,10 +172,10 @@ canvas img {
   background-color: cornsilk;
   position: relative; 
   background-color: white;
-  padding: 50px; 
+  padding: 20px; 
   margin: auto; 
-  width: 75%;  
-  height: 75%;
+  width: 80%;  
+  height: 80%;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 1.2s;
   animation-name: animatetop;
@@ -184,9 +184,10 @@ canvas img {
 
 .rankings-modal-pic{
   width: 80%;
-  height: 80%;
+  height: 180px;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 10px;
   text-align: center;
   display: flex;
   justify-content: center;

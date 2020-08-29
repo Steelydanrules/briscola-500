@@ -54,6 +54,13 @@ export default class ComputerPlayer {
       "COPPE": 0,
       "BASTONI": 0
     };  
+
+    this.pointsOfEachSuit = {
+      "DENARI": 0,
+      "SPADE": 0,
+      "COPPE": 0,
+      "BASTONI": 0
+    };  
   }
 
   briscAvailable() {
@@ -64,6 +71,12 @@ export default class ComputerPlayer {
         "COPPE": 0,
         "BASTONI": 0
       };
+      this.pointsOfEachSuit = {
+        "DENARI": 0,
+        "SPADE": 0,
+        "COPPE": 0,
+        "BASTONI": 0
+      }; 
       return
     };
   };
@@ -126,11 +139,14 @@ export default class ComputerPlayer {
     if (this.currentHand.length < 5) {
       if (card.points === 3 || card.points === 4) {
         this.possibleBriscs[card.suit] += card.points
-      }
+      };
+      
+      this.pointsOfEachSuit[card.suit] += card.points;
       card.owner = this;
       card.faceUp = true;
       card.team = this.team;
       this.currentHand.push(card);
+      console.log(this.pointsOfEachSuit)
     } else {
       console.log("cpu trying to draw again.  IDK WHY!")
       return
@@ -161,20 +177,20 @@ export default class ComputerPlayer {
     this.game.callBrisc(suit, this)
     return
 
-    let totalpoints = 0;
+    // let totalpoints = 0;
 
-    for (let i = 0; i < this.currentHand.length; i++) {
-      let card = this.currentHand[i];
-      if (card.suit === suit) {
-        totalpoints += card.points;
-      };
-    };
+    // for (let i = 0; i < this.currentHand.length; i++) {
+    //   let card = this.currentHand[i];
+    //   if (card.suit === suit) {
+    //     totalpoints += card.points;
+    //   };
+    // };
 
-    if (totalpoints > 7 && this.currentHand.length > 4) {
-      this.game.callBrisc(suit, this)
-    } else if (totalpoints >= 7 && this.currentHand.length === 3) {
-      this.game.callBrisc(suit, this)
-    };
+    // if (totalpoints > 7 && this.currentHand.length > 4) {
+    //   this.game.callBrisc(suit, this)
+    // } else if (totalpoints >= 7 && this.currentHand.length === 3) {
+    //   this.game.callBrisc(suit, this)
+    // };
   }
 
   chooseBestCard(){
