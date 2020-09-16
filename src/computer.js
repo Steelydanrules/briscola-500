@@ -13,7 +13,7 @@ export default class ComputerPlayer {
     this.worstCardThrower = this.worstCardThrower.bind(this);
     this.modifyBriscPoints = this.modifyBriscPoints.bind(this);
     this.toCallBrisc = this.toCallBrisc.bind(this);
-    this.decideBestCardIdxAlreadyThrown = this.decideBestCardIdxAlreadyThrown.bind(
+    this.decideBestCardAlreadyThrown = this.decideBestCardAlreadyThrown.bind(
       this
     );
     this.positions = {
@@ -153,7 +153,6 @@ export default class ComputerPlayer {
       card.faceUp = true;
       card.team = this.team;
       this.currentHand.push(card);
-      console.log(this.pointsOfEachSuit);
     } else {
       console.log("cpu trying to draw again.  IDK WHY!");
       return;
@@ -233,6 +232,8 @@ export default class ComputerPlayer {
   }
 
   promptMove() {
+    const bestCard = this.decideBestCardAlreadyThrown();
+    console.log(bestCard);
     this.briscAvailable();
     this.chooseBestCard();
 
@@ -245,7 +246,7 @@ export default class ComputerPlayer {
     return;
   }
 
-  decideBestCardIdxAlreadyThrown() {
+  decideBestCardAlreadyThrown() {
     const currentThrown = this.game.thrownCards;
     const currentBriscola = this.game.currentBrisc;
 
@@ -268,7 +269,7 @@ export default class ComputerPlayer {
       };
 
       // winning card yes brisc
-      if (currentBriscola !== 0) {
+      if (currentBriscola.length !== 0) {
         suitToBeat = currentBriscola[0];
 
         for (let i = 0; i < currentThrown.length; i++) {
@@ -288,7 +289,7 @@ export default class ComputerPlayer {
           };
         };
       };
-    return highestCard
+    return highestCard;
   };
 
 };
