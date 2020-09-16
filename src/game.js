@@ -11,6 +11,7 @@ export default class Game {
     this.startOfThisHand = 0;
     this.thrownCards = [];
     this.lastHand = {};
+    this.pointsOnTable = 0;
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
@@ -190,9 +191,9 @@ export default class Game {
       this.ctx.drawImage(fourthCard, 570, 505, 81, 144);
       this.ctx.drawImage(fifthCard, 660, 505, 81, 144);
 
-      this.ctx.drawImage(lastUser, 155, 480, 40, 72);
+      this.ctx.drawImage(lastCPU2, 155, 480, 40, 72);
       this.ctx.drawImage(lastCPU1, 205, 530, 40, 72);
-      this.ctx.drawImage(lastCPU2, 155, 580, 40, 72);
+      this.ctx.drawImage(lastUser, 155, 580, 40, 72);
       this.ctx.drawImage(lastCPU3, 105, 530, 40, 72);
       
       this.ctx.drawImage(noCard, 480, 345, 81, 144);
@@ -342,6 +343,7 @@ export default class Game {
 
 
     this.populateLastHand();
+    this.pointsOnTable = 0;
     this.startOfThisHand = this.PLAYERS.indexOf(highestCard.owner);
     this.thrownCards = [];
 
@@ -373,6 +375,7 @@ export default class Game {
     this._dealCards();
     this.playTurn();
     this.drawInitialBoard();
+    this.pointsOnTable = 0;
     } else {
       console.log("gamover");
     }

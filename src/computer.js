@@ -13,9 +13,7 @@ export default class ComputerPlayer {
     this.worstCardThrower = this.worstCardThrower.bind(this);
     this.modifyBriscPoints = this.modifyBriscPoints.bind(this);
     this.toCallBrisc = this.toCallBrisc.bind(this);
-    this.decideBestCardAlreadyThrown = this.decideBestCardAlreadyThrown.bind(
-      this
-    );
+    this.decideBestCardAlreadyThrown = this.decideBestCardAlreadyThrown.bind(this);
     this.positions = {
       1: {
         rot: -90,
@@ -205,7 +203,10 @@ export default class ComputerPlayer {
     let toThrowIdx;
     let cardToThrow;
 
-    if (this.game.currentDeck.cardsInDeck.length !== 0) {
+    if (this.game.currentDeck.cardsInDeck.length !== 0 && this.game.pointsOnTable === 0) {
+      toThrowIdx = this.worstCardThrower();
+      cardToThrow = this.currentHand[toThrowIdx];
+    } else if (this.game.currentDeck.cardsInDeck.length !== 0) {
       toThrowIdx = this.worstCardThrower();
       cardToThrow = this.currentHand[toThrowIdx];
     } else {
@@ -228,6 +229,7 @@ export default class ComputerPlayer {
       .slice(0, toThrowIdx)
       .concat(this.currentHand.slice(toThrowIdx + 1, this.currentHand.length));
 
+    this.game.pointsOnTable += cardToThrow.points;
     this.game.thrownCards.push(cardToThrow);
   }
 
@@ -273,7 +275,7 @@ export default class ComputerPlayer {
         suitToBeat = currentBriscola[0];
 
         for (let i = 0; i < currentThrown.length; i++) {
-          let thisThrown = this.thrownCards[i];
+          let thisThrown = currentThrown[i];
 
           if (
             thisThrown.suit === suitToBeat &&
