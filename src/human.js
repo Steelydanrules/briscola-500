@@ -283,6 +283,7 @@ export default class HumanPlayer {
   }
 
   promptMove() {
+    console.log(this.game.cardsLeft);
     this.briscAvailable();
     this.registerEventListeners();
   };

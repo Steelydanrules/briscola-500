@@ -15,6 +15,12 @@ export default class Game {
     this.ctx = canvas.getContext("2d");
     this.humanTeam = new Team("humanTeam");
     this.robotTeam = new Team("robotTeam");
+    this.cardsLeft = {
+      'DENARI': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      'SPADE': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      'COPPE': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      'BASTONI': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    };
 
     this.PLAYERS = [
       new HumanPlayer(this.humanTeam, canvas, this),
@@ -34,6 +40,7 @@ export default class Game {
     this.nextThrow = this.nextThrow.bind(this);
     this.populateLastHand = this.populateLastHand.bind(this);
     this.restartGame = this.restartGame.bind(this);
+    this.removeFromCardsLeft = this.removeFromCardsLeft.bind(this);
   };
 
   drawInitialBoard() {
@@ -308,8 +315,10 @@ export default class Game {
     let suitToBeat = this.thrownCards[0].suit;
 
       // winning card no brisc
-      for (let i = 1; i < 4; i++) {
+      for (let i = 1; i < 4; i++) {        
         let thisThrown = this.thrownCards[i];
+        this.removeFromCardsLeft(thisThrown);
+
         if (thisThrown.rank > highestCard.rank
         && thisThrown.suit === suitToBeat) {
           highestCard = thisThrown;
@@ -321,7 +330,6 @@ export default class Game {
         suitToBeat = this.currentBrisc[0];
         for (let i = 0; i < 4; i++) {
           let thisThrown = this.thrownCards[i];
-
           if(thisThrown.suit === suitToBeat 
           && highestCard.suit !== suitToBeat) {
             highestCard = thisThrown;
@@ -361,6 +369,14 @@ export default class Game {
 
     this.drawInitialBoard();
   }
+  
+  removeFromCardsLeft(card) {
+    const suit = card.suit;
+    const idx = this.cardsLeft[suit].indexOf(card.rank);
+    this.cardsLeft[suit] = this.cardsLeft[suit]
+      .slice(0, idx)
+      .concat(this.cardsLeft[suit].slice(idx + 1, this.cardsLeft[suit].length));
+  }
 
   restartGame(){
     this.finalTally();
@@ -376,6 +392,12 @@ export default class Game {
     this.playTurn();
     this.drawInitialBoard();
     this.pointsOnTable = 0;
+    this.cardsLeft = {
+      'DENARI': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      'SPADE': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      'COPPE': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      'BASTONI': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    };
     } else {
       console.log("gamover");
     }

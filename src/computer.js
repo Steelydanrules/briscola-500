@@ -9,7 +9,7 @@ export default class ComputerPlayer {
     this.promptMove = this.promptMove.bind(this);
     this.renderThrow = this.renderThrow.bind(this);
     this.chooseBestCard = this.chooseBestCard.bind(this);
-    this.briscAvailable = this.briscAvailable.bind(this);
+    this.populateBriscPoints = this.populateBriscPoints.bind(this);
     this.worstCardThrower = this.worstCardThrower.bind(this);
     this.modifyBriscPoints = this.modifyBriscPoints.bind(this);
     this.toCallBrisc = this.toCallBrisc.bind(this);
@@ -64,7 +64,7 @@ export default class ComputerPlayer {
     };
   }
 
-  briscAvailable() {
+  populateBriscPoints() {
     if (this.currentHand.length < 3) {
       this.possibleBriscs = {
         DENARI: 0,
@@ -159,8 +159,11 @@ export default class ComputerPlayer {
 
   worstCardThrower() {
     let smallestIdx = 0;
+    const currentBrisc = this.game.currentBrisc[0];
     for (let i = 1; i < 5; i++) {
       let card = this.currentHand[i];
+
+      if (currentBrisc && card.suit !== currentBrisc)
 
       if (card.rank < this.currentHand[smallestIdx].rank) {
         smallestIdx = i;
@@ -202,11 +205,14 @@ export default class ComputerPlayer {
   chooseBestCard() {
     let toThrowIdx;
     let cardToThrow;
+    const game = this.game;
+    const bestCard = this.decideBestCardAlreadyThrown();
+    const winningTeam = bestCard.owner.team;
 
-    if (this.game.currentDeck.cardsInDeck.length !== 0 && this.game.pointsOnTable === 0) {
+    if (game.currentDeck.cardsInDeck.length !== 0 && game.pointsOnTable < 3) {
       toThrowIdx = this.worstCardThrower();
       cardToThrow = this.currentHand[toThrowIdx];
-    } else if (this.game.currentDeck.cardsInDeck.length !== 0) {
+    } else if (game.currentDeck.cardsInDeck.length !== 0) {
       toThrowIdx = this.worstCardThrower();
       cardToThrow = this.currentHand[toThrowIdx];
     } else {
@@ -234,9 +240,7 @@ export default class ComputerPlayer {
   }
 
   promptMove() {
-    const bestCard = this.decideBestCardAlreadyThrown();
-    console.log(bestCard);
-    this.briscAvailable();
+    this.populateBriscPoints();
     this.chooseBestCard();
 
     if (this.game.thrownCards.length === 4) {
