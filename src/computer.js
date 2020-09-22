@@ -14,6 +14,8 @@ export default class ComputerPlayer {
     this.modifyBriscPoints = this.modifyBriscPoints.bind(this);
     this.toCallBrisc = this.toCallBrisc.bind(this);
     this.decideBestCardAlreadyThrown = this.decideBestCardAlreadyThrown.bind(this);
+    this.tryToWinNaturally = this.tryToWinNaturally.bind(this);
+    this.pointThisHand = this.pointThisHand.bind(this);
     this.positions = {
       1: {
         rot: -90,
@@ -202,14 +204,55 @@ export default class ComputerPlayer {
     // };
   }
 
+  tryToWinNaturally(bestCard){
+    // fill out
+  }
+
+  pointThisHand(){
+    let toThrowIdx;
+    let currentBriscSuit;
+    let possibleThrows = [];
+
+    if (this.game.currentBrisc[0].length !== 0) {
+      currentBriscSuit = this.game.currentBrisc[0].suit;
+
+      possibleThrows = this.currentHand.filter(card => card.suit !== currentBriscSuit);
+    } else {
+      possibleThrows = this.currentHand;
+    }
+
+    if (possibleThrows.length !== 0) {
+      toThrowIdx = 0;
+
+      for (let i = 1; i < possibleThrows.length; i++) {
+        if (possibleThrows[toThrowIdx].points < possibleThrows[i].points) {
+          toThrowIdx = i;
+        };
+      };
+    } else {
+      toThrowIdx = this.worstCardThrower();
+    };
+    return toThrowIdx;
+  }
+
   chooseBestCard() {
     let toThrowIdx;
     let cardToThrow;
     const game = this.game;
     const bestCard = this.decideBestCardAlreadyThrown();
-    const winningTeam = bestCard.owner.team;
+    let winningTeam = null;
 
-    if (game.currentDeck.cardsInDeck.length !== 0 && game.pointsOnTable < 3) {
+    if (bestCard !== -1) {
+      winningTeam = bestCard.owner.team;
+    }
+
+    if ((game.pointsOnTable < 10 || game.currentDeck.length === 0 || game.currentBrisc.length > 0) && game.thrownCards.length === 3 && winningTeam === this.team) {
+      toThrowIdx = this.pointThisHand();
+      cardToThrow = this.currentHand[toThrowIdx];
+    } else if (
+      game.currentDeck.cardsInDeck.length !== 0 &&
+      game.pointsOnTable < 3
+    ) {
       toThrowIdx = this.worstCardThrower();
       cardToThrow = this.currentHand[toThrowIdx];
     } else if (game.currentDeck.cardsInDeck.length !== 0) {
