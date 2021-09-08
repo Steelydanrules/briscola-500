@@ -43,6 +43,16 @@ export default class Game {
     this.removeFromCardsLeft = this.removeFromCardsLeft.bind(this);
   };
 
+  isAllLoaded(...cards) { //used to check how many
+    let result;
+    for (let card of cards) {
+      if (!image.complete) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   drawInitialBoard() {
   const faceDown = new Image();
   const noCard = new Image();
@@ -117,7 +127,11 @@ export default class Game {
   }
 
 
+  var isItLoaded;
+
+
     setTimeout(() => {
+
       this.ctx.save();
       this.ctx.rotate(-90 * (Math.PI / 180));
 
@@ -138,6 +152,9 @@ export default class Game {
 
       this.ctx.restore();
       this.ctx.save();
+
+
+
       this.ctx.rotate(90 * (Math.PI / 180));
 
       //left cpu
@@ -150,6 +167,10 @@ export default class Game {
     
       this.ctx.restore();
       this.ctx.save();
+
+
+
+      
       this.ctx.rotate(180 * (Math.PI / 180));
 
       //partner
